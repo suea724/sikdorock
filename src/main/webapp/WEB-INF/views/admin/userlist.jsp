@@ -1,0 +1,81 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<section>
+    <div id="title">회원 관리</div>
+    <div id="userList">
+        <table class="table">
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>아이디</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>hong1234</td>
+                <td><button>추방</button></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>hong1234</td>
+                <td><button>추방</button></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>hong1234</td>
+                <td><button>추방</button></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>hong1234</td>
+                <td><button>추방</button></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>hong1234</td>
+                <td><button>추방</button></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>hong1234</td>
+                <td><button>추방</button></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>hong1234</td>
+                <td><button>추방</button></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>hong1234</td>
+                <td><button>추방</button></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>hong1234</td>
+                <td><button>추방</button></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>hong1234</td>
+                <td><button>추방</button></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>hong1234</td>
+                <td><button>추방</button></td>
+            </tr>
+
+        </table>
+    </div>
+</section>

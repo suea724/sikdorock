@@ -4,13 +4,14 @@
 <head>
     <title>식도락 관리자</title>
     <tiles:insertAttribute name="asset"/>
+    <link rel="stylesheet" href="/sikdorock/resources/css/admin.css">
 </head>
 <body>
-<main>
-    <div>
-        <tiles:insertAttribute name="adminsubmenu"/>
-        <tiles:insertAttribute name="content"/>
-    </div>
-</main>
+    <main>
+        <div>
+            <tiles:insertAttribute name="adminsubmenu"/>
+            <tiles:insertAttribute name="content"/>
+        </div>
+    </main>
 </body>
 </html>
