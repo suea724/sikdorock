@@ -7,8 +7,10 @@
 </head>
 <body>
 <main>
-    <tiles:insertAttribute name="adminsubmenu"/>
-    <tiles:insertAttribute name="content"/>
+    <div>
+        <tiles:insertAttribute name="adminsubmenu"/>
+        <tiles:insertAttribute name="content"/>
+    </div>
 </main>
 </body>
 </html>
