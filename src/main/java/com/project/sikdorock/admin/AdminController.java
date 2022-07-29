@@ -10,10 +10,10 @@ public class AdminController {
 
     private final AdminService service;
 
-    @GetMapping(value="/admin/home")
+    @GetMapping(value="/admin/userList")
     public String home() {
 
-        return "admin.home";
+        return "admin.userlist";
     }
 
 }

@@ -16,7 +16,6 @@ main > div {
 
 #submenu {
     background-color: #C69760;
-    color: #4a4a4a;
     height: 100%;
     width: 200px;
 }
@@ -34,4 +33,38 @@ main > div {
 
 #submenu > ul > li > a {
     font-family: 'HallymGothic-Bold';
+    text-decoration: none;
+    color: #4a4a4a;
+}
+
+#submenu > ul > li > a:hover {
+    color: black;
+    transition: .2s;
+}
+
+section > #title {
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'HallymGothic-Bold';
+    margin-top: 30px;
+}
+
+main > div > section {
+    width: 100%;
+    background-color: #fbfbfb;
+}
+
+#userList {
+    margin-top: 100px;
+}
+
+#userList > table {
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 1px #f4f4f4;
+}
+
+#userList > table th, table td {
+    text-align: center;
 }
