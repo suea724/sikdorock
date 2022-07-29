@@ -4,5 +4,8 @@
 
 <mapper namespace="admin">
 
+    <select id="list" resultType="userdto">
+        select * from tblUser order by id desc
+    </select>
 
 </mapper>
