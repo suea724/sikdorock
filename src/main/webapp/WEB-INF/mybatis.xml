@@ -3,5 +3,21 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-
+    <typeAliases>
+        <typeAlias type="com.project.sikdorock.dto.AdminDTO" alias="admindto"/>
+        <typeAlias type="com.project.sikdorock.dto.AnswerDTO" alias="answerdto"/>
+        <typeAlias type="com.project.sikdorock.dto.BuyListDTO" alias="buylistdto"/>
+        <typeAlias type="com.project.sikdorock.dto.CartDTO" alias="cartdto"/>
+        <typeAlias type="com.project.sikdorock.dto.CategoryDTO" alias="categorydto"/>
+        <typeAlias type="com.project.sikdorock.dto.CouponDTO" alias="coupondto"/>
+        <typeAlias type="com.project.sikdorock.dto.EventDTO" alias="eventdto"/>
+        <typeAlias type="com.project.sikdorock.dto.FoodDTO" alias="fooddto"/>
+        <typeAlias type="com.project.sikdorock.dto.FoodImageDTO" alias="foodimagedto"/>
+        <typeAlias type="com.project.sikdorock.dto.LikeFoodDTO" alias="likefooddto"/>
+        <typeAlias type="com.project.sikdorock.dto.OrderNumDTO" alias="ordernumdto"/>
+        <typeAlias type="com.project.sikdorock.dto.PaymentDTO" alias="paymentdto"/>
+        <typeAlias type="com.project.sikdorock.dto.QuestionDTO" alias="questiondto"/>
+        <typeAlias type="com.project.sikdorock.dto.ReviewDTO" alias="reviewdto"/>
+        <typeAlias type="com.project.sikdorock.dto.UserDTO" alias="userdto"/>
+    </typeAliases>
 </configuration>
