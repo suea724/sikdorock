@@ -11,4 +11,10 @@
         <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp"></put-attribute>
     </definition>
 
+    <definition name="admin.*" template="/WEB-INF/views/layout/adminlayout.jsp">
+        <put-attribute name="asset" value="/WEB-INF/views/inc/asset.jsp"></put-attribute>
+        <put-attribute name="adminsubmenu" value="/WEB-INF/views/inc/adminsubmenu.jsp"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/views/admin/{1}.jsp"></put-attribute>
+    </definition>
+
 </tiles-definitions>
