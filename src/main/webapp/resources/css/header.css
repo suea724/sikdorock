@@ -16,12 +16,12 @@ body, html, a, div, span, li, p {
     font-family: 'HallymGothic-Regular';
 }
 
-a {
+header > #main-menu > ul > li > a {
     color: #4a4a4a;
     text-decoration: none;
 }
 
-a:hover {
+header > #main-menu > ul > li > a:hover {
     color: #C69760;
     transition: .2s;
 }
@@ -95,7 +95,7 @@ header #cart {
  
  /* Links inside the dropdown */
  .dropbtn span {
-    font-size: var(--small-font);
+
  }
  
  .dropdown-content a {
@@ -103,7 +103,6 @@ header #cart {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    font-size: var(--small-font);
  }
  
  /* Change color of dropdown links on hover */

@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'HallymGothic-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/HallymGothic-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+html, body, main {
+    height: 100%;
+}
+
+main > div {
+    display: flex;
+    height: 100%;
+}
+
+#submenu {
+    background-color: #C69760;
+    color: #4a4a4a;
+    height: 100%;
+    width: 200px;
+}
+
+#submenu > ul {
+    padding: 0;
+}
+
+#submenu > ul > li {
+    list-style: none;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+#submenu > ul > li > a {
+    font-family: 'HallymGothic-Bold';
+}
