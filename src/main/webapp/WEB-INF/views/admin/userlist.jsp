@@ -10,35 +10,56 @@
                 <th>아이디</th>
                 <th></th>
             </tr>
-            <c:forEach items="${list}" var="dto">
+            <c:forEach items="${list}" var="dto" varStatus="status">
                 <tr>
-                    <td>${dto.seq}</td>
+                    <td>${paging.offset + status.index}</td>
                     <td>${dto.name}</td>
                     <td>${dto.id}</td>
-                    <td><button class="button beige">추방</button></td>
+                    <td><input type="button" onclick="del('${dto.id}');" value="추방" class="button beige"></td>
                 </tr>
             </c:forEach>
         </table>
     </div>
     <div class="page">
         <ul class="pagination mode">
-            <li> <a href="#" class="first">처음 페이지</a></li>
-            <li> <a href="#" class="arrow left"><<</a></li>
-            <li> <a href="#" class="active num">1</a></li>
-            <li> <a href="#" class="num">2</a></li>
-            <li> <a href="#" class="num">3</a></li>
-            <li> <a href="#" class="num">4</a></li>
-            <li> <a href="#" class="num">5</a></li>
-            <li> <a href="#" class="num">6</a></li>
-            <li> <a href="#" class="num">7</a></li>
-            <li> <a href="#" class="num">8</a></li>
-            <li> <a href="#" class="num">9</a></li>
-            <li> <a href="#" class="arrow right">>></a></li>
-            <li><a href="#" class="last">끝 페이지</a></li>
+            <li> <a href="/sikdorock/admin/userList?page=1&word=${word}" class="first">처음 페이지</a></li>
+            <c:if test="${paging.page > 1}">
+                <li> <a href="/sikdorock/admin/userList?page=${paging.page-1}&word=${word}" class="arrow left"><<</a></li>
+            </c:if>
+            <c:if test="${paging.page == 1}">
+                <li> <a href="/sikdorock/admin/userList?page=1&word=${word}" class="arrow left"><<</a></li>
+            </c:if>
+            <c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
+                <c:if test="${paging.page == i}">
+                    <li> <a href="/sikdorock/admin/userList?page=${i}&word=${word}" class="active num">${i}</a></li>
+                </c:if>
+                <c:if test="${paging.page != i}">
+                    <li> <a href="/sikdorock/admin/userList?page=${i}&word=${word}" class="num">${i}</a></li>
+                </c:if>
+            </c:forEach>
+            <c:if test="${paging.page < paging.totalPage}">
+                <li> <a href="/sikdorock/admin/userList?page=${paging.page+1}&word=${word}" class="arrow right">>></a></li>
+            </c:if>
+            <c:if test="${paging.page == paging.totalPage}">
+                <li> <a href="/sikdorock/admin/userList?page=${paging.totalPage}&word=${word}" class="arrow right">>></a></li>
+            </c:if>
+            <li><a href="/sikdorock/admin/userList?page=${paging.totalPage}&word=${word}" class="last">끝 페이지</a></li>
         </ul>
     </div>
     <div id="search">
-        <input type="text" class="form-control" placeholder="ID를 입력하세요.">
-        <input type="submit" value="검색하기" class="button beige">
+        <form action="/sikdorock/admin/userList">
+            <input type="text" name="word" class="form-control" placeholder="ID를 입력하세요." value="">
+            <input type="submit" value="검색하기" class="button beige">
+        </form>
     </div>
 </section>
+
+<script>
+    $('input[name=word]').attr('value','${word}');
+
+    function del(id) {
+        if (confirm('추방시키겠습니까?')) {
+            location.href='/sikdorock/admin/userDel?id=' + id;
+        }
+    }
+</script>
