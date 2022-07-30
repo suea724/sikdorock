@@ -11,12 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -50,8 +51,26 @@ public class AdminController {
     }
 
     @GetMapping(value="/admin/menuList")
-    public String menuList() {
-        
+    public String menuList(@RequestParam(defaultValue = "1") int page, Model model) {
+
+        Paging paging = new Paging(page, service.menuCount());
+
+        List<FoodDTO> list = service.getMenuList(paging);
+
+        for (FoodDTO fdto : list) {
+            fdto.setOutDate(fdto.getOutDate().substring(0, 10));
+            LocalDate now = LocalDate.now();
+            LocalDate sellDate = LocalDate.parse(fdto.getOutDate());
+            if (now.isAfter(sellDate)) {
+                fdto.setAllergy("판매완료");
+            } else {
+                fdto.setAllergy("판매중");
+            }
+        }
+
+        model.addAttribute("list", list);
+        model.addAttribute("paging", paging);
+
         return "admin.menulist";
     }
 
@@ -67,10 +86,16 @@ public class AdminController {
 
     @PostMapping(value="/admin/menuAddOk")
     public void menuAddOk(FoodDTO foodDTO, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("foodDTO = " + foodDTO);
-        int result = service.menuAddOk(foodDTO, request);
+
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
+        int check = service.dateCheck(foodDTO.getOutDate());
+        if (check != 0) {
+            out.println("<script>alert('이미 등록된 날짜입니다.'); location.href='/sikdorock/admin/menuList'</script>");
+            out.flush();
+            return;
+        }
+        int result = service.menuAddOk(foodDTO, request);
         if (result == 1) {
             out.println("<script>alert('추가 완료'); location.href='/sikdorock/admin/menuList'</script>");
             out.flush();
@@ -81,6 +106,17 @@ public class AdminController {
             return;
         }
 
+    }
+
+    @GetMapping(value="/admin/menuDel")
+    public HttpServletResponse menuDel(String seq, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String msg = service.delMenu(seq) == 0 ? "오류가 발생했습니다." : "삭제 완료.";
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('" + msg + "'); location.href='" + request.getHeader("Referer") + "'</script>");
+        out.flush();
+
+        return response;
     }
 
 }

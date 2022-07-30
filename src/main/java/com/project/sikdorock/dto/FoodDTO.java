@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class FoodDTO {
+    private String seq;
     private String menuName;
     private String menuExplain;
     private String allergy;

@@ -107,4 +107,27 @@ public class AdminService {
 
 
     }
+
+    public List<FoodDTO> getMenuList(Paging paging) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("start", paging.getOffset());
+        params.put("end", paging.getOffset() + paging.getFetch() - 1);
+
+        return dao.getMenuList(params);
+    }
+
+    public int dateCheck(String outDate) {
+
+        return dao.dateCheck(outDate);
+    }
+
+    public int menuCount() {
+
+        return dao.menuCount();
+    }
+
+    public int delMenu(String seq) {
+
+        return dao.delMenu(seq);
+    }
 }
