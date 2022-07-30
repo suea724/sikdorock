@@ -35,8 +35,11 @@
         select max(seq) from tblFood
     </select>
 
-    <insert id="addFile" parameterType="foodimagedto">
-        insert into tblFoodImage values (seqFoodImage.nextVal, #{fSeq}, #{fileName})
+    <insert useGeneratedKeys="false" id="addFile" parameterType="foodimagedto">
+        insert into tblFoodImage (seq, fSeq, ext) values (seqFoodImage.nextVal ,#{fSeq}, #{ext})
+        <selectKey keyProperty="seq" resultType="int" order="AFTER">
+            select seqFoodImage.currVal from DUAL
+        </selectKey>
     </insert>
 
     <select id="getMenuList" resultType="fooddto" parameterType="HashMap">
@@ -54,5 +57,15 @@
     <delete id="delMenu" parameterType="String">
         delete from tblFood where seq = #{seq}
     </delete>
+
+    <select id="questionCount" resultType="Integer">
+        select count(*) from tblQuestion
+    </select>
+
+    <select id="getQuestionList" resultType="questiondto" parameterType="HashMap">
+        select * from (select a.*, rownum as rn from (select * from tblQuestion order by regdate desc) a) where rn between #{start} and #{end}
+    </select>
+
+
 
 </mapper>

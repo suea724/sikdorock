@@ -1,10 +1,7 @@
 package com.project.sikdorock.controller;
 
-import com.project.sikdorock.dto.CategoryDTO;
-import com.project.sikdorock.dto.FoodDTO;
+import com.project.sikdorock.dto.*;
 import com.project.sikdorock.service.AdminService;
-import com.project.sikdorock.dto.Paging;
-import com.project.sikdorock.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -117,6 +114,30 @@ public class AdminController {
         out.flush();
 
         return response;
+    }
+    
+    @GetMapping(value="/admin/questionList")
+    public String questionList(@RequestParam(defaultValue = "1") int page, Model model) {
+        Paging paging = new Paging(page, service.questionCount());
+        List<QuestionDTO> list = service.getQuestionList(paging);
+
+        for (QuestionDTO qdto : list) {
+            qdto.setRegdate(qdto.getRegdate().substring(0, 10));
+            if (qdto.getContent().length() > 20) {
+                qdto.setContent(qdto.getContent().substring(0, 20) + "...");
+            }
+        }
+
+        model.addAttribute("list", list);
+        model.addAttribute("paging", paging);
+
+        return "admin.questionlist";
+    }
+
+    @GetMapping(value="/admin/questionView")
+    public String questionView() {
+
+        return "admin.questionview";
     }
 
 }
