@@ -28,15 +28,20 @@ main > div {
 
 #submenu > ul > li {
     list-style: none;
-    margin-top: 50px;
     text-align: center;
     font-size: 1.5rem;
+    height: 100px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 #submenu > ul > li:nth-child(1) {
     font-family: 'HallymGothic-Bold';
     color: #fefeed;
     background-color: #795c3a;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 #submenu > ul > li > a {
@@ -226,6 +231,11 @@ main > div > section {
     margin: 0 auto;
 }
 
+#image_preview {
+    width: 800px;
+    margin: 0 auto;
+}
+
 #att_zone {
     width: 1000px;
     padding: 10px;
@@ -272,3 +282,9 @@ main > div > section {
     justify-content: right;
 }
 
+.question:hover {
+    background-color: #C69760;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}

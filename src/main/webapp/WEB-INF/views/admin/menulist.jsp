@@ -64,6 +64,10 @@
     }
 
     $('#submenu ul li:nth-child(3) a').css({
-        "color": "black"
+        "color": "white"
+    });
+
+    $('#submenu ul li:nth-child(3)').css({
+        "background-color" : "#795c3a"
     });
 </script>

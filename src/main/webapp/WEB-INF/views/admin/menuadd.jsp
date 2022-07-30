@@ -110,6 +110,8 @@
                 btn.setAttribute('type', 'button')
                 btn.setAttribute('value', 'x')
                 btn.setAttribute('delFile', file.name);
+                btn.classList.add('button');
+                btn.classList.add('beige');
                 btn.onclick = function(ev){
                     var ele = ev.srcElement;
                     var delFile = ele.getAttribute('delFile');

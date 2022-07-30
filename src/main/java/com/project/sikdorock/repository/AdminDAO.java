@@ -1,9 +1,6 @@
 package com.project.sikdorock.repository;
 
-import com.project.sikdorock.dto.CategoryDTO;
-import com.project.sikdorock.dto.FoodDTO;
-import com.project.sikdorock.dto.FoodImageDTO;
-import com.project.sikdorock.dto.UserDTO;
+import com.project.sikdorock.dto.*;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,4 +31,9 @@ public interface AdminDAO {
     int menuCount();
 
     int delMenu(String seq);
+
+    List<QuestionDTO> getQuestionList(Map<String, Object> params);
+
+    int questionCount();
+
 }
