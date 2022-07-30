@@ -5,11 +5,11 @@
 <mapper namespace="com.project.sikdorock.repository.AdminDAO">
 
     <select id="list" resultType="userdto" parameterType="HashMap">
-        select * from (select u.*, rownum as rn from tblUser u)
-                 where rn BETWEEN #{start} and #{end}
-                    <if test="word != null">
-                        and id like '%${word}%'
-                    </if>
+        select * from (select u.*, rownum as rn from tblUser u
+        <if test="word != null">
+            where id like '%${word}%'
+        </if>) where rn BETWEEN #{start} and #{end}
+
     </select>
 
     <select id="getCount" resultType="Integer" parameterType="String">
@@ -19,8 +19,24 @@
         </if>
     </select>
 
-    <select id="delUser" parameterType="String">
+    <delete id="delUser" parameterType="String">
         delete from tblUser where id = #{id}
+    </delete>
+
+    <select id="category" resultType="categorydto">
+        select * from tblcategory order by seq asc
     </select>
+
+    <insert id="menuAdd" parameterType="fooddto">
+        insert into tblFood values (seqFood.nextVal, #{menuName}, #{menuExplain}, #{allergy}, #{outDate}, #{cateSeq})
+    </insert>
+
+    <select id="getSeq" resultType="Integer">
+        select max(seq) from tblFood
+    </select>
+
+    <insert id="addFile" parameterType="foodimagedto">
+        insert into tblFoodImage values (seqFoodImage.nextVal, #{fSeq}, #{fileName})
+    </insert>
 
 </mapper>

@@ -4,4 +4,7 @@ import lombok.Data;
 
 @Data
 public class FoodImageDTO {
+    private String seq;
+    private String fSeq;
+    private String fileName;
 }
