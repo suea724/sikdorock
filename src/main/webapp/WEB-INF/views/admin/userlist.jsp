@@ -62,4 +62,8 @@
             location.href='/sikdorock/admin/userDel?page=' + '${paging.page}' + '&id=' + id + '&word=' + '${word}';
         }
     }
+
+    $('#submenu ul li:nth-child(2) a').css({
+        "color": "black"
+    });
 </script>

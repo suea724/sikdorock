@@ -26,4 +26,12 @@ public interface AdminDAO {
     int getSeq();
 
     void addFile(FoodImageDTO fdto);
+
+    List<FoodDTO> getMenuList(Map<String, Object> params);
+
+    int dateCheck(String outDate);
+
+    int menuCount();
+
+    int delMenu(String seq);
 }

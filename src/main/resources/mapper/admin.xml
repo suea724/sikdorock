@@ -39,4 +39,20 @@
         insert into tblFoodImage values (seqFoodImage.nextVal, #{fSeq}, #{fileName})
     </insert>
 
+    <select id="getMenuList" resultType="fooddto" parameterType="HashMap">
+        select * from (select a.*, rownum as rn from (select * from tblFood f order by outdate desc) a) where rn between #{start} and #{end}
+    </select>
+
+    <select id="dateCheck" resultType="Integer" parameterType="String">
+        select count(*) from tblFood where outDate = #{outDate}
+    </select>
+
+    <select id="menuCount" resultType="Integer">
+        select count(*) from tblFood
+    </select>
+
+    <delete id="delMenu" parameterType="String">
+        delete from tblFood where seq = #{seq}
+    </delete>
+
 </mapper>

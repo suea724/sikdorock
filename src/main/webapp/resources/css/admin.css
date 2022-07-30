@@ -30,7 +30,13 @@ main > div {
     list-style: none;
     margin-top: 50px;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+}
+
+#submenu > ul > li:nth-child(1) {
+    font-family: 'HallymGothic-Bold';
+    color: #fefeed;
+    background-color: #795c3a;
 }
 
 #submenu > ul > li > a {
@@ -71,6 +77,15 @@ main > div > section {
     text-align: center;
 }
 
+#userList > table th:nth-child(1), table td:nth-child(1) {
+    width: 150px;
+}
+
+#userList > table th:nth-child(2), table td:nth-child(2) {
+    width: 250px;
+}
+
+
 .button {
     padding: 5px 10px;
     border: 1px solid rgb(120, 120, 120);
@@ -109,18 +124,35 @@ main > div > section {
     box-shadow: 0 0 0 2px #937047;
 }
 
+.button.gray {
+    color: gray;
+    border: 1px solid gray;
+}
+
+.button.gray:hover {
+    background-color: gray;
+    color: #FFFFFF;
+}
+
+.button.gray:active {
+    box-shadow: none;
+}
+
+.button.gray:focus {
+    transition: 0.5s;
+    box-shadow: 0 0 0 2px gray;
+}
+
 #search > form > input[type=text] {
     width: 300px;
 }
 #search > form {
     display: flex;
     justify-content: center;
-    margin-left: 100px;
 }
 
 .page{
     text-align: center;
-    margin-left: 100px;
 }
 
 .pagination {
