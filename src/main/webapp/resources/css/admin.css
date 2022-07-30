@@ -5,16 +5,18 @@
     font-style: normal;
 }
 
-html, body, main {
-    height: 100%;
+section {
+    margin-left: 100px;
 }
 
 main > div {
     display: flex;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
 }
 
 #submenu {
+    position: fixed;
     background-color: #C69760;
     height: 100%;
     width: 200px;
@@ -113,10 +115,12 @@ main > div > section {
 #search > form {
     display: flex;
     justify-content: center;
+    margin-left: 100px;
 }
 
 .page{
     text-align: center;
+    margin-left: 100px;
 }
 
 .pagination {
@@ -176,3 +180,63 @@ main > div > section {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     border-right:10px solid blue; }
+
+#menuadd {
+    width: 1000px;
+    padding-top: 50px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: right;
+}
+
+#addContent {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#att_zone {
+    width: 1000px;
+    padding: 10px;
+    border: 1px black;
+    display: flex;
+    overflow-x: auto;
+    content: attr(data-placeholder);
+}
+
+#att_zone:empty:before {
+    content: attr(data-placeholder);
+    color: #999;
+    font-size: .9em;
+}
+
+#att_zone > div {
+    position: relative;
+    margin-right: 50px;
+    width: 200px;
+    height: 200px;
+}
+
+#att_zone > div > input {
+    position: absolute;
+    z-index: 999;
+}
+
+#att_zone > div > img {
+    width: 200px;
+    height: 200px;
+}
+
+#menuContent {
+    width: 700px;
+    margin: 60px auto;
+    box-shadow: 1px 1px 1px #f4f4f4;
+    background-color: white;
+}
+
+#addMenu {
+    width: 700px;
+    margin: 50px auto;
+    display: flex;
+    justify-content: right;
+}
+

@@ -59,7 +59,7 @@
 
     function del(id) {
         if (confirm('추방시키겠습니까?')) {
-            location.href='/sikdorock/admin/userDel?id=' + id;
+            location.href='/sikdorock/admin/userDel?page=' + '${paging.page}' + '&id=' + id + '&word=' + '${word}';
         }
     }
 </script>
