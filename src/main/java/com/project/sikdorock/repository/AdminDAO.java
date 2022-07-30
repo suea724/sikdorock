@@ -36,4 +36,7 @@ public interface AdminDAO {
 
     int questionCount();
 
+    QuestionDTO getQuestion(String seq);
+
+    List<QuestionImageDTO> getQuestionImage(String seq);
 }

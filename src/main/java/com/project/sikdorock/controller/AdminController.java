@@ -135,7 +135,16 @@ public class AdminController {
     }
 
     @GetMapping(value="/admin/questionView")
-    public String questionView() {
+    public String questionView(Model model, String seq) {
+        QuestionDTO dto = service.getQuestion(seq);
+        dto.setContent(dto.getContent().replace("\r\n", "<br>"));
+        List<QuestionImageDTO> qlist = service.getQuestionImage(seq);
+        for (QuestionImageDTO q : qlist) {
+            q.setExt(q.getSeq() + q.getExt());
+        }
+
+        model.addAttribute("dto", dto);
+        model.addAttribute("qlist", qlist);
 
         return "admin.questionview";
     }
