@@ -4,4 +4,7 @@ import lombok.Data;
 
 @Data
 public class CouponDTO {
+    private String seq;
+    private String name;
+    private String discount;
 }

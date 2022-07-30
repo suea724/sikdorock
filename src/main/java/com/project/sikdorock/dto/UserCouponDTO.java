@@ -3,7 +3,7 @@ package com.project.sikdorock.dto;
 import lombok.Data;
 
 @Data
-public class AdminDTO {
+public class UserCouponDTO {
     private String id;
-    private String pw;
+    private String cseq;
 }
