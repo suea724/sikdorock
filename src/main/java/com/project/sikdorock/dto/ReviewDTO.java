@@ -4,4 +4,9 @@ import lombok.Data;
 
 @Data
 public class ReviewDTO {
+    private String seq;
+    private String fseq;
+    private String star;
+    private String content;
+    private String regdate;
 }
