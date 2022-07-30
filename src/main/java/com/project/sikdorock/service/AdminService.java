@@ -96,4 +96,13 @@ public class AdminService {
         return dao.questionCount();
     }
 
+    public QuestionDTO getQuestion(String seq) {
+
+        return dao.getQuestion(seq);
+    }
+
+    public List<QuestionImageDTO> getQuestionImage(String seq) {
+
+        return dao.getQuestionImage(seq);
+    }
 }

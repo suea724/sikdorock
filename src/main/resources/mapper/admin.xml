@@ -66,6 +66,14 @@
         select * from (select a.*, rownum as rn from (select * from tblQuestion order by regdate desc) a) where rn between #{start} and #{end}
     </select>
 
+    <select id="getQuestion" resultType="questiondto" parameterType="String">
+        select * from tblQuestion where seq = #{seq}
+    </select>
+
+    <select id="getQuestionImage" resultType="questionimagedto" parameterType="String">
+        select * from tblQuestionImage where qseq = #{seq}
+    </select>
+
 
 
 </mapper>
