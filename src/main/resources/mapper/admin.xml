@@ -2,10 +2,25 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="admin">
+<mapper namespace="com.project.sikdorock.repository.AdminDAO">
 
-    <select id="list" resultType="userdto">
-        select * from tblUser order by id desc
+    <select id="list" resultType="userdto" parameterType="HashMap">
+        select * from (select u.*, rownum as rn from tblUser u)
+                 where rn BETWEEN #{start} and #{end}
+                    <if test="word != null">
+                        and id like '%${word}%'
+                    </if>
+    </select>
+
+    <select id="getCount" resultType="Integer" parameterType="String">
+        select count(*) from (select u.*, rownum as rn from tblUser u)
+        <if test="word != null">
+            where id like '%${word}%'
+        </if>
+    </select>
+
+    <select id="delUser" parameterType="String">
+        delete from tblUser where id = #{id}
     </select>
 
 </mapper>

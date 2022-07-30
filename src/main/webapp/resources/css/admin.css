@@ -107,10 +107,10 @@ main > div > section {
     box-shadow: 0 0 0 2px #937047;
 }
 
-#search > input[type=text] {
+#search > form > input[type=text] {
     width: 300px;
 }
-#search {
+#search > form {
     display: flex;
     justify-content: center;
 }
