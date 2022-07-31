@@ -29,4 +29,8 @@
         <put-attribute name="asset" value="/WEB-INF/views/inc/asset.jsp"></put-attribute>
     </definition>
 
+    <definition name="showanswer" template="/WEB-INF/views/cscenter/showanswer.jsp">
+        <put-attribute name="asset" value="/WEB-INF/views/inc/asset.jsp"></put-attribute>
+    </definition>
+
 </tiles-definitions>

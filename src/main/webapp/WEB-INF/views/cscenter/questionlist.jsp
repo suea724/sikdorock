@@ -19,19 +19,24 @@
                 <th>날짜</th>
                 <th>답변여부</th>
             </tr>
-            <c:forEach items="${list}" var="dto">
-                <tr>
-
-                </tr>
+            <c:forEach items="${list}" var="dto" varStatus="status">
+                <c:if test="${dto.answer == 'o'}">
+                    <tr class="question" onclick="showAnswer(${dto.seq});">
+                        <td>${paging.offset + status.index}</td>
+                        <td>${dto.content}</td>
+                        <td>${dto.regdate}</td>
+                        <td>등록</td>
+                    </tr>
+                </c:if>
+                <c:if test="${dto.answer == 'x'}">
+                    <tr>
+                        <td>${paging.offset + status.index}</td>
+                        <td>${dto.content}</td>
+                        <td>${dto.regdate}</td>
+                        <td>미등록</td>
+                    </tr>
+                </c:if>
             </c:forEach>
-            <tr>
-
-            </tr>
-            <tr>
-                <td>A:</td>
-                <td colspan="2">해결했어요</td>
-                <td>2022-07-20</td>
-            </tr>
         </table>
     </div>
     <div class="page">
@@ -63,7 +68,12 @@
 </section>
 
 <script>
-    $('#cssubmenu div a:nth-child(2)').css({
+
+    function showAnswer(seq) {
+        window.open('/sikdorock/cscenter/showanswer?seq=' + seq, 'pop01' ,'width=700,height=700')
+    }
+
+$('#cssubmenu div a:nth-child(2)').css({
         "color": "black",
         "font-weight": "bold"
     });

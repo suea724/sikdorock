@@ -1,5 +1,6 @@
 package com.project.sikdorock.service;
 
+import com.project.sikdorock.dto.AnswerDTO;
 import com.project.sikdorock.dto.Paging;
 import com.project.sikdorock.dto.QuestionDTO;
 import com.project.sikdorock.repository.CsCenterDAO;
@@ -48,5 +49,10 @@ public class CsCenterService {
     public int questionCount(String id) {
 
         return dao.questionCount(id);
+    }
+
+    public AnswerDTO getAnswer(String seq) {
+
+        return dao.getAnswer(seq);
     }
 }

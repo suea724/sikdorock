@@ -12,5 +12,4 @@ public class QuestionDTO {
     private String id;
     private String answer;
     private List<QuestionImageDTO> list;
-    private AnswerDTO answerDTO;
 }

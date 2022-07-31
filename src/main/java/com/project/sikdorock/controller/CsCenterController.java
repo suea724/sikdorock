@@ -1,5 +1,6 @@
 package com.project.sikdorock.controller;
 
+import com.project.sikdorock.dto.AnswerDTO;
 import com.project.sikdorock.dto.Paging;
 import com.project.sikdorock.dto.QuestionDTO;
 import com.project.sikdorock.service.CsCenterService;
@@ -55,8 +56,27 @@ public class CsCenterController {
         Paging paging = new Paging(page, service.questionCount(id));
         List<QuestionDTO> list = service.getQuestion(id, paging);
 
+        for (QuestionDTO qdto : list) {
+            qdto.setRegdate(qdto.getRegdate().substring(0, 10));
+            if (qdto.getContent().length() > 10) {
+                qdto.setContent(qdto.getContent().substring(0, 10) + "....");
+            }
+        }
+
         model.addAttribute("list", list);
         model.addAttribute("paging", paging);
         return "cscenter.questionlist";
     }
+
+    @GetMapping(value="/cscenter/showanswer")
+    public String showAnswer(Model model, String seq) {
+
+        AnswerDTO dto = service.getAnswer(seq);
+        dto.setRegdate(dto.getRegdate().substring(0, 10));
+
+        model.addAttribute("dto", dto);
+
+        return "showanswer";
+    }
+
 }
