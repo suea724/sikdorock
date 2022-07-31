@@ -11,13 +11,13 @@
         <div>
             <form method="post" id="formData">
                 <div id="logo">
-                    <img src="/sikdorock/resources/images/식도락.png" style="height: 100px">
+                    <img src="/sikdorock/resources/images/식도락.png" onclick="location.href='/sikdorock/index'" style="height: 100px">
                     <span>관리자</span>
                 </div>
                 <div id="login">
                     <div>
                         <input type="text" class="form-control" name="id" placeholder="ID">
-                        <input type="text" class="form-control" name="pw" placeholder="Password">
+                        <input type="password" class="form-control" name="pw" placeholder="Password">
                     </div>
                 </div>
                 <div id="loginBtn">

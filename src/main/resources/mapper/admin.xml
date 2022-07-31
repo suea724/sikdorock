@@ -95,7 +95,7 @@
     </delete>
 
     <insert id="eventAdd" parameterType="eventdto">
-        insert into tblEvent values (seqEvent.nextVal, #{name}, #{eventInfo}, #{startDate}, #{endDate})
+        insert into tblEvent values (seqEvent.nextVal, #{name}, #{eventInfo}, #{startDate}, #{endDate}, #{cSeq})
     </insert>
 
     <select id="getPrice" resultType="pricedto">
@@ -110,6 +110,12 @@
         select count(*) from tblAdmin where id = #{id} and pw = #{pw}
     </select>
 
+    <insert id="couponAdd" parameterType="coupondto">
+        insert into tblCoupon values (seqCoupon.nextVal, #{name}, #{discount})
+    </insert>
 
+    <select id="getCouponSeq" resultType="Integer">
+        select max(seq) from tblCoupon
+    </select>
 
 </mapper>

@@ -19,7 +19,7 @@ import java.util.Map;
 public class AdminService {
 
     private final AdminDAO dao;
-    private final FileManager fileManager;
+    private final FileManager FileManager;
 
     public List<UserDTO> list(Paging paging, String word) {
         Map<String, Object> params = new HashMap<>();
@@ -54,7 +54,7 @@ public class AdminService {
         MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request;
 
         List<MultipartFile> files = multi.getFiles("btnAtt");
-        fileManager.upload(files, seq);
+        FileManager.adminUpload(files, seq);
 
         return result;
     }
@@ -133,9 +133,20 @@ public class AdminService {
         return dao.delEvent(seq);
     }
 
-    public int eventAdd(EventDTO eventDTO) {
+    public int eventAdd(EventDTO eventDTO, String couponName, int discount) {
+        CouponDTO cdto = new CouponDTO();
+        cdto.setName(couponName);
+        cdto.setDiscount(discount);
 
-        return dao.eventAdd(eventDTO);
+        dao.couponAdd(cdto);
+
+        int seq = dao.getCouponSeq();
+
+        eventDTO.setCSeq(seq);
+
+        int result = dao.eventAdd(eventDTO);
+
+        return result;
     }
 
 

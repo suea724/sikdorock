@@ -9,7 +9,7 @@
             <li><a href="/">홈</a></li>
             <li><a href="/">메뉴</a></li>
             <li><a href="/">이벤트</a></li>
-            <li><a href="/">고객센터</a></li>
+            <li><a href="/sikdorock/cscenter/questionadd">고객센터</a></li>
         </ul>
     </nav>
     <div>
