@@ -3,7 +3,6 @@ package com.project.sikdorock.repository;
 import com.project.sikdorock.dto.*;
 import org.springframework.stereotype.Repository;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -39,4 +38,21 @@ public interface AdminDAO {
     QuestionDTO getQuestion(String seq);
 
     List<QuestionImageDTO> getQuestionImage(String seq);
+
+    int answerAdd(AnswerDTO answerDTO);
+
+    void updateQuestion(String qseq);
+
+    List<EventDTO> getEvent(Map<String, Object> paging);
+
+    int eventCount();
+
+    int delEvent(String seq);
+
+    int eventAdd(EventDTO eventDTO);
+
+
+    PriceDTO getPrice();
+
+    int updatePrice(PriceDTO priceDTO);
 }

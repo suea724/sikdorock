@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 
 @Controller
@@ -23,7 +24,7 @@ public class AdminController {
 
     private final AdminService service;
 
-    @GetMapping(value="/admin/userList")
+    @GetMapping(value="/admin/userlist")
     public String userList(@RequestParam(defaultValue = "1") int page, String word, Model model) {
 
         Paging paging = new Paging(page, service.pageCount(word));
@@ -35,7 +36,7 @@ public class AdminController {
         return "admin.userlist";
     }
 
-    @GetMapping(value="/admin/userDel")
+    @GetMapping(value="/admin/userdel")
     public HttpServletResponse userDel(String id, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String msg = service.delUser(id) == 0 ? "오류가 발생했습니다." : "삭제 완료.";
@@ -47,12 +48,13 @@ public class AdminController {
         return response;
     }
 
-    @GetMapping(value="/admin/menuList")
+    @GetMapping(value="/admin/menulist")
     public String menuList(@RequestParam(defaultValue = "1") int page, Model model) {
 
         Paging paging = new Paging(page, service.menuCount());
 
         List<FoodDTO> list = service.getMenuList(paging);
+        PriceDTO pdto = service.getPrice();
 
         for (FoodDTO fdto : list) {
             fdto.setOutDate(fdto.getOutDate().substring(0, 10));
@@ -67,45 +69,92 @@ public class AdminController {
 
         model.addAttribute("list", list);
         model.addAttribute("paging", paging);
+        model.addAttribute("pdto", pdto);
 
         return "admin.menulist";
     }
 
-    @GetMapping(value="/admin/menuAdd")
+    @GetMapping(value="/admin/priceupdate")
+    public String priceUpdate(Model model) {
+        PriceDTO pdto = service.getPrice();
+
+        model.addAttribute("pdto", pdto);
+
+        return "price";
+    }
+
+    @PostMapping(value="/admin/priceupdateok")
+    public void priceUpdateOk(PriceDTO priceDTO, HttpServletResponse response) throws IOException {
+        int result = service.updatePrice(priceDTO);
+
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter writer = response.getWriter();
+        if (result == 1) {
+
+            writer.println("<html>");
+            writer.println("<body>");
+            writer.println("<script>");
+            writer.println("opener.parent.location.reload();");
+            writer.println("window.close();");
+            writer.println("</script>");
+            writer.println("</body>");
+            writer.println("</html>");
+
+            writer.close();
+        } else {
+            writer.println("<script>alert('추가 실패');</script>");
+        }
+    }
+
+    @GetMapping(value="/admin/menuadd")
     public String menuAdd(Model model) {
 
         List<CategoryDTO> category = service.category();
-
+        Calendar now = Calendar.getInstance();
+        String nowDate = String.format("%tF", now);
         model.addAttribute("category", category);
+        model.addAttribute("nowDate", nowDate);
 
         return "admin.menuadd";
     }
 
-    @PostMapping(value="/admin/menuAddOk")
+    @PostMapping(value="/admin/menuaddok")
     public void menuAddOk(FoodDTO foodDTO, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         int check = service.dateCheck(foodDTO.getOutDate());
         if (check != 0) {
-            out.println("<script>alert('이미 등록된 날짜입니다.'); location.href='/sikdorock/admin/menuList'</script>");
+            out.println("<script>alert('이미 등록된 날짜입니다.'); location.href='/sikdorock/admin/menulist'</script>");
             out.flush();
             return;
         }
         int result = service.menuAddOk(foodDTO, request);
         if (result == 1) {
-            out.println("<script>alert('추가 완료'); location.href='/sikdorock/admin/menuList'</script>");
+            out.println("<script>alert('추가 완료'); location.href='/sikdorock/admin/menulist'</script>");
             out.flush();
             return;
         } else {
-            out.println("<script>alert('추가 실패'); location.href='/sikdorock/admin/menuList'</script>");
+            out.println("<script>alert('추가 실패'); location.href='/sikdorock/admin/menulist'</script>");
             out.flush();
             return;
         }
 
     }
 
-    @GetMapping(value="/admin/menuDel")
+    @PostMapping(value="/admin/datecheck")
+    public void dateCheck(String date, HttpServletResponse response) throws IOException {
+        int result = service.dateCheck(date);
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter writer = response.getWriter();
+        writer.print("{");
+        writer.printf("\"result\": %d", result);
+        writer.print("}");
+
+        writer.close();
+    }
+
+    @GetMapping(value="/admin/menudel")
     public HttpServletResponse menuDel(String seq, HttpServletRequest request, HttpServletResponse response) throws IOException {
         String msg = service.delMenu(seq) == 0 ? "오류가 발생했습니다." : "삭제 완료.";
         response.setContentType("text/html; charset=UTF-8");
@@ -116,7 +165,7 @@ public class AdminController {
         return response;
     }
     
-    @GetMapping(value="/admin/questionList")
+    @GetMapping(value="/admin/questionlist")
     public String questionList(@RequestParam(defaultValue = "1") int page, Model model) {
         Paging paging = new Paging(page, service.questionCount());
         List<QuestionDTO> list = service.getQuestionList(paging);
@@ -134,7 +183,7 @@ public class AdminController {
         return "admin.questionlist";
     }
 
-    @GetMapping(value="/admin/questionView")
+    @GetMapping(value="/admin/questionview")
     public String questionView(Model model, String seq) {
         QuestionDTO dto = service.getQuestion(seq);
         dto.setContent(dto.getContent().replace("\r\n", "<br>"));
@@ -148,5 +197,106 @@ public class AdminController {
 
         return "admin.questionview";
     }
+
+    @GetMapping(value="/admin/answeradd")
+    public String answerAdd(Model model, String seq) {
+
+        model.addAttribute("seq", seq);
+        return "admin.answeradd";
+
+    }
+
+    @PostMapping(value="/admin/answeraddok")
+    public void answeraddok(AnswerDTO answerDTO, HttpServletResponse response) throws IOException {
+
+        service.updateQuestion(answerDTO.getQseq());
+        int result = service.answerAdd(answerDTO);
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        if (result == 1) {
+            out.println("<script>alert('답변 완료'); location.href='/sikdorock/admin/questionlist'</script>");
+            out.flush();
+            return;
+        } else {
+            out.println("<script>alert('답변 실패'); location.href='/sikdorock/admin/questionlist'</script>");
+            out.flush();
+            return;
+        }
+    }
+
+    @GetMapping(value="/admin/eventlist")
+    public String eventList(@RequestParam(defaultValue = "1") int page, Model model) {
+
+        Paging paging = new Paging(page, service.eventCount());
+        List<EventDTO> list = service.getEvent(paging);
+
+        for (EventDTO edto : list) {
+            edto.setStartDate(edto.getStartDate().substring(0, 10));
+            edto.setEndDate(edto.getEndDate().substring(0, 10));
+            LocalDate now = LocalDate.now();
+            LocalDate startDate = LocalDate.parse(edto.getStartDate());
+            LocalDate endDate = LocalDate.parse(edto.getEndDate());
+            if (now.isAfter(endDate)) {
+                edto.setState("종료");
+            } else if (now.isAfter(startDate) && now.isBefore(endDate)) {
+                edto.setState("진행중");
+            } else {
+                edto.setState("진행 예정");
+            }
+
+        }
+
+        model.addAttribute("list", list);
+        model.addAttribute("paging", paging);
+        return "admin.eventlist";
+    }
+
+    @GetMapping(value="/admin/eventdel")
+    public HttpServletResponse eventDel(String seq, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String msg = service.delEvent(seq) == 0 ? "오류가 발생했습니다." : "삭제 완료.";
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('" + msg + "'); location.href='" + request.getHeader("Referer") + "'</script>");
+        out.flush();
+
+        return response;
+    }
+
+    @GetMapping(value="/admin/eventadd")
+    public String eventAdd(Model model) {
+
+        Calendar now = Calendar.getInstance();
+        String nowDate = String.format("%tF", now);
+
+        model.addAttribute("nowDate", nowDate);
+
+        return "admin.eventadd";
+    }
+
+    @PostMapping(value="/admin/eventaddok")
+    public void eventAddOk(EventDTO eventDTO, HttpServletResponse response) throws IOException {
+
+        int result = service.eventAdd(eventDTO);
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        if (result == 1) {
+            out.println("<script>alert('추가 완료'); location.href='/sikdorock/admin/eventlist'</script>");
+            out.flush();
+            return;
+        } else {
+            out.println("<script>alert('추가 실패'); location.href='/sikdorock/admin/eventlist'</script>");
+            out.flush();
+            return;
+        }
+    }
+
+    @GetMapping(value="/admin/chart")
+    public String chart() {
+
+        return "admin.chart";
+    }
+
+
+
 
 }
