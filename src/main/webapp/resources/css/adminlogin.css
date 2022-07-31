@@ -43,6 +43,10 @@ section > div > form {
     margin-top: 80px;
 }
 
+#logo > img {
+    cursor: pointer;
+}
+
 #logo > span {
     display: flex;
     align-items: center;
@@ -69,3 +73,4 @@ section > div > form {
 #loginBtn > input {
     width: 300px;
 }
+

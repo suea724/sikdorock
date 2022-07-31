@@ -200,12 +200,6 @@ public class AdminController {
             out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
             out.flush();
         }
-        int check = service.dateCheck(foodDTO.getOutDate());
-        if (check != 0) {
-            out.println("<script>alert('이미 등록된 날짜입니다.'); location.href='/sikdorock/admin/menulist'</script>");
-            out.flush();
-            return;
-        }
         int result = service.menuAddOk(foodDTO, request);
         if (result == 1) {
             out.println("<script>alert('추가 완료'); location.href='/sikdorock/admin/menulist'</script>");
@@ -398,7 +392,7 @@ public class AdminController {
     }
 
     @PostMapping(value="/admin/eventaddok")
-    public void eventAddOk(EventDTO eventDTO, HttpServletResponse response, HttpServletRequest request) throws IOException {
+    public void eventAddOk(EventDTO eventDTO, HttpServletResponse response, HttpServletRequest request, String couponName, int discount) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         if (!loginCheck(request)) {
@@ -406,7 +400,7 @@ public class AdminController {
             out.flush();
         }
 
-        int result = service.eventAdd(eventDTO);
+        int result = service.eventAdd(eventDTO, couponName, discount);
         if (result == 1) {
             out.println("<script>alert('추가 완료'); location.href='/sikdorock/admin/eventlist'</script>");
             out.flush();

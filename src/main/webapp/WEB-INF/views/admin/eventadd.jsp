@@ -20,6 +20,13 @@
                 <td>이벤트 설명</td>
                 <td><textarea name="eventInfo" class="form-control" style="width: 500px; height: 200px; resize: none" required></textarea></td>
             </tr>
+            <tr>
+                <td>쿠폰</td>
+                <td>
+                    쿠폰명:<input type="text" name="couponName" class="form-control"><br><br>
+                    할인:<div style="display: flex; justify-content: center"><input type="number" name="discount" class="form-control" style="width: 100px;" min="0" max="100"></div>
+                </td>
+            </tr>
         </table>
         <div id="addMenu">
             <input type="submit" value="이벤트 등록" class="button beige">

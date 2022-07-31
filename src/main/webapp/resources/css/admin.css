@@ -103,6 +103,7 @@ main > div > section {
     justify-content: center;
 }
 
+/* 페이징 */
 .page{
     text-align: center;
 }

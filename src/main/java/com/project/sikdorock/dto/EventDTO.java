@@ -9,5 +9,6 @@ public class EventDTO {
     private String eventInfo;
     private String startDate;
     private String endDate;
+    private int cSeq;
     private String state;
 }
