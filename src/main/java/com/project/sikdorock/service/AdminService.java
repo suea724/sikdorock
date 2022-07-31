@@ -148,4 +148,9 @@ public class AdminService {
 
         return dao.updatePrice(priceDTO);
     }
+
+    public int loginOk(AdminDTO adminDTO) {
+
+        return dao.loginOk(adminDTO);
+    }
 }

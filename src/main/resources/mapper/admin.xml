@@ -106,6 +106,10 @@
         update tblPrice set subPrice = #{subPrice}, indPrice = #{indPrice} where seq = 1
     </update>
 
+    <select id="loginOk" parameterType="admindto" resultType="Integer">
+        select count(*) from tblAdmin where id = #{id} and pw = #{pw}
+    </select>
+
 
 
 </mapper>
