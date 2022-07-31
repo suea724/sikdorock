@@ -8,5 +8,4 @@
         <li><a href="/sikdorock/admin/eventlist">이벤트 관리</a></li>
         <li><a href="/sikdorock/admin/chart">통계</a></li>
     </ul>
-    <div><a href="/sikdorock/admin/logout">로그아웃</a></div>
 </nav>

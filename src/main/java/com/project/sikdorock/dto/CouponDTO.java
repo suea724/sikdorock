@@ -6,5 +6,5 @@ import lombok.Data;
 public class CouponDTO {
     private String seq;
     private String name;
-    private int discount;
+    private String discount;
 }

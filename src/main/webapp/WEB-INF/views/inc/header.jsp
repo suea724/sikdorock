@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <header>
     <div id="logo">
@@ -6,22 +7,29 @@
     </div>
     <nav id="main-menu">
         <ul>
-            <li><a href="/">홈</a></li>
-            <li><a href="/">메뉴</a></li>
-            <li><a href="/">이벤트</a></li>
-            <li><a href="/sikdorock/cscenter/questionadd">고객센터</a></li>
+            <li><a href="/sikdorock/index">홈</a></li>
+            <li><a href="/sikdorock/menu">메뉴</a></li>
+            <li><a href="/sikdorock/event">이벤트</a></li>
+            <li><a href="/sikdorock/question">고객센터</a></li>
         </ul>
     </nav>
     <div>
+        <c:if test="${not empty auth}">
         <div class="dropdown">
             <button class="dropbtn">
-                <span>홍길동님</span> <i class="fa-solid fa-caret-down"></i>
+                <span>${auth.name}님</span> <i class="fa-solid fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="/house/web/usermypage/userEditInfo">마이페이지</a> <a href="/house/domain/sign/logout">로그아웃</a>
+                <a href="/sikdorock/mypage">마이페이지</a> <a href="/sikdorock/logout">로그아웃</a>
             </div>
         </div>
         <i class="fa-solid fa-cart-shopping" id="cart"></i>
+        </c:if>
+        <c:if test="${empty auth}">
+            <div id="login-menu">
+                <span><a href="/sikdorock/login">로그인 / 회원가입</a></span>
+            </div>
+        </c:if>
     </div>
 </header>
 

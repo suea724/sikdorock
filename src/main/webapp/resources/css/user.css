@@ -1,0 +1,43 @@
+#login-container {
+    width: 600px;
+    margin: 0 auto;
+}
+
+#login-title, #register-title {
+    text-align: center;
+    margin: 50px 0;
+}
+
+#login-container div {
+    text-align: center;
+}
+
+#register-table {
+    width: 700px;
+    margin: 0 auto 100px auto;
+}
+
+#register-table th {
+    width: 100px;
+}
+
+#register-table th, #register-table td {
+    vertical-align: middle;
+}
+
+#register-table .btn {
+    width: 700px;
+    margin: 30px auto;
+}
+
+#login-btns {
+    width: 200px;
+    margin: 0 auto;
+}
+
+#login-btns img {
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    display: block;
+}
