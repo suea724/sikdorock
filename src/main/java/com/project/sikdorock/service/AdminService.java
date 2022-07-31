@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -104,5 +103,49 @@ public class AdminService {
     public List<QuestionImageDTO> getQuestionImage(String seq) {
 
         return dao.getQuestionImage(seq);
+    }
+
+    public int answerAdd(AnswerDTO answerDTO) {
+
+        return dao.answerAdd(answerDTO);
+    }
+
+    public void updateQuestion(String qseq) {
+
+        dao.updateQuestion(qseq);
+    }
+
+    public List<EventDTO> getEvent(Paging paging) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("start", paging.getOffset());
+        params.put("end", paging.getOffset() + paging.getFetch() - 1);
+
+        return dao.getEvent(params);
+    }
+
+    public int eventCount() {
+
+        return dao.eventCount();
+    }
+
+    public int delEvent(String seq) {
+
+        return dao.delEvent(seq);
+    }
+
+    public int eventAdd(EventDTO eventDTO) {
+
+        return dao.eventAdd(eventDTO);
+    }
+
+
+    public PriceDTO getPrice() {
+
+        return dao.getPrice();
+    }
+
+    public int updatePrice(PriceDTO priceDTO) {
+
+        return dao.updatePrice(priceDTO);
     }
 }

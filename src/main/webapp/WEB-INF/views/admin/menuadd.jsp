@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <section>
     <div id="title">메뉴 등록</div>
-    <form method="post" action="/sikdorock/admin/menuAddOk" id="addContent" enctype="multipart/form-data">
+    <form method="post" action="/sikdorock/admin/menuaddok" id="addContent" enctype="multipart/form-data">
         <div id='image_preview'>
             <div id='att_zone'
                  data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'>
@@ -14,7 +14,7 @@
             <tr>
                 <td>카테고리</td>
                 <td>
-                    <select name="cateSeq" class="form-select" style="width: 100px">
+                    <select name="cateSeq" class="form-select" style="width: 100px" required>
                         <c:forEach items="${category}" var="dto">
                             <option value="${dto.seq}">${dto.category}</option>
                         </c:forEach>
@@ -23,28 +23,72 @@
             </tr>
             <tr>
                 <td>날짜</td>
-                <td><input name="outDate" type="date" class="form-control" style="width: 500px"></td>
+                <td id="aaa">
+                    <input name="outDate" type="date" class="form-control" min="${nowDate}" style="width: 500px" onchange="dateCheck()" required>
+                </td>
             </tr>
             <tr>
                 <td>메뉴</td>
-                <td><input name="menuName" type="text" class="form-control" style="width: 500px"></td>
+                <td><input name="menuName" type="text" class="form-control" style="width: 500px" required></td>
             </tr>
             <tr>
                 <td>알레르기</td>
-                <td><textarea name="allergy" class="form-control" style="width: 500px; height: 200px; resize: none"></textarea></td>
+                <td><textarea name="allergy" class="form-control" style="width: 500px; height: 200px; resize: none" required></textarea></td>
             </tr>
             <tr>
                 <td>메뉴 설명</td>
-                <td><textarea name="menuExplain" class="form-control" style="width: 500px; height: 200px; resize: none"></textarea></td>
+                <td><textarea name="menuExplain" class="form-control" style="width: 500px; height: 200px; resize: none" required></textarea></td>
             </tr>
         </table>
         <div id="addMenu">
-            <input type="submit" value="메뉴 등록" class="button beige">
+            <input id="targetBtn" type="submit" value="메뉴 등록" class="button beige">
         </div>
     </form>
 </section>
 
 <script>
+
+    //날짜 유효성 검사
+    function dateCheck() {
+
+        $.ajax({
+            type: 'POST',
+            url: '/sikdorock/admin/datecheck',
+            data: 'date=' + $('input[name=outDate]').val(),
+            dataType: 'json',
+            success: function(result) {
+                if (result.result == "1") {
+                    if (document.getElementById('checkMsg')) {
+                        document.getElementById('checkMsg').remove();
+                    }
+                    let check = document.createElement('div');
+                    check.setAttribute('style', 'justify-content: left; display: flex; color: red');
+                    check.setAttribute('id', 'checkMsg');
+                    check.innerHTML = '이미 등록된 날짜입니다.';
+                    document.getElementById('aaa').append(check);
+                    $('#targetBtn').attr('disabled', true);
+
+                } else {
+                    if (document.getElementById('checkMsg')) {
+                        document.getElementById('checkMsg').remove();
+                    }
+                    let check = document.createElement('div');
+                    check.setAttribute('style', 'justify-content: left; display: flex; color: blue');
+                    check.setAttribute('id', 'checkMsg');
+                    check.innerHTML = '등록 가능한 날짜입니다.';
+                    document.getElementById('aaa').append(check);
+                    $('#targetBtn').attr('disabled', false);
+                }
+
+            },
+            error: function (a,b,c) {
+                console.log(a,b,c);
+            }
+        });
+
+    }
+
+    //이미지 미리보기 구현
     ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
         imageView = function imageView(att_zone, btn){
 

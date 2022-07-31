@@ -392,3 +392,31 @@ ul.imgs li{
     justify-content: right;
 }
 
+#answerCheck {
+    width: 600px;
+    margin: 20px auto;
+}
+
+#answerCheck > textarea {
+    resize: none;
+    height: 500px;
+}
+
+#answerCheck > div {
+    display: flex;
+    justify-content: right;
+    margin-top: 20px;
+}
+
+.price {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#chart {
+    display: flex;
+    margin-top: 200px;
+    margin-left: 50px;
+}
+
+

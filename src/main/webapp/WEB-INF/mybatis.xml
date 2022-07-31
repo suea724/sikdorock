@@ -19,6 +19,7 @@
         <typeAlias type="com.project.sikdorock.dto.QuestionDTO" alias="questiondto"/>
         <typeAlias type="com.project.sikdorock.dto.ReviewDTO" alias="reviewdto"/>
         <typeAlias type="com.project.sikdorock.dto.UserDTO" alias="userdto"/>
+        <typeAlias type="com.project.sikdorock.dto.PriceDTO" alias="pricedto"/>
         <typeAlias type="com.project.sikdorock.dto.QuestionImageDTO" alias="questionimagedto"/>
     </typeAliases>
 </configuration>

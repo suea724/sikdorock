@@ -5,6 +5,7 @@
     <title>식도락 관리자</title>
     <tiles:insertAttribute name="asset"/>
     <link rel="stylesheet" href="/sikdorock/resources/css/admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
 <body>
     <main>

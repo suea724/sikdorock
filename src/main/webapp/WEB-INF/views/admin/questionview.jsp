@@ -33,7 +33,7 @@
       </table>
     </div>
   <div id="answerAdd">
-    <input type="button" class="button beige" value="답변쓰기" onclick="location.href='/sikdorock/admin/answerAdd?seq=${dto.seq}'">
+    <input type="button" class="button beige" value="답변쓰기" onclick="location.href='/sikdorock/admin/answeradd?seq=${dto.seq}'">
   </div>
 </section>
 

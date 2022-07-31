@@ -74,6 +74,38 @@
         select * from tblQuestionImage where qseq = #{seq}
     </select>
 
+    <update id="updateQuestion" parameterType="String">
+        update tblQuestion set answer = 'o' where seq = #{qseq}
+    </update>
+
+    <insert id="answerAdd" parameterType="answerdto">
+        insert into tblAnswer values (seqAnswer.nextVal, #{content}, default, #{qseq})
+    </insert>
+
+    <select id="eventCount" resultType="Integer">
+        select count(*) from tblEvent
+    </select>
+
+    <select id="getEvent" parameterType="HashMap" resultType="eventdto">
+        select * from (select a.*, rownum as rn from (select * from tblEvent order by startdate desc) a) where rn between #{start} and #{end}
+    </select>
+
+    <delete id="delEvent" parameterType="String">
+        delete from tblEvent where seq = #{seq}
+    </delete>
+
+    <insert id="eventAdd" parameterType="eventdto">
+        insert into tblEvent values (seqEvent.nextVal, #{name}, #{eventInfo}, #{startDate}, #{endDate})
+    </insert>
+
+    <select id="getPrice" resultType="pricedto">
+        select * from tblPrice
+    </select>
+
+    <update id="updatePrice" parameterType="pricedto">
+        update tblPrice set subPrice = #{subPrice}, indPrice = #{indPrice} where seq = 1
+    </update>
+
 
 
 </mapper>
