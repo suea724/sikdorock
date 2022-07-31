@@ -1,5 +1,6 @@
 package com.project.sikdorock.repository;
 
+import com.project.sikdorock.dto.AnswerDTO;
 import com.project.sikdorock.dto.QuestionDTO;
 import com.project.sikdorock.dto.QuestionImageDTO;
 import org.springframework.stereotype.Repository;
@@ -17,4 +18,6 @@ public interface CsCenterDAO {
     List<QuestionDTO> getQuestion(Map<String, Object> params);
 
     int questionCount(String id);
+
+    AnswerDTO getAnswer(String seq);
 }

@@ -32,6 +32,9 @@ public class FileManager {
 
     public boolean adminUpload(List<MultipartFile> files, int fSeq) throws IOException {
         for (MultipartFile file : files) {
+            if (file.isEmpty()) {
+                return true;
+            }
             String originalFileName = file.getOriginalFilename();
             String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
             FoodImageDTO fdto = FoodImageDTO.builder().fSeq(fSeq).ext(ext).build();
@@ -45,6 +48,9 @@ public class FileManager {
 
     public boolean csCenterUpload(List<MultipartFile> files, int qSeq) throws IOException {
         for (MultipartFile file : files) {
+            if (file.isEmpty()) {
+                return true;
+            }
             String originalFileName = file.getOriginalFilename();
             String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
             QuestionImageDTO qdto = QuestionImageDTO.builder().qSeq(qSeq).ext(ext).build();

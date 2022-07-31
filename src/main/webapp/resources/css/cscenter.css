@@ -141,3 +141,10 @@ section > form {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     border-right:10px solid blue; }
+
+.question:hover {
+    background-color: #C69760;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}

@@ -25,7 +25,7 @@
             </div>
             <input type="file" name="imageAdd" id="imageAdd" multiple>
             <div>
-                <textarea name="content" style="width: 500px; height: 300px; resize: none; margin-bottom: 30px;" class="form-control"></textarea>
+                <textarea name="content" style="width: 500px; height: 300px; resize: none; margin-bottom: 30px;" class="form-control" required></textarea>
             </div>
         </div>
         <div class="questionadd" id="sub">

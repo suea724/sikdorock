@@ -27,4 +27,8 @@
         select count(*) from tblQuestion where id = #{id}
     </select>
 
+    <select id="getAnswer" resultType="answerdto" parameterType="String">
+        select * from tblAnswer where qseq = #{seq}
+    </select>
+
 </mapper>
