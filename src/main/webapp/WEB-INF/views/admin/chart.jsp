@@ -141,6 +141,15 @@
             }
         }
     });
+
+    $('#submenu ul li:nth-child(6) a').css({
+        "color": "white"
+    });
+
+    $('#submenu ul li:nth-child(6)').css({
+        "background-color" : "#795c3a"
+    });
+
 </script>
 
 

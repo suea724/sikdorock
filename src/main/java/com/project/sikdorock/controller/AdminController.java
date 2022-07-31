@@ -24,6 +24,12 @@ public class AdminController {
 
     private final AdminService service;
 
+    @GetMapping(value="/admin/adminlogin")
+    public String adminLogin() {
+
+        return "adminlogin";
+    }
+
     @GetMapping(value="/admin/userlist")
     public String userList(@RequestParam(defaultValue = "1") int page, String word, Model model) {
 
