@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,7 +33,7 @@ public class LoginController {
 
         //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
         //redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
-        System.out.println("네이버:" + naverAuthUrl);
+        // System.out.println("네이버:" + naverAuthUrl);
 
         //네이버
         model.addAttribute("url", naverAuthUrl);
@@ -53,7 +54,7 @@ public class LoginController {
 
         model.addAttribute("result", apiResult);
 
-        System.out.println("apiResult = " + apiResult);
+        // System.out.println("apiResult = " + apiResult);
 
         // 이메일로 DB에서 회원 찾기
         UserDTO findUser = loginService.checkUser(apiResult);
@@ -72,6 +73,37 @@ public class LoginController {
             session.setAttribute("auth", findUser);
             return "index";
         }
+    }
+
+    // 카카오 로그인
+    @GetMapping("/login/kakao")
+    public String kakaoLogin(@RequestParam(value = "code", required = false) String code, Model model, HttpSession session) {
+
+        // Access Token 받기
+        String access_Token = loginService.getAccessToken(code);
+
+        // Access Token으로 회원 이메일 가져오기
+        String email = loginService.getUserEmail(access_Token);
+
+        // 이메일로 DB에서 회원 찾기
+        UserDTO findUser = loginService.checkUserByEmail(email);
+
+        if (findUser == null) { // 존재하지 않으면 회원가입 페이지로 이동
+
+            // 회원가입 페이지로 넘길 데이터 파싱
+            RegisterDTO rdto = new RegisterDTO();
+            rdto.setEmail(email);
+
+            model.addAttribute("token", access_Token);
+            model.addAttribute("rdto", rdto);
+
+            return "user.register";
+
+        } else { // 존재하면 메인 페이지로
+            session.setAttribute("auth", findUser);
+            return "index";
+        }
+
     }
 
     @GetMapping("/logout")

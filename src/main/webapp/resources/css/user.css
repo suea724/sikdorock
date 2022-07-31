@@ -40,4 +40,11 @@
     height: 50px;
     cursor: pointer;
     display: block;
+    margin-bottom: 10px;
+}
+
+#register-table .error {
+    text-align: center;
+    color : red;
+    margin-top: 5px;
 }

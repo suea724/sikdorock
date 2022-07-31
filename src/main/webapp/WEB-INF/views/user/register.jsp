@@ -7,7 +7,10 @@
         <table class="table table-borderless" id="register-table">
             <tr>
                 <th>이름</th>
-                <td><input type="text" name="name" id="name" class="form-control" placeholder="이름을 입력해주세요." required></td>
+                <td>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="이름을 입력해주세요." required>
+                    <div id="name-check-result" class="error"></div>
+                </td>
             </tr>
             <tr>
                 <th>이메일</th>
@@ -15,7 +18,10 @@
             </tr>
             <tr>
                 <th>전화번호</th>
-                <td><input type="text" name="tel" id="tel" class="form-control" placeholder="전화번호를 입력해주세요." required></td>
+                <td>
+                    <input type="text" name="tel" id="tel" class="form-control" placeholder="전화번호를 입력해주세요." required>
+                    <div id="tel-check-result" class="error"></div>
+                </td>
             </tr>
             <tr>
                 <th>주소</th>
@@ -60,15 +66,33 @@
         });
     }
 
-    <c:if test="${not empty rdto}">
+    <c:if test="${not empty rdto.name}">
         $('#name').val('${rdto.name}');
         $('#name').attr("readonly", true);
+    </c:if>
 
+    <c:if test="${not empty rdto.email}">
         $('#email').val('${rdto.email}');
         $('#email').attr("readonly", true);
+    </c:if>
 
+    <c:if test="${not empty rdto.tel}">
         $('#tel').val('${rdto.tel}');
         $('#tel').attr("readonly", true);
     </c:if>
 
+    $('form').submit(function() {
+        let name = $('#name').val();
+        let tel = $('#tel').val();
+
+        if (!/^[가-힣]{2,6}$/.test(name)) {
+            $('#name-check-result').text('이름은 2~6자 이내 한글로 입력해주세요.');
+            return false;
+        }
+        if (!/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/.test(tel)) {
+            $('#tel-check-result').text("전화번호는 '-'을 포함한 13자리로 입력해주세요.");
+            return false;
+        }
+        $("#register-btn").submit();
+    });
 </script>

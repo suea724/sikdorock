@@ -3,7 +3,7 @@
 
 <header>
     <div id="logo">
-        <a href="/"><img src="/sikdorock/resources/images/식도락.png" id="logo-img"></a>
+        <a href="/sikdorock/index"><img src="/sikdorock/resources/images/식도락.png" id="logo-img"></a>
     </div>
     <nav id="main-menu">
         <ul>
