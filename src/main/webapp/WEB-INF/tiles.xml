@@ -18,5 +18,8 @@
     </definition>
 
     <definition name="price" template="/WEB-INF/views/admin/priceupdate.jsp"></definition>
+    <definition name="adminlogin" template="/WEB-INF/views/admin/adminlogin.jsp">
+        <put-attribute name="asset" value="/WEB-INF/views/inc/asset.jsp"></put-attribute>
+    </definition>
 
 </tiles-definitions>
