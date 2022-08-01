@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class FoodDTO {
     private String seq;
-    private String menuName;
-    private String menuExplain;
+    private String menuname;
+    private String menuexplain;
     private String allergy;
-    private String outDate;
-    private String cateSeq;
+    private String outdate;
+    private String cateseq;
 }

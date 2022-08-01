@@ -115,9 +115,9 @@ public class AdminController {
         PriceDTO pdto = service.getPrice();
 
         for (FoodDTO fdto : list) {
-            fdto.setOutDate(fdto.getOutDate().substring(0, 10));
+            fdto.setOutdate(fdto.getOutdate().substring(0, 10));
             LocalDate now = LocalDate.now();
-            LocalDate sellDate = LocalDate.parse(fdto.getOutDate());
+            LocalDate sellDate = LocalDate.parse(fdto.getOutdate());
             if (now.isAfter(sellDate)) {
                 fdto.setAllergy("판매완료");
             } else {
@@ -339,14 +339,14 @@ public class AdminController {
         List<EventDTO> list = service.getEvent(paging);
 
         for (EventDTO edto : list) {
-            edto.setStartDate(edto.getStartDate().substring(0, 10));
-            edto.setEndDate(edto.getEndDate().substring(0, 10));
+            edto.setStartdate(edto.getStartdate().substring(0, 10));
+            edto.setEnddate(edto.getEnddate().substring(0, 10));
             LocalDate now = LocalDate.now();
-            LocalDate startDate = LocalDate.parse(edto.getStartDate());
-            LocalDate endDate = LocalDate.parse(edto.getEndDate());
-            if (now.isAfter(endDate)) {
+            LocalDate startdate = LocalDate.parse(edto.getStartdate());
+            LocalDate enddate = LocalDate.parse(edto.getEnddate());
+            if (now.isAfter(enddate)) {
                 edto.setState("종료");
-            } else if (now.isAfter(startDate) && now.isBefore(endDate)) {
+            } else if (now.isAfter(startdate) && now.isBefore(enddate)) {
                 edto.setState("진행중");
             } else {
                 edto.setState("진행 예정");
@@ -383,6 +383,7 @@ public class AdminController {
             out.flush();
         }
 
+
         Calendar now = Calendar.getInstance();
         String nowDate = String.format("%tF", now);
 
@@ -392,7 +393,7 @@ public class AdminController {
     }
 
     @PostMapping(value="/admin/eventaddok")
-    public void eventAddOk(EventDTO eventDTO, HttpServletResponse response, HttpServletRequest request, String couponName, int discount) throws IOException {
+    public void eventAddOk(EventDTO eventDTO, HttpServletResponse response, HttpServletRequest request, String couponname, int discount) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         if (!loginCheck(request)) {
@@ -400,7 +401,7 @@ public class AdminController {
             out.flush();
         }
 
-        int result = service.eventAdd(eventDTO, couponName, discount);
+        int result = service.eventAdd(eventDTO, couponname, discount);
         if (result == 1) {
             out.println("<script>alert('추가 완료'); location.href='/sikdorock/admin/eventlist'</script>");
             out.flush();

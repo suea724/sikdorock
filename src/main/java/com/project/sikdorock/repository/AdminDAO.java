@@ -25,7 +25,7 @@ public interface AdminDAO {
 
     List<FoodDTO> getMenuList(Map<String, Object> params);
 
-    int dateCheck(String outDate);
+    int dateCheck(String outdate);
 
     int menuCount();
 
@@ -43,7 +43,7 @@ public interface AdminDAO {
 
     void updateQuestion(String qseq);
 
-    List<EventDTO> getEvent(Map<String, Object> paging);
+    List<EventDTO> getEvent(Map<String, Object> params);
 
     int eventCount();
 

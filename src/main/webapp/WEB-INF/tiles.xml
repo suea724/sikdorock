@@ -29,6 +29,13 @@
         <put-attribute name="asset" value="/WEB-INF/views/inc/asset.jsp"></put-attribute>
     </definition>
 
+    <definition name="user.*" template="/WEB-INF/views/layout/mainlayout.jsp">
+        <put-attribute name="asset" value="/WEB-INF/views/inc/asset.jsp"></put-attribute>
+        <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp"></put-attribute>
+        <put-attribute name="section" value="/WEB-INF/views/user/{1}.jsp"></put-attribute>
+        <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp"></put-attribute>
+    </definition>
+
     <definition name="showanswer" template="/WEB-INF/views/cscenter/showanswer.jsp">
         <put-attribute name="asset" value="/WEB-INF/views/inc/asset.jsp"></put-attribute>
     </definition>
