@@ -1,73 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<style>
-
-
-    /* 페이징 */
-    .page{
-        text-align: center;
-    }
-
-    .pagination {
-        list-style: none;
-        display: inline-block;
-        padding: 0;
-        margin-top: 20px;}
-
-    .pagination li {
-        display: inline;
-        text-align: center;
-    }
-    .pagination a {
-        float: left;
-        display: block;
-        font-size: 14px;
-        text-decoration: none;
-        padding: 5px 12px;
-        color: #96a0ad;
-        line-height: 1.5;}
-
-    .first{
-        margin-right: 15px;}
-
-    .last{
-        margin-left: 15px;}
-
-    .first:hover, .last:hover, .left:hover, .right:hover{
-        color: #C69760;}
-
-    .pagination a.active {
-        cursor: default;
-        color: #ffffff;}
-
-    .pagination a:active {
-        outline: none;}
-
-    .mode .num {
-        margin-left: 3px;
-        padding: 0;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-    }
-
-    .mode .num:hover {
-        background-color: #C69760;
-        color: #ffffff;}
-
-    .mode .num.active, .mode .num:active {
-        background-color: #C69760;
-        cursor: pointer;}
-
-    .arrow-left {
-        width: 0;
-        height: 0;
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        border-right:10px solid blue; }
-</style>
 <section>
+
+    <div id="likefoods">
+        <c:forEach items="${list}" var="dto">
+            <div class="likefood">
+                <div class="likefood-img" style="background-image: url('/sikdorock/resources/files/${dto.filename}');"></div>
+                <div class="likefood-btn" onclick="delLikeFood(${dto.fseq})"><i class="fa-solid fa-heart"></i></div>
+                <div class="likefood-name">${dto.menuname}</div>
+                <div class="likefood-price">7,500</div>
+            </div>
+        </c:forEach>
+    </div>
 
 
     <div id="title">메뉴 관리</div>
