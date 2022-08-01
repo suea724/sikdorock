@@ -51,7 +51,7 @@
             </ul>
         </div>
     </div>
-    <div class="title"><span>식도락</span>과 함께</div>
+    <div class="title"><span>식도락</span> 과 함께</div>
     <div id="titleDown" class="title">맛있는 점심 드세요!</div>
     <div data-aos="fade-up"><img src="/sikdorock/resources/images/main1.jpg" style="width: 1000px"></div>
     <div id="subscribe" data-aos="fade-down" data-aos-anchor-placement="top-center">
