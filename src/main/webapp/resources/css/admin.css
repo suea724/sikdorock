@@ -20,6 +20,7 @@ main > div {
     background-color: #C69760;
     height: 100%;
     width: 200px;
+    overflow-y: auto;
 }
 
 #submenu > ul {
@@ -39,7 +40,6 @@ main > div {
 #submenu > div {
     display: flex;
     justify-content: center;
-    margin-top: 200px;
 }
 
 #submenu > ul > li {
