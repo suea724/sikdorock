@@ -2,7 +2,39 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mypage">
+<mapper namespace="com.project.sikdorock.repository.MyPageDAO">
 
+    <select id="couponList" resultType="coupondto">
+        select
+            c.name as name,
+            c.discount as discount
+        from tblUserCoupon uc
+                 inner join tblCoupon c
+                            on uc.cseq = c.seq
+        where id ='hong1234'
+    </select>
+
+    <select id="likeFoodList" resultType="userlikefooddto" parameterType="HashMap">
+        select
+            *
+        from
+            (
+                select
+                    f.seq as fseq,
+                    f.menuname as menuname,
+                    (select concat(seq, ext) from tblFoodImage where seq = (select min(seq) from tblFoodImage where fseq = f.seq)) as filename, rownum as rn
+                from tblLikeFood lf
+                         inner join tblFood f
+                                    on lf.fseq = f.seq
+                where id='hong1234') where rn between #{start} and #{end}
+    </select>
+
+    <delete id="delLikeFood" parameterType="String">
+        delete from tblLikeFood where fseq = #{fseq} and id='hong1234'
+    </delete>
+
+    <select id="likeFoodCount" resultType="Integer">
+        select count(*) from tblLikeFood where id='hong1234'
+    </select>
 
 </mapper>

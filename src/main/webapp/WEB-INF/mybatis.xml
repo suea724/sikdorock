@@ -22,5 +22,6 @@
         <typeAlias type="com.project.sikdorock.dto.PriceDTO" alias="pricedto"/>
         <typeAlias type="com.project.sikdorock.dto.QuestionImageDTO" alias="questionimagedto"/>
         <typeAlias type="com.project.sikdorock.dto.RegisterDTO" alias="registerdto"/>
+        <typeAlias type="com.project.sikdorock.dto.UserLikeFoodDTO" alias="userlikefooddto"/>
     </typeAliases>
 </configuration>
