@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'HallymGothic-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/HallymGothic-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HallymGothic-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/HallymGothic-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+section > div {
+    width: 1000px;
+    margin: auto;
+}
+
+#titleDown {
+    margin-bottom: 100px;
+}
+
+.title {
+    margin-top: 20px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.title > span {
+    font-size: 2.5rem;
+    font-family: 'HallymGothic-Bold';
+    color: #C69760;
+}
+
+#subscribe > span {
+    font-size: 2rem;
+}
+
+#price {
+    font-size: 2.5rem;
+    color: #C69760;
+}
+
+#subscribe {
+    margin-bottom: 200px;
+}
+
+/* banner */
+.banner {position: relative; width: 1000px; height: 500px; top: 50px;  margin:0 auto; padding:0; overflow: hidden;}
+.banner ul {position: absolute; margin: 0px; padding:0; list-style: none; }
+.banner ul li {float: left; width: 1000px; height: 500px; margin:0; padding:0;}
+
+#delivery {
+    width: 700px;
+    height: 250px;
+    background-color: #efefef;
+    margin-bottom: 200px;
+}
+
+#a1 {
+    font-family: 'HallymGothic-Bold';
+    font-size: 2rem;
+    text-align: center;
+}
+
+#a2 {
+    padding: 70px;
+}
+
+#a3 {
+    margin-left: 70px;
+}
