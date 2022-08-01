@@ -26,7 +26,15 @@ public class CsCenterController {
     private final CsCenterService service;
 
     @GetMapping(value="/cscenter/questionadd")
-    public String questionAdd() {
+    public String questionAdd(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
+        UserDTO udto = (UserDTO) session.getAttribute("auth");
+        if (udto == null) {
+            out.println("<script>alert('로그인이 필요합니다.'); location.href='/sikdorock/login'</script>");
+            out.flush();
+        }
 
         return "cscenter.questionadd";
     }
@@ -40,18 +48,15 @@ public class CsCenterController {
         if (udto == null) {
             out.println("<script>alert('로그인이 필요합니다.'); location.href='/sikdorock/login'</script>");
             out.flush();
-            return;
         }
         questionDTO.setId(udto.getId());
         int result = service.questionAdd(questionDTO, request);
         if (result == 1) {
             out.println("<script>alert('추가 완료'); location.href='/sikdorock/cscenter/questionlist'</script>");
             out.flush();
-            return;
         } else {
             out.println("<script>alert('추가 실패'); location.href='/sikdorock/cscenter/questionadd'</script>");
             out.flush();
-            return;
         }
 
     }

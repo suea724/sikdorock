@@ -1,0 +1,56 @@
+.button {
+    padding: 5px 10px;
+    border: 1px solid rgb(120, 120, 120);
+    outline: none;
+    background-color: transparent;
+    border-radius: 8%;
+    color: rgb(120, 120, 120);
+
+}
+
+.button:hover,
+.button:active {
+    border: 1px solid transparent;
+}
+
+.button:focus {
+    border: 1px solid rgba(120, 120, 120, 0.7);
+}
+
+.button.beige {
+    color: #C69760;
+    border: 1px solid #C69760;
+}
+
+.button.beige:hover {
+    background-color: #C69760;
+    color: #FFFFFF;
+}
+
+.button.beige:active {
+    box-shadow: none;
+}
+
+.button.beige:focus {
+    transition: 0.5s;
+    box-shadow: 0 0 0 2px #937047;
+}
+
+.button.gray {
+    color: gray;
+    border: 1px solid gray;
+}
+
+.button.gray:hover {
+    background-color: gray;
+    color: #FFFFFF;
+}
+
+.button.gray:active {
+    box-shadow: none;
+}
+
+.button.gray:focus {
+    transition: 0.5s;
+    box-shadow: 0 0 0 2px gray;
+}

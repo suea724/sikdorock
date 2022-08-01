@@ -28,7 +28,7 @@
     </select>
 
     <insert id="menuAdd" parameterType="fooddto">
-        insert into tblFood values (seqFood.nextVal, #{menuName}, #{menuExplain}, #{allergy}, #{outDate}, #{cateSeq})
+        insert into tblFood values (seqFood.nextVal, #{menuname}, #{menuexplain}, #{allergy}, #{outdate}, #{cateseq})
     </insert>
 
     <select id="getSeq" resultType="Integer">
@@ -95,7 +95,7 @@
     </delete>
 
     <insert id="eventAdd" parameterType="eventdto">
-        insert into tblEvent values (seqEvent.nextVal, #{name}, #{eventInfo}, #{startDate}, #{endDate}, #{cseq})
+        insert into tblEvent values (seqEvent.nextVal, #{name}, #{eventinfo}, #{startdate}, #{enddate}, #{cseq})
     </insert>
 
     <select id="getPrice" resultType="pricedto">
