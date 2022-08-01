@@ -43,7 +43,7 @@ public interface AdminDAO {
 
     void updateQuestion(String qseq);
 
-    List<EventDTO> getEvent(Map<String, Object> paging);
+    List<EventDTO> getEvent(Map<String, Object> params);
 
     int eventCount();
 

@@ -76,7 +76,7 @@ public class AdminController {
             out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
             out.flush();
         }
-        Paging paging = new Paging(page, service.pageCount(word));
+        Paging paging = new Paging(page, service.pageCount(word), 10);
         List<UserDTO> list = service.list(paging, word);
 
         model.addAttribute("list", list);
@@ -109,7 +109,7 @@ public class AdminController {
             out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
             out.flush();
         }
-        Paging paging = new Paging(page, service.menuCount());
+        Paging paging = new Paging(page, service.menuCount(), 10);
 
         List<FoodDTO> list = service.getMenuList(paging);
         PriceDTO pdto = service.getPrice();
@@ -253,7 +253,7 @@ public class AdminController {
             out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
             out.flush();
         }
-        Paging paging = new Paging(page, service.questionCount());
+        Paging paging = new Paging(page, service.questionCount(), 10);
         List<QuestionDTO> list = service.getQuestionList(paging);
 
         for (QuestionDTO qdto : list) {
@@ -335,7 +335,7 @@ public class AdminController {
             out.flush();
         }
 
-        Paging paging = new Paging(page, service.eventCount());
+        Paging paging = new Paging(page, service.eventCount(), 10);
         List<EventDTO> list = service.getEvent(paging);
 
         for (EventDTO edto : list) {

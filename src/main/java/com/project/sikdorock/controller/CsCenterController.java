@@ -71,7 +71,7 @@ public class CsCenterController {
             out.println("<script>alert('로그인이 필요합니다.'); location.href='/sikdorock/login'</script>");
             out.flush();
         }
-        Paging paging = new Paging(page, service.questionCount(udto.getId()));
+        Paging paging = new Paging(page, service.questionCount(udto.getId()), 10);
         List<QuestionDTO> list = service.getQuestion(udto.getId(), paging);
 
         for (QuestionDTO qdto : list) {
