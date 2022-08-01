@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="/sikdorock/resources/css/header.css">
 <link rel="stylesheet" href="/sikdorock/resources/css/footer.css">
 <link rel="stylesheet" href="/sikdorock/resources/css/button.css">
+<link rel="stylesheet" href="/sikdorock/resources/css/paging.css">
 <script src="https://kit.fontawesome.com/af2c2f762d.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
 <script src="/resources/js/jquery-ui.js"></script>
