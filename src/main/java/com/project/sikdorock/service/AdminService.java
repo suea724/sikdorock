@@ -67,9 +67,9 @@ public class AdminService {
         return dao.getMenuList(params);
     }
 
-    public int dateCheck(String outDate) {
+    public int dateCheck(String outdate) {
 
-        return dao.dateCheck(outDate);
+        return dao.dateCheck(outdate);
     }
 
     public int menuCount() {
@@ -133,16 +133,16 @@ public class AdminService {
         return dao.delEvent(seq);
     }
 
-    public int eventAdd(EventDTO eventDTO, String couponName, int discount) {
+    public int eventAdd(EventDTO eventDTO, String couponname, int discount) {
         CouponDTO cdto = new CouponDTO();
-        cdto.setName(couponName);
+        cdto.setName(couponname);
         cdto.setDiscount(discount);
 
         dao.couponAdd(cdto);
 
         int seq = dao.getCouponSeq();
 
-        eventDTO.setCSeq(seq);
+        eventDTO.setCseq(seq);
 
         int result = dao.eventAdd(eventDTO);
 

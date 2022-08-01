@@ -7,8 +7,8 @@
 </head>
 <body>
 <form method="post" action="/sikdorock/admin/priceupdateok">
-    구독 가격:<input type="text" value="${pdto.subPrice}" class="form-control" name="subPrice">
-    개별 가격:<input type="text" value="${pdto.indPrice}" class="form-control" name="indPrice">
+    구독 가격:<input type="text" value="${pdto.subprice}" class="form-control" name="subprice">
+    개별 가격:<input type="text" value="${pdto.indprice}" class="form-control" name="indprice">
     <input type="submit" value="변경하기" class="button beige" style="cursor: pointer;">
 </form>
 </body>

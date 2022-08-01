@@ -34,5 +34,8 @@
         </property>
     </bean>
 
+    <!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+    <bean id="naverLoginBO" class="com.project.sikdorock.NaverLoginBO" />
+
     <mybatis-spring:scan base-package="com.project.sikdorock.repository" />
 </beans>
