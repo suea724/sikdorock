@@ -2,7 +2,14 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="login">
+<mapper namespace="com.project.sikdorock.repository.LoginDAO">
 
+    <select id="findUser" parameterType="String" resultType="userdto">
+        select * from tblUser where id = #{email}
+    </select>
+
+    <insert id="saveUser" parameterType="registerdto">
+        insert into tblUser values (#{email}, #{name}, #{tel}, #{address}, #{token}, #{addressdetail})
+    </insert>
 
 </mapper>

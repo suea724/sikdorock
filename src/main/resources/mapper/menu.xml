@@ -2,7 +2,23 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="menu">
+<mapper namespace="com.project.sikdorock.repository.MenuDAO">
 
+    <!--메뉴의 총 수-->
+    <!-- 오늘 ~ 오늘+30-->
+    <select id="menuCount" resultType="Integer">
+        select count(*) from TBLFOOD where ((outdate &gt; sysdate - 1) and (outdate &lt; sysdate + 30))
+    </select>
+
+    <!-- 메뉴리스트 -->
+    <select id="getMenuli" resultType="foodlistdto" parameterType="HashMap">
+        select
+            menu.*,
+            concat(img.fseq, img.ext) as image
+        from (select a.*, rownum as rn from (select * from tblFood f order by outdate asc) a) menu
+                 inner join (select * from (select fi.*, ROWNUM rnum from TBLFOODIMAGE fi) where Mod(rnum, 2) = 1) img
+                            on menu.seq = img.fseq
+            where rn between #{start} and #{end}
+    </select>
 
 </mapper>
