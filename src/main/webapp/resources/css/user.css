@@ -3,9 +3,14 @@
     margin: 0 auto;
 }
 
-#login-title, #register-title {
+#register-title {
     text-align: center;
     margin: 50px 0;
+}
+
+#login-title {
+    text-align: center;
+    margin-top: 100px;
 }
 
 #login-container div {
@@ -32,7 +37,7 @@
 
 #login-btns {
     width: 200px;
-    margin: 0 auto;
+    margin: 30px auto 0 auto;
 }
 
 #login-btns img {
@@ -40,7 +45,7 @@
     height: 50px;
     cursor: pointer;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 #register-table .error {

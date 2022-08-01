@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
@@ -71,13 +72,13 @@ public class LoginController {
 
         } else { // 존재하면 메인 페이지로
             session.setAttribute("auth", findUser);
-            return "index";
+            return "redirect:/";
         }
     }
 
     // 카카오 로그인
     @GetMapping("/login/kakao")
-    public String kakaoLogin(@RequestParam(value = "code", required = false) String code, Model model, HttpSession session) {
+    public String kakaoLogin(@RequestParam(value = "code", required = false) String code, Model model, HttpSession session, HttpServletResponse response) {
 
         // Access Token 받기
         String access_Token = loginService.getAccessToken(code);
@@ -101,7 +102,7 @@ public class LoginController {
 
         } else { // 존재하면 메인 페이지로
             session.setAttribute("auth", findUser);
-            return "index";
+            return "redirect:/";
         }
 
     }
@@ -109,7 +110,7 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "index";
+        return "redirect:/";
     }
 
 }
