@@ -14,7 +14,7 @@
             <tr>
                 <td>카테고리</td>
                 <td>
-                    <select name="cateSeq" class="form-select" style="width: 100px" required>
+                    <select name="cateseq" class="form-select" style="width: 100px" required>
                         <c:forEach items="${category}" var="dto">
                             <option value="${dto.seq}">${dto.category}</option>
                         </c:forEach>
@@ -24,12 +24,12 @@
             <tr>
                 <td>날짜</td>
                 <td id="aaa">
-                    <input name="outDate" type="date" class="form-control" min="${nowDate}" style="width: 500px" onchange="dateCheck()" required>
+                    <input name="outdate" type="date" class="form-control" min="${nowDate}" style="width: 500px" onchange="dateCheck()" required>
                 </td>
             </tr>
             <tr>
                 <td>메뉴</td>
-                <td><input name="menuName" type="text" class="form-control" style="width: 500px" required></td>
+                <td><input name="menuname" type="text" class="form-control" style="width: 500px" required></td>
             </tr>
             <tr>
                 <td>알레르기</td>
@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <td>메뉴 설명</td>
-                <td><textarea name="menuExplain" class="form-control" style="width: 500px; height: 200px; resize: none" required></textarea></td>
+                <td><textarea name="menuexplain" class="form-control" style="width: 500px; height: 200px; resize: none" required></textarea></td>
             </tr>
         </table>
         <div id="addMenu">
@@ -54,7 +54,7 @@
         $.ajax({
             type: 'POST',
             url: '/sikdorock/admin/datecheck',
-            data: 'date=' + $('input[name=outDate]').val(),
+            data: 'date=' + $('input[name=outdate]').val(),
             dataType: 'json',
             success: function(result) {
                 if (result.result == "1") {

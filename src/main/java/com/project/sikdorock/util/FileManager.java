@@ -1,7 +1,9 @@
 package com.project.sikdorock.util;
 
 import com.project.sikdorock.dto.FoodImageDTO;
+import com.project.sikdorock.dto.QuestionImageDTO;
 import com.project.sikdorock.repository.AdminDAO;
+import com.project.sikdorock.repository.CsCenterDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,20 +21,41 @@ public class FileManager {
 
     private String path;
     private final AdminDAO adminDAO;
+    private final CsCenterDAO csCenterDAO;
 
     @Autowired
-    public FileManager(ServletContext context, AdminDAO adminDAO) {
+    public FileManager(ServletContext context, AdminDAO adminDAO, CsCenterDAO csCenterDAO) {
         path = context.getRealPath("/resources/files/");
         this.adminDAO = adminDAO;
+        this.csCenterDAO = csCenterDAO;
     }
 
-    public boolean upload(List<MultipartFile> files, int fSeq) throws IOException {
+    public boolean adminUpload(List<MultipartFile> files, int fseq) throws IOException {
         for (MultipartFile file : files) {
+            if (file.isEmpty()) {
+                return true;
+            }
             String originalFileName = file.getOriginalFilename();
             String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
-            FoodImageDTO fdto = FoodImageDTO.builder().fSeq(fSeq).ext(ext).build();
+            FoodImageDTO fdto = FoodImageDTO.builder().fseq(fseq).ext(ext).build();
             adminDAO.addFile(fdto);
             File newFile = new File(path, fdto.getSeq() + ext);
+            file.transferTo(newFile);
+
+        }
+        return true;
+    }
+
+    public boolean csCenterUpload(List<MultipartFile> files, int qseq) throws IOException {
+        for (MultipartFile file : files) {
+            if (file.isEmpty()) {
+                return true;
+            }
+            String originalFileName = file.getOriginalFilename();
+            String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+            QuestionImageDTO qdto = QuestionImageDTO.builder().qseq(qseq).ext(ext).build();
+            csCenterDAO.addFile(qdto);
+            File newFile = new File(path, qdto.getSeq() + ext);
             file.transferTo(newFile);
 
         }

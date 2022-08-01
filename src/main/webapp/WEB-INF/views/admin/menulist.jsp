@@ -3,8 +3,8 @@
 <section>
     <div id="title">메뉴 관리</div>
     <div id="userList">
-        <div class="price">구독 가격 : ${pdto.subPrice}</div>
-        <div class="price">개별 가격 : ${pdto.indPrice}</div>
+        <div class="price">구독 가격 : ${pdto.subprice}</div>
+        <div class="price">개별 가격 : ${pdto.indprice}</div>
         <table class="table">
             <tr>
                 <th>번호</th>
@@ -16,8 +16,8 @@
             <c:forEach items="${list}" var="fdto" varStatus="status">
                 <tr>
                     <td>${paging.offset + status.index}</td>
-                    <td>${fdto.outDate}</td>
-                    <td style="width: 300px">${fdto.menuName}</td>
+                    <td>${fdto.outdate}</td>
+                    <td style="width: 300px">${fdto.menuname}</td>
                     <td>${fdto.allergy}</td>
                     <c:if test="${fdto.allergy == '판매중'}">
                         <td><input type="button" value="삭제" class="button beige" onclick="del('${fdto.seq}')"></td>

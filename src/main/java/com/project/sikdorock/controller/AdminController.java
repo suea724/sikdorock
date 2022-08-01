@@ -63,9 +63,9 @@ public class AdminController {
         PriceDTO pdto = service.getPrice();
 
         for (FoodDTO fdto : list) {
-            fdto.setOutDate(fdto.getOutDate().substring(0, 10));
+            fdto.setOutdate(fdto.getOutdate().substring(0, 10));
             LocalDate now = LocalDate.now();
-            LocalDate sellDate = LocalDate.parse(fdto.getOutDate());
+            LocalDate sellDate = LocalDate.parse(fdto.getOutdate());
             if (now.isAfter(sellDate)) {
                 fdto.setAllergy("판매완료");
             } else {
@@ -237,14 +237,14 @@ public class AdminController {
         List<EventDTO> list = service.getEvent(paging);
 
         for (EventDTO edto : list) {
-            edto.setStartDate(edto.getStartDate().substring(0, 10));
-            edto.setEndDate(edto.getEndDate().substring(0, 10));
+            edto.setStartdate(edto.getStartdate().substring(0, 10));
+            edto.setEnddate(edto.getEnddate().substring(0, 10));
             LocalDate now = LocalDate.now();
-            LocalDate startDate = LocalDate.parse(edto.getStartDate());
-            LocalDate endDate = LocalDate.parse(edto.getEndDate());
-            if (now.isAfter(endDate)) {
+            LocalDate startdate = LocalDate.parse(edto.getStartdate());
+            LocalDate enddate = LocalDate.parse(edto.getEnddate());
+            if (now.isAfter(enddate)) {
                 edto.setState("종료");
-            } else if (now.isAfter(startDate) && now.isBefore(endDate)) {
+            } else if (now.isAfter(startdate) && now.isBefore(enddate)) {
                 edto.setState("진행중");
             } else {
                 edto.setState("진행 예정");

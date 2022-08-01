@@ -6,11 +6,11 @@
         <table class="table table-bordered" id="menuContent">
             <tr>
                 <td>시작 날짜</td>
-                <td><input name="startDate" type="date" class="form-control" min="${nowDate}" style="width: 500px" onchange="minDate()" required></td>
+                <td><input name="startdate" type="date" class="form-control" min="${nowDate}" style="width: 500px" onchange="minDate()" required></td>
             </tr>
             <tr>
                 <td>종료 날짜</td>
-                <td><input name="endDate" type="date" class="form-control" style="width: 500px" readonly required></td>
+                <td><input name="enddate" type="date" class="form-control" style="width: 500px" readonly required></td>
             </tr>
             <tr>
                 <td>이벤트명</td>
@@ -18,7 +18,14 @@
             </tr>
             <tr>
                 <td>이벤트 설명</td>
-                <td><textarea name="eventInfo" class="form-control" style="width: 500px; height: 200px; resize: none" required></textarea></td>
+                <td><textarea name="eventinfo" class="form-control" style="width: 500px; height: 200px; resize: none" required></textarea></td>
+            </tr>
+            <tr>
+                <td>쿠폰</td>
+                <td>
+                    쿠폰명:<input type="text" name="couponname" class="form-control"><br><br>
+                    할인:<div style="display: flex; justify-content: center"><input type="number" name="discount" class="form-control" style="width: 100px;" min="0" max="100"></div>
+                </td>
             </tr>
         </table>
         <div id="addMenu">
