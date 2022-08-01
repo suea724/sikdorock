@@ -2,7 +2,15 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="event">
+<mapper namespace="com.project.sikdorock.repository.EventDAO">
 
+
+    <select id="eventlist" resultType="eventdto">
+        select * from (select e.*, rownum as rnum from tblEvent e)
+    </select>
+
+    <select id="get" resultType="eventdto" parameterType="String">
+        select * from tblEvent where seq = #{seq}
+    </select>
 
 </mapper>
