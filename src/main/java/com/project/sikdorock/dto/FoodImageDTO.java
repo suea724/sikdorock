@@ -7,6 +7,6 @@ import lombok.Data;
 @Builder
 public class FoodImageDTO {
     private int seq;
-    private int fSeq;
+    private int fseq;
     private String ext;
 }

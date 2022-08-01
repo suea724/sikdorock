@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 public class QuestionImageDTO {
     private int seq;
-    private int qSeq;
+    private int qseq;
     private String ext;
 
 }

@@ -36,7 +36,7 @@
     </select>
 
     <insert useGeneratedKeys="false" id="addFile" parameterType="foodimagedto">
-        insert into tblFoodImage (seq, fSeq, ext) values (seqFoodImage.nextVal ,#{fSeq}, #{ext})
+        insert into tblFoodImage (seq, fseq, ext) values (seqFoodImage.nextVal ,#{fseq}, #{ext})
         <selectKey keyProperty="seq" resultType="int" order="AFTER">
             select seqFoodImage.currVal from DUAL
         </selectKey>
@@ -47,7 +47,7 @@
     </select>
 
     <select id="dateCheck" resultType="Integer" parameterType="String">
-        select count(*) from tblFood where outDate = #{outDate}
+        select count(*) from tblFood where outdate = #{outdate}
     </select>
 
     <select id="menuCount" resultType="Integer">
@@ -95,7 +95,7 @@
     </delete>
 
     <insert id="eventAdd" parameterType="eventdto">
-        insert into tblEvent values (seqEvent.nextVal, #{name}, #{eventInfo}, #{startDate}, #{endDate}, #{cSeq})
+        insert into tblEvent values (seqEvent.nextVal, #{name}, #{eventInfo}, #{startDate}, #{endDate}, #{cseq})
     </insert>
 
     <select id="getPrice" resultType="pricedto">
@@ -103,7 +103,7 @@
     </select>
 
     <update id="updatePrice" parameterType="pricedto">
-        update tblPrice set subPrice = #{subPrice}, indPrice = #{indPrice} where seq = 1
+        update tblPrice set subprice = #{subprice}, indprice = #{indprice} where seq = 1
     </update>
 
     <select id="loginOk" parameterType="admindto" resultType="Integer">
@@ -111,7 +111,7 @@
     </select>
 
     <insert id="couponAdd" parameterType="coupondto">
-        insert into tblCoupon values (seqCoupon.nextVal, #{name}, #{discount})
+        insert into tblCoupon values (seqcoupon.nextVal, #{name}, #{discount})
     </insert>
 
     <select id="getCouponSeq" resultType="Integer">
