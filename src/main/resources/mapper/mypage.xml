@@ -4,5 +4,27 @@
 
 <mapper namespace="com.project.sikdorock.repository.MyPageDAO">
 
+    <select id="couponList" resultType="coupondto">
+        select
+            c.name as name,
+            c.discount as discount
+        from tblUserCoupon uc
+                 inner join tblCoupon c
+                            on uc.cseq = c.seq
+        where id ='hong1234'
+    </select>
+
+    <!--<select id="likeFoodList" resultType="fooddto">
+        select
+            f.menuname as menuname,
+            fi.seq as seq,
+            fi.ext as ext
+        from tblLikeFood lf
+                 inner join tblFood f
+                            on lf.fseq = f.seq
+                 inner join tblFoodImage fi
+                            on fi.fseq = f.seq
+        where id='hong1234'
+    </select>-->
 
 </mapper>

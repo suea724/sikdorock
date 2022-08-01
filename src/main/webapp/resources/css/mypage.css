@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'HallymGothic-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/HallymGothic-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+#mypage {
+    display: flex;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#submenu {
+    background-color: #C69760;
+    width: 350px;
+}
+
+#submenu > ul {
+    padding-left: 0px;
+}
+
+#submenu li {
+    list-style: none;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#submenu li > a {
+    color: #4a4a4a;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+#submenu li > a:hover {
+    color: black;
+    transition: .2s;
+}
+
+/*쿠폰함*/
+#myinfo-content {
+    margin-left: 80px;
+    width: 850px;
+}
+
+#myinfo-content > div#title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 5px;
+}
+#myinfo-content > div#coupons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#myinfo-content  div.coupon {
+    width: 400px;
+    height: 100px;
+    background-color: #dadada;
+    margin: 10px;
+}
+
+#myinfo-content  div.coupon > div.coupon-name {
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#myinfo-content  div.coupon > div.coupon-date {
+    padding: 0px 15px;
+    color: #363636;
+}
+
+/*찜목록*/
+#likefoods {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.likefood {
+    width: 200px;
+    height: 220px;
+    border: 1px solid gray;
+    margin: 5px;
+}
+
+#likefood-sub {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#likefood-sub > #title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.likefood > div.likefood-img {
+    width: 200px;
+    height: 100px;
+    background-image: url("../files/1.png");
+    background-position-x: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 15px;
+}
+
+.likefood > div.likefood-btn {
+    text-align: center;
+    color: red;
+    font-size: 1.2rem;
+}
+
+.likefood > div.likefood-btn > i:hover {
+    cursor: pointer;
+}
+
+.likefood > div.likefood-name {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.likefood > div.likefood-price {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: bold;
+}
