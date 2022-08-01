@@ -53,7 +53,7 @@ public class CsCenterController {
     public String questionList(Model model, @RequestParam(defaultValue = "1") int page, HttpServletRequest request) {
 
         String id = "hong1234";
-        Paging paging = new Paging(page, service.questionCount(id));
+        Paging paging = new Paging(page, service.questionCount(id), 10);
         List<QuestionDTO> list = service.getQuestion(id, paging);
 
         for (QuestionDTO qdto : list) {

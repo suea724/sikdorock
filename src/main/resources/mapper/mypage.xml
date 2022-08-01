@@ -14,17 +14,27 @@
         where id ='hong1234'
     </select>
 
-    <!--<select id="likeFoodList" resultType="fooddto">
+    <select id="likeFoodList" resultType="userlikefooddto" parameterType="HashMap">
         select
-            f.menuname as menuname,
-            fi.seq as seq,
-            fi.ext as ext
-        from tblLikeFood lf
-                 inner join tblFood f
-                            on lf.fseq = f.seq
-                 inner join tblFoodImage fi
-                            on fi.fseq = f.seq
-        where id='hong1234'
-    </select>-->
+            *
+        from
+            (
+                select
+                    f.seq as fseq,
+                    f.menuname as menuname,
+                    (select concat(seq, ext) from tblFoodImage where seq = (select min(seq) from tblFoodImage where fseq = f.seq)) as filename, rownum as rn
+                from tblLikeFood lf
+                         inner join tblFood f
+                                    on lf.fseq = f.seq
+                where id='hong1234') where rn between #{start} and #{end}
+    </select>
+
+    <delete id="delLikeFood" parameterType="String">
+        delete from tblLikeFood where fseq = #{fseq} and id='hong1234'
+    </delete>
+
+    <select id="likeFoodCount" resultType="Integer">
+        select count(*) from tblLikeFood where id='hong1234'
+    </select>
 
 </mapper>
