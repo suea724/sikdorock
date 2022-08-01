@@ -25,7 +25,7 @@ public interface AdminDAO {
 
     List<FoodDTO> getMenuList(Map<String, Object> params);
 
-    int dateCheck(String outDate);
+    int dateCheck(String outdate);
 
     int menuCount();
 

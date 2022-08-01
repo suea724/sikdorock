@@ -13,7 +13,7 @@
     </select>
 
     <insert useGeneratedKeys="false" id="addFile" parameterType="questionimagedto">
-        insert into tblQuestionImage (seq, qSeq, ext) values (seqQuestionImage.nextVal ,#{qSeq}, #{ext})
+        insert into tblQuestionImage (seq, qseq, ext) values (seqQuestionImage.nextVal ,#{qSeq}, #{ext})
         <selectKey keyProperty="seq" resultType="int" order="AFTER">
             select seqQuestionImage.currVal from DUAL
         </selectKey>

@@ -16,8 +16,8 @@
                 <tr>
                     <td>${paging.offset + status.index}</td>
                     <td style="width: 350px">${dto.name}</td>
-                    <td>${dto.startDate}</td>
-                    <td>${dto.endDate}</td>
+                    <td>${dto.startdate}</td>
+                    <td>${dto.enddate}</td>
                     <td>${dto.state}</td>
                     <c:if test="${dto.state == '종료'}">
                         <td><input type="button" value="삭제" class="button gray" disabled></td>
