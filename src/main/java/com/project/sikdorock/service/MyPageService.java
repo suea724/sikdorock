@@ -18,19 +18,21 @@ public class MyPageService {
 
     private final MyPageDAO dao;
 
-    public List<CouponDTO> couponList(Paging paging) {
+    public List<CouponDTO> couponList(Paging paging, String id) {
 
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("start", paging.getOffset());
         params.put("end", paging.getOffset() + paging.getFetch() -1);
+        params.put("id", id);
 
         return dao.couponList(params);
     }
 
-    public List<UserLikeFoodDTO> likeFoodList(Paging paging) {
+    public List<UserLikeFoodDTO> likeFoodList(Paging paging, String id) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("start", paging.getOffset());
         params.put("end", paging.getOffset() + paging.getFetch() -1);
+        params.put("id", id);
 
         return dao.likeFoodList(params);
     }

@@ -1,9 +1,6 @@
 package com.project.sikdorock.controller;
 
-import com.project.sikdorock.dto.CouponDTO;
-import com.project.sikdorock.dto.FoodDTO;
-import com.project.sikdorock.dto.Paging;
-import com.project.sikdorock.dto.UserLikeFoodDTO;
+import com.project.sikdorock.dto.*;
 import com.project.sikdorock.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -40,8 +37,10 @@ public class MyPageController {
     @GetMapping(value="/mypage/likefood")
     public String likeFood(@RequestParam(defaultValue = "1") int page, HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
 
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
         Paging paging = new Paging(page, service.likeFoodCount(), 16);
-        List<UserLikeFoodDTO> list = service.likeFoodList(paging);
+        List<UserLikeFoodDTO> list = service.likeFoodList(paging, id);
         model.addAttribute("list", list);
         model.addAttribute("paging", paging);
 
@@ -62,8 +61,10 @@ public class MyPageController {
     @GetMapping(value="/mypage/coupon")
     public String coupon(@RequestParam(defaultValue = "1") int page, HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
 
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
         Paging paging = new Paging(page, service.couponCount(), 16);
-        List<CouponDTO> list = service.couponList(paging);
+        List<CouponDTO> list = service.couponList(paging, id);
         model.addAttribute("list", list);
         model.addAttribute("paging", paging);
 

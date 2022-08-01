@@ -16,7 +16,7 @@
                 from tblUserCoupon uc
                          inner join tblCoupon c
                                     on uc.cseq = c.seq
-                where id ='hong1234') where rn between #{start} and #{end}
+                where id =#{id}) where rn between #{start} and #{end}
     </select>
 
     <select id="likeFoodList" resultType="userlikefooddto" parameterType="HashMap">
@@ -31,7 +31,7 @@
                 from tblLikeFood lf
                          inner join tblFood f
                                     on lf.fseq = f.seq
-                where id='hong1234') where rn between #{start} and #{end}
+                where id=#{id}) where rn between #{start} and #{end}
     </select>
 
     <delete id="delLikeFood" parameterType="String">
