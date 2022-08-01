@@ -6,12 +6,17 @@
 
     <select id="couponList" resultType="coupondto">
         select
-            c.name as name,
-            c.discount as discount
-        from tblUserCoupon uc
-                 inner join tblCoupon c
-                            on uc.cseq = c.seq
-        where id ='hong1234'
+            *
+        from
+            (
+                select
+                    c.name as name,
+                    c.discount as discountm,
+                    rownum as rn
+                from tblUserCoupon uc
+                         inner join tblCoupon c
+                                    on uc.cseq = c.seq
+                where id ='hong1234') where rn between #{start} and #{end}
     </select>
 
     <select id="likeFoodList" resultType="userlikefooddto" parameterType="HashMap">
@@ -35,6 +40,10 @@
 
     <select id="likeFoodCount" resultType="Integer">
         select count(*) from tblLikeFood where id='hong1234'
+    </select>
+
+    <select id="couponCount" resultType="Integer">
+        select count(*) from tblUserCoupon where id='hong1234'
     </select>
 
 </mapper>

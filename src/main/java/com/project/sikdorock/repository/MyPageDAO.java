@@ -11,7 +11,7 @@ import java.util.Map;
 @Repository
 public interface MyPageDAO {
     // 쿠폰함에서 쿠폰 리스트를 받아오는 DAO
-    List<CouponDTO> couponList();
+    List<CouponDTO> couponList(Map<String, Object> params);
 
     //찜목록에서 찜 리스트를 받아오는 DAO
     List<UserLikeFoodDTO> likeFoodList(Map<String, Object> params);
@@ -20,4 +20,6 @@ public interface MyPageDAO {
     int delLikeFood(String fseq);
 
     int likeFoodCount();
+
+    int couponCount();
 }

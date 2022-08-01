@@ -62,9 +62,10 @@ public class MyPageController {
     @GetMapping(value="/mypage/coupon")
     public String coupon(@RequestParam(defaultValue = "1") int page, HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
 
-
-        List<CouponDTO> list = service.couponList();
+        Paging paging = new Paging(page, service.couponCount(), 16);
+        List<CouponDTO> list = service.couponList(paging);
         model.addAttribute("list", list);
+        model.addAttribute("paging", paging);
 
         return "mypage.coupon";
     }

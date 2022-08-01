@@ -20,7 +20,7 @@
                 <span>${auth.name}님</span> <i class="fa-solid fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="/sikdorock/mypage">마이페이지</a> <a href="/sikdorock/logout">로그아웃</a>
+                <a href="/sikdorock/mypage/myinfo">마이페이지</a> <a href="/sikdorock/logout">로그아웃</a>
             </div>
         </div>
         <i class="fa-solid fa-cart-shopping" id="cart"></i>
