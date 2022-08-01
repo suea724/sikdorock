@@ -17,9 +17,9 @@ public interface MyPageDAO {
     List<UserLikeFoodDTO> likeFoodList(Map<String, Object> params);
 
     //찜목록에서 요소를 삭제하는 DAO
-    int delLikeFood(String fseq);
+    int delLikeFood(Map<String, String> map);
 
-    int likeFoodCount();
+    int likeFoodCount(String id);
 
-    int couponCount();
+    int couponCount(String id);
 }

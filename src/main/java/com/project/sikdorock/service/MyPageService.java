@@ -37,15 +37,18 @@ public class MyPageService {
         return dao.likeFoodList(params);
     }
 
-    public int delLikeFood(String fseq) {
-        return dao.delLikeFood(fseq);
+    public int delLikeFood(String fseq, String id) {
+        Map<String, String> map = new HashMap<>();
+        map.put("fseq", fseq);
+        map.put("id", id);
+        return dao.delLikeFood(map);
     }
 
-    public int likeFoodCount() {
-        return dao.likeFoodCount();
+    public int likeFoodCount(String id) {
+        return dao.likeFoodCount(id);
     }
 
-    public int couponCount() {
-        return dao.couponCount();
+    public int couponCount(String id) {
+        return dao.couponCount(id);
     }
 }

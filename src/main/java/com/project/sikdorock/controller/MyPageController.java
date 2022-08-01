@@ -39,7 +39,7 @@ public class MyPageController {
 
         UserDTO userdto = (UserDTO) session.getAttribute("auth");
         String id = userdto.getId();
-        Paging paging = new Paging(page, service.likeFoodCount(), 16);
+        Paging paging = new Paging(page, service.likeFoodCount(id), 16);
         List<UserLikeFoodDTO> list = service.likeFoodList(paging, id);
         model.addAttribute("list", list);
         model.addAttribute("paging", paging);
@@ -48,9 +48,11 @@ public class MyPageController {
     }
 
     @PostMapping(value="/mypage/dellikefood")
-    public void delLikeFood(String fseq, HttpServletResponse resp) throws IOException {
+    public void delLikeFood(String fseq, HttpServletResponse resp, HttpSession session) throws IOException {
 
-        int result = service.delLikeFood(fseq);
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+        int result = service.delLikeFood(fseq, id);
 
         PrintWriter writer = resp.getWriter();
 
@@ -63,7 +65,7 @@ public class MyPageController {
 
         UserDTO userdto = (UserDTO) session.getAttribute("auth");
         String id = userdto.getId();
-        Paging paging = new Paging(page, service.couponCount(), 16);
+        Paging paging = new Paging(page, service.couponCount(id), 16);
         List<CouponDTO> list = service.couponList(paging, id);
         model.addAttribute("list", list);
         model.addAttribute("paging", paging);

@@ -21,7 +21,7 @@
             </c:if>
 
             <c:if test="${empty list}">
-                <div>쿠폰함이 비었습니다.</div>
+                <div style="margin:0 auto;">쿠폰함이 비었습니다.</div>
             </c:if>
         </div>
 

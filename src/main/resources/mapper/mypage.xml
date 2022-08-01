@@ -34,16 +34,16 @@
                 where id=#{id}) where rn between #{start} and #{end}
     </select>
 
-    <delete id="delLikeFood" parameterType="String">
-        delete from tblLikeFood where fseq = #{fseq} and id='hong1234'
+    <delete id="delLikeFood" parameterType="HashMap">
+        delete from tblLikeFood where fseq = #{fseq} and id=#{id}
     </delete>
 
-    <select id="likeFoodCount" resultType="Integer">
-        select count(*) from tblLikeFood where id='hong1234'
+    <select id="likeFoodCount" resultType="Integer" parameterType="String">
+        select count(*) from tblLikeFood where id=#{id}
     </select>
 
-    <select id="couponCount" resultType="Integer">
-        select count(*) from tblUserCoupon where id='hong1234'
+    <select id="couponCount" resultType="Integer" parameterType="String">
+        select count(*) from tblUserCoupon where id=#{id}
     </select>
 
 </mapper>
