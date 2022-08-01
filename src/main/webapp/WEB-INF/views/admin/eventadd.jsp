@@ -36,15 +36,15 @@
 
 <script>
     function minDate() {
-        $('input[name=endDate]').attr('readonly', false);
-        $('input[name=endDate]').attr('min', $('input[name=startDate]').val());
+        $('input[name=enddate]').attr('readonly', false);
+        $('input[name=enddate]').attr('min', $('input[name=startdate]').val());
 
-        if ($('input[name=endDate]').is('[readonly]') == false) {
-            let startDate = new Date($('input[name=startDate]').val());
-            let endDate = new Date($('input[name=endDate]').val());
+        if ($('input[name=enddate]').is('[readonly]') == false) {
+            let startDate = new Date($('input[name=startdate]').val());
+            let endDate = new Date($('input[name=enddate]').val());
 
             if (startDate > endDate) {
-                $('input[name=endDate]').val($('input[name=startDate]').val());
+                $('input[name=enddate]').val($('input[name=startdate]').val());
             }
         }
     }

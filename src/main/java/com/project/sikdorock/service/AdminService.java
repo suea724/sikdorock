@@ -133,9 +133,9 @@ public class AdminService {
         return dao.delEvent(seq);
     }
 
-    public int eventAdd(EventDTO eventDTO, String couponName, int discount) {
+    public int eventAdd(EventDTO eventDTO, String couponname, int discount) {
         CouponDTO cdto = new CouponDTO();
-        cdto.setName(couponName);
+        cdto.setName(couponname);
         cdto.setDiscount(discount);
 
         dao.couponAdd(cdto);
