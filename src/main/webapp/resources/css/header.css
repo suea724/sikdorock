@@ -117,3 +117,8 @@ header #cart {
  section {
     min-height: calc(100vh - 450px);
  }
+
+ #login-menu a {
+     text-decoration: none;
+     color: dimgray;
+ }

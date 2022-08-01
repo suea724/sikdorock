@@ -55,10 +55,4 @@ public interface AdminDAO {
     PriceDTO getPrice();
 
     int updatePrice(PriceDTO priceDTO);
-
-    int loginOk(AdminDTO adminDTO);
-
-    void couponAdd(CouponDTO cdto);
-
-    int getCouponSeq();
 }
