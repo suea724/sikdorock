@@ -1,9 +1,6 @@
 package com.project.sikdorock.service;
 
-import com.project.sikdorock.dto.CouponDTO;
-import com.project.sikdorock.dto.FoodDTO;
-import com.project.sikdorock.dto.Paging;
-import com.project.sikdorock.dto.UserLikeFoodDTO;
+import com.project.sikdorock.dto.*;
 import com.project.sikdorock.repository.MyPageDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,23 +15,45 @@ public class MyPageService {
 
     private final MyPageDAO dao;
 
-    public List<CouponDTO> couponList() {
-        return dao.couponList();
-    }
+    public List<CouponDTO> couponList(Paging paging, String id) {
 
-    public List<UserLikeFoodDTO> likeFoodList(Paging paging) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("start", paging.getOffset());
         params.put("end", paging.getOffset() + paging.getFetch() -1);
+        params.put("id", id);
+
+        return dao.couponList(params);
+    }
+
+    public List<UserLikeFoodDTO> likeFoodList(Paging paging, String id) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("start", paging.getOffset());
+        params.put("end", paging.getOffset() + paging.getFetch() -1);
+        params.put("id", id);
 
         return dao.likeFoodList(params);
     }
 
-    public int delLikeFood(String fseq) {
-        return dao.delLikeFood(fseq);
+    public int delLikeFood(String fseq, String id) {
+        Map<String, String> map = new HashMap<>();
+        map.put("fseq", fseq);
+        map.put("id", id);
+        return dao.delLikeFood(map);
     }
 
-    public int likeFoodCount() {
-        return dao.likeFoodCount();
+    public int likeFoodCount(String id) {
+        return dao.likeFoodCount(id);
+    }
+
+    public int couponCount(String id) {
+        return dao.couponCount(id);
+    }
+
+    public UserDTO myInfo(String id) {
+        return dao.myInfo(id);
+    }
+
+    public int editmyinfo(Map<String, String> map) {
+        return dao.editmyinfo(map);
     }
 }

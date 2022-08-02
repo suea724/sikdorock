@@ -1,0 +1,89 @@
+#menubox {
+    width: 845px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+
+
+#menus {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menu {
+    width: 200px;
+    height: 250px;
+    border: 1px solid gray;
+    margin: 5px;
+    border-radius: 15px;
+}
+
+.menu:hover {
+    background-color: #C69760;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+
+
+}
+
+
+.menu > div.menu-img {
+    width: 150px;
+    height: 130px;
+
+    margin: 0 auto;
+    background-position-x: -20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 15px;
+    border-radius: 15px;
+}
+
+.menu > div.menu-btn {
+    text-align: center;
+    color: red;
+    font-size: 1.2rem;
+}
+
+.menu > div.menu-btn > i:hover {
+    cursor: pointer;
+}
+
+.menu > div.menu-name {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.menu > div.menu-price {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.menu > div.menu-date {
+    margin-top: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+#btndiv {
+    width: 1000px;
+    text-align: right;
+    margin: 0 auto;
+
+    margin-bottom: 50px;
+}
+
+#subscribe {
+    color: white;
+    margin-right: 6px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+

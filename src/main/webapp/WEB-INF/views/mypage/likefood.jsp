@@ -14,14 +14,20 @@
         </div>
 
         <div id="likefoods">
-            <c:forEach items="${list}" var="dto">
-            <div class="likefood">
-                <div class="likefood-img" style="background-image: url('/sikdorock/resources/files/${dto.filename}');"></div>
-                <div class="likefood-btn" onclick="delLikeFood(${dto.fseq})"><i class="fa-solid fa-heart"></i></div>
-                <div class="likefood-name">${dto.menuname}</div>
-                <div class="likefood-price">7,500</div>
-            </div>
-            </c:forEach>
+            <c:if test="${not empty list}">
+                <c:forEach items="${list}" var="dto">
+                <div class="likefood">
+                    <div class="likefood-img" style="background-image: url('/sikdorock/resources/files/${dto.filename}');"></div>
+                    <div class="likefood-btn" onclick="delLikeFood(${dto.fseq})"><i class="fa-solid fa-heart"></i></div>
+                    <div class="likefood-name">${dto.menuname}</div>
+                    <div class="likefood-price">7,500</div>
+                </div>
+                </c:forEach>
+            </c:if>
+
+            <c:if test="${empty list}">
+                <div style="margin:0 auto;">찜목록이 비었습니다.</div>
+            </c:if>
         </div>
 
         <div class="page">
