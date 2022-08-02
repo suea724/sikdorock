@@ -1,8 +1,4 @@
 
-section {
-
-    height: 800px;
-}
 
 .eventlist > h3 {
 
@@ -12,7 +8,7 @@ section {
 
     width: 600px;
     margin-right: 500px;
-    margin-left: 450px;
+    margin-left: 700px;
 
 }
 
@@ -21,8 +17,9 @@ section {
     width: 700px;
     margin-right: 0;
     margin-left: 20px;
-    margin-bottom: 15px;
+
 }
+
 
 .banner-view {
     width: 800px;
@@ -36,6 +33,7 @@ section {
     width: 700px;
     height: auto;
 
+    position: absolute;
 }
 
 .img-view {
@@ -56,5 +54,37 @@ section {
 }
 
 #main-menu > ul > li:nth-child(3) > a {
+    color: #C69760;
+}
+
+
+#ment {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+#btn-box {
+    display: flex;
+    justify-content: center;
+}
+
+.guide-box {
+
+    width: 800px;
+    margin-top: 150px;
+    margin-bottom: 30px;
+    color: dimgray;
+}
+
+.guide-content {
+    margin-bottom: 20px;
+}
+
+#notlogin {
+    margin-top: 120px;
+    margin-bottom: 70px;
+    margin-left: 50px;
+    text-align: center;
     color: #C69760;
 }

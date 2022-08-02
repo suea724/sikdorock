@@ -5,6 +5,7 @@
     <title>식도락</title>
     <tiles:insertAttribute name="asset"/>
     <link rel="stylesheet" href="/sikdorock/resources/css/event.css">
+    <link rel="stylesheet" href="/sikdorock/resources/css/button.css">
 </head>
 <body>
     <main>
