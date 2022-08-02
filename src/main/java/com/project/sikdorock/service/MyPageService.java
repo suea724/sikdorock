@@ -56,4 +56,8 @@ public class MyPageService {
     public int editmyinfo(Map<String, String> map) {
         return dao.editmyinfo(map);
     }
+
+    public List<UserOrderDTO> orderList(String id) {
+        return dao.orderList(id);
+    }
 }

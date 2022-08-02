@@ -69,6 +69,9 @@ public class MyPageController {
         UserDTO userdto = (UserDTO) session.getAttribute("auth");
         String id = userdto.getId();
 
+        List<UserOrderDTO> list = service.orderList(id);
+        model.addAttribute("list", list);
+
         return "mypage.order";
     }
     //마이페이지 > 찜 목록

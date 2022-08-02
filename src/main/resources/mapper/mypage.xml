@@ -54,4 +54,19 @@
         update tblUser set tel = #{tel}, address = #{address}, addressdetail = #{detail} where id = #{id}
     </update>
 
+    <select id="orderList" parameterType="String" resultType="userorderdto">
+        select
+            o.seq as oseq,
+            o.id as id,
+            bl.regdate as regdate,
+            bl.count as count,
+    f.menuname as menuname
+        from tblOrderNum o
+            inner join tblBuyList bl
+        on bl.oseq = o.seq
+            inner join tblFood f
+            on f.seq = bl.fseq
+                where id = #{id}
+    </select>
+
 </mapper>
