@@ -24,5 +24,7 @@
         <typeAlias type="com.project.sikdorock.dto.RegisterDTO" alias="registerdto"/>
         <typeAlias type="com.project.sikdorock.dto.UserLikeFoodDTO" alias="userlikefooddto"/>
         <typeAlias type="com.project.sikdorock.dto.FoodListDTO" alias="foodlistdto"/>
+        <typeAlias type="com.project.sikdorock.dto.UserOrderDTO" alias="userorderdto"/>
+        <typeAlias type="com.project.sikdorock.dto.EventUserDTO" alias="eventuserdto"/>
     </typeAliases>
 </configuration>

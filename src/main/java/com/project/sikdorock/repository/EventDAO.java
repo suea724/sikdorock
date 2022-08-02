@@ -15,5 +15,5 @@ public interface EventDAO {
 
     EventDTO get(String seq);
 
-
+    void getcoupon(String id, String cseq);
 }
