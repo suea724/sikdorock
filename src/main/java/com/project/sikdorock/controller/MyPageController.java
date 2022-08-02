@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,13 +26,49 @@ public class MyPageController {
 
     //마이페이지 >  내 정보 관리하기
     @GetMapping(value="/mypage/myinfo")
-    public String myinfo(){
+    public String myinfo(String fseq, HttpServletResponse resp, HttpSession session, Model model){
+
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
+        UserDTO dto = service.myInfo(id);
+        model.addAttribute("dto", dto);
+
         return "mypage.myinfo";
+    }
+
+    //마이페이지 > 회원 정보 수정
+    @PostMapping(value="/mypage/editmyinfo")
+    public void editmyinfo(String tel, String address, String detail, HttpServletResponse resp, HttpSession session, Model model) throws IOException {
+        //System.out.println(tel);
+        //System.out.println(address);
+        //System.out.println(detail);
+
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
+        Map<String, String> map = new HashMap<>();
+        map.put("tel", tel);
+        map.put("address", address);
+        map.put("detail", detail);
+        map.put("id", id);
+
+        int result = service.editmyinfo(map);
+
+        PrintWriter writer = resp.getWriter();
+
+        writer.printf("{\"result\" : %d}", result);
+        writer.close();
+
     }
 
     //마이페이지 > 결제/구독 내역
     @GetMapping(value="/mypage/order")
-    public String order() {
+    public String order(@RequestParam(defaultValue = "1") int page, HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
+
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
         return "mypage.order";
     }
     //마이페이지 > 찜 목록

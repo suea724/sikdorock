@@ -10,4 +10,5 @@ public class UserDTO {
     private String tel;
     private String address;
     private String token;
+    private String addressdetail;
 }

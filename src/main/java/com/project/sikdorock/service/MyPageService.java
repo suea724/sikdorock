@@ -1,9 +1,6 @@
 package com.project.sikdorock.service;
 
-import com.project.sikdorock.dto.CouponDTO;
-import com.project.sikdorock.dto.FoodDTO;
-import com.project.sikdorock.dto.Paging;
-import com.project.sikdorock.dto.UserLikeFoodDTO;
+import com.project.sikdorock.dto.*;
 import com.project.sikdorock.repository.MyPageDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -50,5 +47,13 @@ public class MyPageService {
 
     public int couponCount(String id) {
         return dao.couponCount(id);
+    }
+
+    public UserDTO myInfo(String id) {
+        return dao.myInfo(id);
+    }
+
+    public int editmyinfo(Map<String, String> map) {
+        return dao.editmyinfo(map);
     }
 }

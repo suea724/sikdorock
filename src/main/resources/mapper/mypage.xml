@@ -46,4 +46,12 @@
         select count(*) from tblUserCoupon where id=#{id}
     </select>
 
+    <select id="myInfo" parameterType="String" resultType="userdto">
+        select * from tblUser where id = #{id}
+    </select>
+
+    <update id="editmyinfo" parameterType="HashMap">
+        update tblUser set tel = #{tel}, address = #{address}, addressdetail = #{detail} where id = #{id}
+    </update>
+
 </mapper>

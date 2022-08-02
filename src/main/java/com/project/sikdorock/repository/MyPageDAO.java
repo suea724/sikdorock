@@ -2,6 +2,7 @@ package com.project.sikdorock.repository;
 
 import com.project.sikdorock.dto.CouponDTO;
 import com.project.sikdorock.dto.FoodDTO;
+import com.project.sikdorock.dto.UserDTO;
 import com.project.sikdorock.dto.UserLikeFoodDTO;
 import org.springframework.stereotype.Repository;
 
@@ -22,4 +23,9 @@ public interface MyPageDAO {
     int likeFoodCount(String id);
 
     int couponCount(String id);
+
+    //마이페이지에서 내 정보 관리하기
+    UserDTO myInfo(String id);
+
+    int editmyinfo(Map<String, String> map);
 }
