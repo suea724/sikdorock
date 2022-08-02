@@ -11,6 +11,7 @@ public class FoodListDTO {
     private String allergy;
     private String outdate;
     private String cateseq;
+    private String category;
 
 
     private String image; //이미지

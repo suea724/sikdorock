@@ -9,4 +9,6 @@ public class FoodImageDTO {
     private int seq;
     private int fseq;
     private String ext;
+
+    private String image;
 }

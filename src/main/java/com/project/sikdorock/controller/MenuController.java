@@ -1,5 +1,6 @@
 package com.project.sikdorock.controller;
 
+import com.project.sikdorock.dto.FoodImageDTO;
 import com.project.sikdorock.dto.FoodListDTO;
 import com.project.sikdorock.service.MenuService;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,11 @@ public class MenuController {
             fdto.setOutdate(outdate);
         }
 
+        String price = String.format("%,d" ,Integer.parseInt(service.price()));
 
+
+
+        model.addAttribute("price", price);
         model.addAttribute("month", month);
         model.addAttribute("today", today);
         model.addAttribute("list", list);
@@ -52,6 +57,17 @@ public class MenuController {
 
         return "menu.menuli";
 
+    }
+
+
+    @GetMapping("/menu/view")
+    public String menuView(Model model, String seq) {
+
+        FoodListDTO fdto = service.menuView(seq);
+        //List<FoodImageDTO> imgList = service.image(seq);
+
+        model.addAttribute("fdto", fdto);
+        return "menu.view";
     }
 
 }
