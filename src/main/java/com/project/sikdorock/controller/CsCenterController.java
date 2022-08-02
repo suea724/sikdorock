@@ -26,15 +26,7 @@ public class CsCenterController {
     private final CsCenterService service;
 
     @GetMapping(value="/cscenter/questionadd")
-    public String questionAdd(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
-        UserDTO udto = (UserDTO) session.getAttribute("auth");
-        if (udto == null) {
-            out.println("<script>alert('로그인이 필요합니다.'); location.href='/sikdorock/login'</script>");
-            out.flush();
-        }
+    public String questionAdd() {
 
         return "cscenter.questionadd";
     }
@@ -45,10 +37,6 @@ public class CsCenterController {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         UserDTO udto = (UserDTO) session.getAttribute("auth");
-        if (udto == null) {
-            out.println("<script>alert('로그인이 필요합니다.'); location.href='/sikdorock/login'</script>");
-            out.flush();
-        }
         questionDTO.setId(udto.getId());
         int result = service.questionAdd(questionDTO, request);
         if (result == 1) {
@@ -62,15 +50,11 @@ public class CsCenterController {
     }
 
     @GetMapping(value="/cscenter/questionlist")
-    public String questionList(Model model, @RequestParam(defaultValue = "1") int page, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
+    public String questionList(Model model, @RequestParam(defaultValue = "1") int page, HttpServletRequest request) {
+
         HttpSession session = request.getSession();
         UserDTO udto = (UserDTO) session.getAttribute("auth");
-        if (udto == null) {
-            out.println("<script>alert('로그인이 필요합니다.'); location.href='/sikdorock/login'</script>");
-            out.flush();
-        }
+
         Paging paging = new Paging(page, service.questionCount(udto.getId()), 10);
         List<QuestionDTO> list = service.getQuestion(udto.getId(), paging);
 
@@ -87,15 +71,8 @@ public class CsCenterController {
     }
 
     @GetMapping(value="/cscenter/showanswer")
-    public String showAnswer(Model model, String seq, HttpServletResponse response, HttpServletRequest request) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
-        UserDTO udto = (UserDTO) session.getAttribute("auth");
-        if (udto == null) {
-            out.println("<script>alert('로그인이 필요합니다.'); location.href='/sikdorock/login'</script>");
-            out.flush();
-        }
+    public String showAnswer(Model model, String seq) {
+
         AnswerDTO dto = service.getAnswer(seq);
         dto.setRegdate(dto.getRegdate().substring(0, 10));
 

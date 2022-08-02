@@ -25,15 +25,6 @@ public class AdminController {
 
     private final AdminService service;
 
-    public boolean loginCheck(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        if (session.getAttribute("admin") == null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     @GetMapping(value="/admin/adminlogin")
     public String adminLogin() {
 
@@ -69,13 +60,8 @@ public class AdminController {
     }
 
     @GetMapping(value="/admin/userlist")
-    public String userList(@RequestParam(defaultValue = "1") int page, String word, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
+    public String userList(@RequestParam(defaultValue = "1") int page, String word, Model model) {
+
         Paging paging = new Paging(page, service.pageCount(word), 10);
         List<UserDTO> list = service.list(paging, word);
 
@@ -91,10 +77,6 @@ public class AdminController {
         String msg = service.delUser(id) == 0 ? "오류가 발생했습니다." : "삭제 완료.";
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
         out.println("<script>alert('" + msg + "'); location.href='" + request.getHeader("Referer") + "'</script>");
         out.flush();
 
@@ -102,13 +84,8 @@ public class AdminController {
     }
 
     @GetMapping(value="/admin/menulist")
-    public String menuList(@RequestParam(defaultValue = "1") int page, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
+    public String menuList(@RequestParam(defaultValue = "1") int page, Model model) {
+
         Paging paging = new Paging(page, service.menuCount(), 10);
 
         List<FoodDTO> list = service.getMenuList(paging);
@@ -133,13 +110,8 @@ public class AdminController {
     }
 
     @GetMapping(value="/admin/priceupdate")
-    public String priceUpdate(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
+    public String priceUpdate(Model model) {
+
         PriceDTO pdto = service.getPrice();
 
         model.addAttribute("pdto", pdto);
@@ -148,13 +120,9 @@ public class AdminController {
     }
 
     @PostMapping(value="/admin/priceupdateok")
-    public void priceUpdateOk(PriceDTO priceDTO, HttpServletResponse response, HttpServletRequest request) throws IOException {
+    public void priceUpdateOk(PriceDTO priceDTO, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = response.getWriter();
-        if (!loginCheck(request)) {
-            writer.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            writer.flush();
-        }
         int result = service.updatePrice(priceDTO);
         if (result == 1) {
 
@@ -174,13 +142,7 @@ public class AdminController {
     }
 
     @GetMapping(value="/admin/menuadd")
-    public String menuAdd(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
+    public String menuAdd(Model model) {
 
         List<CategoryDTO> category = service.category();
         Calendar now = Calendar.getInstance();
@@ -196,10 +158,7 @@ public class AdminController {
 
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
+
         int result = service.menuAddOk(foodDTO, request);
         if (result == 1) {
             out.println("<script>alert('추가 완료'); location.href='/sikdorock/admin/menulist'</script>");
@@ -214,13 +173,9 @@ public class AdminController {
     }
 
     @PostMapping(value="/admin/datecheck")
-    public void dateCheck(String date, HttpServletResponse response, HttpServletRequest request) throws IOException {
+    public void dateCheck(String date, HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
 
         int result = service.dateCheck(date);
         out.print("{");
@@ -234,10 +189,7 @@ public class AdminController {
     public HttpServletResponse menuDel(String seq, HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
+
         String msg = service.delMenu(seq) == 0 ? "오류가 발생했습니다." : "삭제 완료.";
         out.println("<script>alert('" + msg + "'); location.href='" + request.getHeader("Referer") + "'</script>");
         out.flush();
@@ -246,13 +198,8 @@ public class AdminController {
     }
     
     @GetMapping(value="/admin/questionlist")
-    public String questionList(@RequestParam(defaultValue = "1") int page, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
+    public String questionList(@RequestParam(defaultValue = "1") int page, Model model) {
+
         Paging paging = new Paging(page, service.questionCount(), 10);
         List<QuestionDTO> list = service.getQuestionList(paging);
 
@@ -270,13 +217,8 @@ public class AdminController {
     }
 
     @GetMapping(value="/admin/questionview")
-    public String questionView(Model model, String seq, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
+    public String questionView(Model model, String seq){
+
         QuestionDTO dto = service.getQuestion(seq);
         dto.setContent(dto.getContent().replace("\r\n", "<br>"));
         List<QuestionImageDTO> qlist = service.getQuestionImage(seq);
@@ -291,13 +233,8 @@ public class AdminController {
     }
 
     @GetMapping(value="/admin/answeradd")
-    public String answerAdd(Model model, String seq, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
+    public String answerAdd(Model model, String seq) {
+
 
         model.addAttribute("seq", seq);
         return "admin.answeradd";
@@ -305,13 +242,9 @@ public class AdminController {
     }
 
     @PostMapping(value="/admin/answeraddok")
-    public void answeraddok(AnswerDTO answerDTO, HttpServletResponse response, HttpServletRequest request) throws IOException {
+    public void answeraddok(AnswerDTO answerDTO, HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
 
         service.updateQuestion(answerDTO.getQseq());
         int result = service.answerAdd(answerDTO);
@@ -327,13 +260,7 @@ public class AdminController {
     }
 
     @GetMapping(value="/admin/eventlist")
-    public String eventList(@RequestParam(defaultValue = "1") int page, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
+    public String eventList(@RequestParam(defaultValue = "1") int page, Model model) {
 
         Paging paging = new Paging(page, service.eventCount(), 10);
         List<EventDTO> list = service.getEvent(paging);
@@ -363,10 +290,6 @@ public class AdminController {
     public HttpServletResponse eventDel(String seq, HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
         String msg = service.delEvent(seq) == 0 ? "오류가 발생했습니다." : "삭제 완료.";
         out.println("<script>alert('" + msg + "'); location.href='" + request.getHeader("Referer") + "'</script>");
         out.flush();
@@ -375,14 +298,7 @@ public class AdminController {
     }
 
     @GetMapping(value="/admin/eventadd")
-    public String eventAdd(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
-
+    public String eventAdd(Model model) {
 
         Calendar now = Calendar.getInstance();
         String nowDate = String.format("%tF", now);
@@ -393,13 +309,9 @@ public class AdminController {
     }
 
     @PostMapping(value="/admin/eventaddok")
-    public void eventAddOk(EventDTO eventDTO, HttpServletResponse response, HttpServletRequest request, String couponname, int discount) throws IOException {
+    public void eventAddOk(EventDTO eventDTO, HttpServletResponse response, String couponname, int discount) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
 
         int result = service.eventAdd(eventDTO, couponname, discount);
         if (result == 1) {
@@ -414,13 +326,7 @@ public class AdminController {
     }
 
     @GetMapping(value="/admin/chart")
-    public String chart(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (!loginCheck(request)) {
-            out.println("<script>alert('관리자가 아닙니다.'); location.href='/sikdorock/index'</script>");
-            out.flush();
-        }
+    public String chart() {
 
         return "admin.chart";
     }
