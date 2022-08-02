@@ -18,7 +18,6 @@
         from (select a.*, rownum as rn from (select * from tblFood f order by outdate asc) a) menu
                  inner join (select * from (select fi.*, ROWNUM rnum from TBLFOODIMAGE fi) where Mod(rnum, 2) = 1) img
                             on menu.seq = img.fseq
-            where rn between #{start} and #{end}
     </select>
 
 </mapper>
