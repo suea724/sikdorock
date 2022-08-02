@@ -21,11 +21,11 @@ public class MenuService {
         return dao.menuCount();
     }
 
-    public List<FoodListDTO> getMenuli() {
+    public List<FoodListDTO> getMenuli(String month) {
         //Map<String, Object> params = new HashMap<>();
         //params.put("start", paging.getOffset());
         //params.put("end", paging.getOffset() + paging.getFetch() - 1);
 
-        return dao.getMenuli();
+        return dao.getMenuli(month);
     }
 }
