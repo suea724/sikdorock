@@ -6,12 +6,17 @@
 
     <select id="couponList" resultType="coupondto">
         select
-            c.name as name,
-            c.discount as discount
-        from tblUserCoupon uc
-                 inner join tblCoupon c
-                            on uc.cseq = c.seq
-        where id ='hong1234'
+            *
+        from
+            (
+                select
+                    c.name as name,
+                    c.discount as discountm,
+                    rownum as rn
+                from tblUserCoupon uc
+                         inner join tblCoupon c
+                                    on uc.cseq = c.seq
+                where id =#{id}) where rn between #{start} and #{end}
     </select>
 
     <select id="likeFoodList" resultType="userlikefooddto" parameterType="HashMap">
@@ -26,15 +31,27 @@
                 from tblLikeFood lf
                          inner join tblFood f
                                     on lf.fseq = f.seq
-                where id='hong1234') where rn between #{start} and #{end}
+                where id=#{id}) where rn between #{start} and #{end}
     </select>
 
-    <delete id="delLikeFood" parameterType="String">
-        delete from tblLikeFood where fseq = #{fseq} and id='hong1234'
+    <delete id="delLikeFood" parameterType="HashMap">
+        delete from tblLikeFood where fseq = #{fseq} and id=#{id}
     </delete>
 
-    <select id="likeFoodCount" resultType="Integer">
-        select count(*) from tblLikeFood where id='hong1234'
+    <select id="likeFoodCount" resultType="Integer" parameterType="String">
+        select count(*) from tblLikeFood where id=#{id}
     </select>
+
+    <select id="couponCount" resultType="Integer" parameterType="String">
+        select count(*) from tblUserCoupon where id=#{id}
+    </select>
+
+    <select id="myInfo" parameterType="String" resultType="userdto">
+        select * from tblUser where id = #{id}
+    </select>
+
+    <update id="editmyinfo" parameterType="HashMap">
+        update tblUser set tel = #{tel}, address = #{address}, addressdetail = #{detail} where id = #{id}
+    </update>
 
 </mapper>
