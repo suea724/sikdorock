@@ -11,5 +11,5 @@ import java.util.Map;
 public interface MenuDAO {
     int menuCount();
 
-    List<FoodListDTO> getMenuli();
+    List<FoodListDTO> getMenuli(String month);
 }

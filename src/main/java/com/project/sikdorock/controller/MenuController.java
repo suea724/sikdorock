@@ -22,15 +22,23 @@ public class MenuController {
     private final MenuService service;
 
     @GetMapping(value = "/menu/menuli")
-    public String menuList(@RequestParam(defaultValue = "1") int page, Model model) {
+    public String menuList(Model model, String month) {
 
         //Paging paging = new Paging(page, service.menuCount(), 8); //메뉴 전체 수 > 켄텐츠 숫자 반환
 
         //List<FoodListDTO> list = service.getMenuli(paging); //메뉴 리스트 정보
-        List<FoodListDTO> list = service.getMenuli(); //메뉴 리스트 정보
 
+        String today = "";
         Calendar cal = Calendar.getInstance();
-        String today = String.format("%tF", cal.getInstance());
+        if (month == null) {
+            month = String.valueOf(cal.get(Calendar.MONTH) + 1);
+            today = String.format("%tF", cal.getInstance());
+        } else {
+            cal.set(Calendar.MONTH, Integer.parseInt(month) - 1);
+            today = String.format("%tF", cal);
+        }
+        System.out.println(today);
+        List<FoodListDTO> list = service.getMenuli(month); //메뉴 리스트 정보
 
         for (FoodListDTO fdto : list) {
             String outdate = fdto.getOutdate().substring(0, 10);
@@ -41,6 +49,8 @@ public class MenuController {
             fdto.setOutdate(outdate);
         }
 
+
+        model.addAttribute("month", month);
         model.addAttribute("today", today);
         model.addAttribute("list", list);
         //model.addAttribute("paging", paging);
