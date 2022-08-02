@@ -6,18 +6,40 @@
 }
 .eventlist {
 
-    width: 600px;
-    margin-right: 500px;
-    margin-left: 700px;
+    width: 900px;
+    margin-top: 30px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
 
+}
+
+.events {
+
+    width: 900px;
+    margin-top: 30px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 800px;
+
+
+}
+
+#eventlistbox, #eventbox {
+    display: inline-block;
 }
 
 
 .banner {
     width: 700px;
-    margin-right: 0;
+    margin-right: auto;
     margin-left: 20px;
-
+    margin-bottom: 200px;
+    position: relative;
+    left: 0px;
+    top: 0px;
 }
 
 
@@ -34,6 +56,8 @@
     height: auto;
 
     position: absolute;
+    left: 0px;
+    top: 0px;
 }
 
 .img-view {
@@ -50,6 +74,8 @@
     font-size: 1.2em;
     margin-top: 40px;
     text-align: center;
+    margin-right: auto;
+    margin-left: auto;
 
 }
 
@@ -75,6 +101,7 @@
     margin-top: 150px;
     margin-bottom: 30px;
     color: dimgray;
+    text-align: justify;
 }
 
 .guide-content {
