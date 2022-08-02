@@ -1,0 +1,60 @@
+
+section {
+
+    height: 800px;
+}
+
+.eventlist > h3 {
+
+    margin-bottom: 20px;
+}
+.eventlist {
+
+    width: 600px;
+    margin-right: 500px;
+    margin-left: 450px;
+
+}
+
+
+.banner {
+    width: 700px;
+    margin-right: 0;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.banner-view {
+    width: 800px;
+    margin-right: 10px;
+    margin-left: 0;
+    margin-bottom: 15px;
+}
+
+.img {
+
+    width: 700px;
+    height: auto;
+
+}
+
+.img-view {
+
+    width: 700px;
+    height: auto;
+
+}
+
+.eventinfo {
+
+    width: 700px;
+    height: auto;
+    font-size: 1.2em;
+    margin-top: 40px;
+    text-align: center;
+
+}
+
+#main-menu > ul > li:nth-child(3) > a {
+    color: #C69760;
+}
