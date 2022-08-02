@@ -58,6 +58,8 @@
             <mvc:exclude-mapping path="/login/naver/callback"/>
             <mvc:exclude-mapping path="/login/kakao"/>
             <mvc:exclude-mapping path="/logout"/>
+            <mvc:exclude-mapping path="/event/**"/>
+            <mvc:exclude-mapping path="/menu/menuli"/>
             <bean id="loginInterceptor" class="com.project.sikdorock.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

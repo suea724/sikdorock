@@ -12,17 +12,19 @@
 
 
 
-    <div class="eventList">
+    <div class="events">
         <h3>이벤트</h3>
         <br>
-        <c:forEach items="${list}" var="dto">
-        <div class="banner" onclick="location.href='/sikdorock/event/eventview?seq=${dto.seq}'" style="cursor: pointer;">
+        <div id="eventlistbox">
+            <c:forEach items="${list}" var="dto" varStatus="status">
+                <div id="banner${status.index}" class="banner" onclick="location.href='/sikdorock/event/eventview?seq=${dto.seq}'" style="cursor: pointer;">
 
-                <img src="/sikdorock/resources/images/${dto.name}.png" class="img">
-                <img src="/sikdorock/resources/images/${dto.name}2.png" class="img">
+                    <img src="/sikdorock/resources/images/${dto.name}.png" class="img">
+                    <img src="/sikdorock/resources/images/${dto.name}2.png" class="img">
 
+                </div>
+            </c:forEach>
         </div>
-        </c:forEach>
     </div>
 
 
@@ -50,11 +52,13 @@
     }
 
     //페이지 로드 되면서 실행
-    window.onload = function() { startRotator(".banner"); }
+    window.onload = function() {
+        <c:forEach items="${list}" var="dto" varStatus="status">
+            startRotator("#banner${status.index}");
+        </c:forEach>
+    }
 
 </script>
-
-
 
 
 

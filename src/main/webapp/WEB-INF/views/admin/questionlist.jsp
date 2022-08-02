@@ -9,7 +9,7 @@
                 <th>날짜</th>
                 <th>내용</th>
                 <th>아이디</th>
-                <th>답변 여부</th>
+                <th style="width: 100px">답변 여부</th>
             </tr>
             <c:forEach items="${list}" var="qdto" varStatus="status">
                 <c:if test="${qdto.answer == 'o'}">
