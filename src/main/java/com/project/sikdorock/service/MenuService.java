@@ -28,4 +28,14 @@ public class MenuService {
 
         return dao.getMenuli(month);
     }
+
+    public String price() {
+
+        return dao.price();
+    }
+
+    public FoodListDTO menuView(String seq) {
+
+        return dao.menuView(seq);
+    }
 }
