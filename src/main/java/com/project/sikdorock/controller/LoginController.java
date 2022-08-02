@@ -72,7 +72,7 @@ public class LoginController {
 
         } else { // 존재하면 메인 페이지로
             session.setAttribute("auth", findUser);
-            return "redirect:/";
+            return "redirect:/index";
         }
     }
 
@@ -102,7 +102,7 @@ public class LoginController {
 
         } else { // 존재하면 메인 페이지로
             session.setAttribute("auth", findUser);
-            return "redirect:/";
+            return "redirect:/index";
         }
 
     }
@@ -110,7 +110,7 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/";
+        return "redirect:/index";
     }
 
 }

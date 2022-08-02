@@ -4,10 +4,8 @@
 <head>
     <title>식도락</title>
     <tiles:insertAttribute name="asset"/>
-    <!-- AOS 라이브러리 불러오기-->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <link rel="stylesheet" href="/sikdorock/resources/css/mainlayout.css">
+    <link rel="stylesheet" href="/sikdorock/resources/css/event.css">
+    <link rel="stylesheet" href="/sikdorock/resources/css/button.css">
 </head>
 <body>
     <main>

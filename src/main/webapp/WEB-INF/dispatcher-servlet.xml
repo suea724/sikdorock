@@ -38,4 +38,29 @@
     <bean id="naverLoginBO" class="com.project.sikdorock.NaverLoginBO" />
 
     <mybatis-spring:scan base-package="com.project.sikdorock.repository" />
+
+    <!-- 인터셉터 bean설정 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <mvc:exclude-mapping path="/admin/adminlogin"/>
+            <mvc:exclude-mapping path="/admin/loginok"/>
+            <mvc:exclude-mapping path="/admin/logout"/>
+            <bean id="adminInterceptor" class="com.project.sikdorock.interceptor.AdminInterceptor"/>
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/admin/**"/>
+            <mvc:exclude-mapping path="/index"/>
+            <mvc:exclude-mapping path="/resources/**"/>
+            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/login/naver/callback"/>
+            <mvc:exclude-mapping path="/login/kakao"/>
+            <mvc:exclude-mapping path="/logout"/>
+            <bean id="loginInterceptor" class="com.project.sikdorock.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
 </beans>

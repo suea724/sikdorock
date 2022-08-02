@@ -11,4 +11,6 @@ public class EventDTO {
     private String enddate;
     private int cseq;
     private String state;
+
+    private String coupon;
 }
