@@ -50,6 +50,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin: 5px;
+    margin-top: 10px;
 }
 #myinfo-content > div#coupons {
     display: flex;
@@ -141,4 +142,48 @@
 #myinfo > div {
     margin: 5px;
     margin-top: 10px;
+}
+
+#myinfoedit-btn {
+    display: flex;
+    justify-content: right;
+}
+
+#myinfoedit-btn > input {
+    background-color: #C69760;
+    border: 0px;
+    border-radius: 5px;
+    opacity: .8;
+}
+
+#myinfoedit-btn > input:hover {
+    opacity: 1;
+}
+
+/*결제/구독내역*/
+#subscribe-content {
+    height: 100px;
+    text-align: center;
+}
+
+#orders {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.order {
+    width: 400px;
+    height: 100px;
+    background-color: #e6e6e6;
+    margin: 5px;
+}
+
+.order > .order-food {
+    font-size: 1.3rem;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.order > .order-date {
+    margin: 10px;
 }
