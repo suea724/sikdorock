@@ -10,7 +10,7 @@
     </select>
 
     <select id="get" resultType="eventdto" parameterType="String">
-        select * from tblEvent where seq = #{seq}
+        select * from (select e.*, c.name as coupon from tblCoupon c inner join tblEvent e on e.cseq = c.seq) where seq = #{seq}
     </select>
 
 </mapper>
