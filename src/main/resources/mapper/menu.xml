@@ -32,7 +32,36 @@
         from tblFood f
                  inner join tblCategory c
                             on f.cateseq = c.seq
-        where f.seq = 23;
+        where f.seq = #{seq}
+    </select>
+
+    <select id="image" resultType="String" parameterType="String">
+        select
+            concat(fi.seq, fi.ext) as image
+        from tblFoodImage fi
+        where fseq = #{seq}
+    </select>
+
+    <select id="review" resultType="reviewdto" parameterType="String">
+        select
+            r.*,
+            u.name
+        from tblReview r
+                 inner join tblUser u
+                            on r.id = u.id
+        where fseq = #{seq}
+    </select>
+
+    <select id="rCnt" resultType="Integer" parameterType="String">
+        select count(*) as cnt from tblReview where fseq = #{seq}
+    </select>
+
+    <select id="idLike" resultType="String" parameterType="HashMap">
+        select count(*) as cnt from TBLLIKEFOOD where id = #{id} and fseq = #{seq}
+    </select>
+
+    <select id="idCart" resultType="String" parameterType="HashMap">
+        select count(*) as cnt from tblCart where id = #{id} and fseq = #{seq}
     </select>
 
 </mapper>
