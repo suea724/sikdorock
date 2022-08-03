@@ -87,3 +87,225 @@
 }
 
 
+
+#viewBox {
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 40px;
+    display: flex;
+}
+
+/*이미지 슬라이드*/
+.slider{
+    width: 640px;
+    height: 480px;
+    position: relative;
+
+    overflow: hidden;
+
+}
+.slider input[type=radio]{
+    display: none;
+}
+
+ul.imgs{
+    padding: 0;
+    margin: 0;
+}
+ul.imgs li{
+    position: absolute;
+    left: 640px;
+    transition-delay: 1s;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bullets{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    z-index: 2;
+}
+.bullets label{
+    display: inline-block;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.55);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){
+    background-color: #FCF5E7;
+}
+.slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){
+    background-color: #FCF5E7;
+}
+
+
+.slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
+}
+.slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
+
+}
+
+view-img {
+    background-position-x: -20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#imgholder > li:nth-child(1) > img {
+    position: absolute;
+    transform: translate(-175px, -65px);
+}
+
+#imgholder > li:nth-child(2) > img {
+    position: absolute;
+    transform: translate(-175px, -65px);
+}
+
+
+
+.tbl {
+    width: 555px;
+    margin-top: 60px;
+}
+
+
+
+#viewBox > table > tbody > tr:nth-child(1) > td {
+    font-weight: bold;
+    font-size: 24px;
+    height: 48px;
+    padding-left: 60px;
+}
+
+#viewBox > table > tbody > tr:nth-child(2) > td {
+    font-weight: 700;
+    font-size: 20px;
+    height: 50px;
+    padding-left: 60px;
+    padding-top: 10px;
+}
+
+#viewBox > table > tbody > tr:nth-child(3) > td {
+    font-size: 18px;
+    height: 40px;
+    padding-left: 60px;
+}
+
+#viewBox > table > tbody > tr:nth-child(4) > td {
+    font-size: 18px;
+    height: 40px;
+    padding-left: 60px;
+}
+
+#viewBox > table > tbody > tr:nth-child(5) > td {
+    font-size: 20px;
+    height: 40px;
+    padding-left: 60px;
+}
+
+#viewBox > table > tbody > tr:nth-child(6) > td {
+    padding-top: 25px;
+    font-size: 20px;
+    height: 48px;
+    padding-left: 60px;
+}
+
+#viewBox > table > tbody > tr:nth-child(6) > td i {
+    font-size: 50px;
+}
+
+#viewBox > table > tbody > tr:nth-child(7) > td {
+
+}
+
+#viewBox > table > tbody > tr:nth-child(7) > td {
+    padding-left: 60px;
+}
+
+#viewBox > table > tbody > tr:nth-child > td {
+    border-bottom-width: 0px;
+}
+
+#count {
+    width: 100px;
+    margin-left: 200px;
+    margin-right: 20px;
+}
+
+#menuexplain {
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    padding-left: 10px;
+}
+
+.explainHr {
+    margin: 0 auto;
+    margin-top: 60px;
+    width: 1200px;
+
+}
+
+#reHeader {
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 80px;
+    font-weight: 600;
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: space-between;
+}
+
+#reHeader > div:nth-child(1) {
+    padding-left: 10px;
+    font-size: 30px;
+}
+
+#reHeader > div:nth-child(2) {
+    font-size: 23px;
+}
+
+.reHr {
+    margin: 0 auto;
+    width: 1200px;
+    margin-top: 5px;
+
+}
+
+#reHeader > span {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
