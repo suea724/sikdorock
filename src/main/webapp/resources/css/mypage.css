@@ -207,20 +207,28 @@ input#address:hover {
     margin: 10px;
 }
 
-.subscribe > div#subscribe-cancel {
+.subscribe-btns {
     display: flex;
     justify-content: right;
     margin-right: 35px;
+    margin-top: 10px;
 }
 
-.subscribe > div#subscribe-cancel > input {
+.subscribe-btns > div {
+    margin-left: 5px;
+}
+
+.subscribe-btns > div#subscribe-cancel > input, .subscribe-btns > div#subscribe-change > input {
     background-color: #C69760;
     border: 0px;
     border-radius: 5px;
     opacity: .8;
 }
 
-.subscribe > div#subscribe-cancel > input:hover {
+.subscribe-btns > div#subscribe-cancel > input:hover{
+    opacity: 1;
+}
+.subscribe-btns > div#subscribe-change > input:hover {
     opacity: 1;
 }
 

@@ -15,6 +15,9 @@
                 <div class="subscribe">
                     <div>식도락과 든든하게 정기구독</div>
                     <div>기간 : 2022.08.01 ~ 2022.08.31</div>
+                </div>
+                <div class="subscribe-btns">
+                    <div id="subscribe-change"><input type="button" value="결제방식 변경하기"></div>
                     <div id="subscribe-cancel"><input type="button" value="정기구독 해지하기"></div>
                 </div>
             </div>
