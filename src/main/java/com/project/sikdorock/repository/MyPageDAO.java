@@ -27,4 +27,10 @@ public interface MyPageDAO {
     int editmyinfo(Map<String, String> map);
 
     List<UserOrderDTO> orderList(String id);
+
+    List<UserOrderDTO> orderview(Map<String, String> map);
+
+    int cancelorder(Map<String, String> map);
+
+    int cancelbuylist(Map<String, String> map);
 }

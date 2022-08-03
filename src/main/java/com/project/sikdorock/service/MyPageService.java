@@ -60,4 +60,28 @@ public class MyPageService {
     public List<UserOrderDTO> orderList(String id) {
         return dao.orderList(id);
     }
+
+    public List<UserOrderDTO> orderview(String id, String oseq) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        map.put("oseq", oseq);
+
+        return dao.orderview(map);
+    }
+
+    public int cancelorder(String id, String oseq) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        map.put("oseq", oseq);
+
+        return dao.cancelorder(map);
+    }
+
+    public int cancelbuylist(String id, String oseq) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        map.put("oseq", oseq);
+
+        return dao.cancelbuylist(map);
+    }
 }
