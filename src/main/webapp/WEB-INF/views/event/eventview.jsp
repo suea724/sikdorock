@@ -11,24 +11,26 @@
 <section>
 
     <div class="eventList">
-        <h3>이벤트 상세보기</h3>
-        <br>
-
-            <div class="banner-view" onclick="location.href='/sikdorock/event/eventview?seq=${dto.seq}'" style="cursor: pointer;">
-                <img src="/sikdorock/resources/images/${dto.name}.png" class="img-view">
-            </div>
-
-            <c:if test="${empty auth}">
-                <h4 id="notlogin">이벤트 뽑기는 로그인 후 이용 가능합니다.</h4>
-            </c:if>
-            <c:if test="${not empty auth}">
-                <div class="eventinfo">${dto.eventinfo}<br>당첨된 쿠폰은 마이페이지 > 쿠폰함에서 확인할 수 있습니다.</div>
-                <div id="ment"><h4>과연 행운의 주인공은 누구일까요?</h4></div>
-                <div id="btn-box">
-                    <button class="button beige">이벤트 뽑기</button>
+            <div id="eventbox">
+                <div class="banner-view" onclick="location.href='/sikdorock/event/eventview?seq=${dto.seq}'" style="cursor: pointer;">
+                    <img src="/sikdorock/resources/images/${dto.name}.png" class="img-view">
                 </div>
-            </c:if>
 
+                <c:if test="${empty auth}">
+                    <h4 id="notlogin">이벤트 뽑기는 로그인 후 이용 가능합니다.</h4>
+                </c:if>
+                <c:if test="${not empty auth}">
+                    <div class="eventinfo">${dto.eventinfo}<br>당첨된 쿠폰은 마이페이지 > 쿠폰함에서 확인할 수 있습니다.</div>
+                    <div id="ment"><h4>과연 행운의 주인공은 누구일까요?</h4></div>
+                    <div id="btn-box">
+                        <%--<button class="button beige" onclick="eventcheck();">이벤트 뽑기</button>--%>
+                        <input type="button" class="button beige" value="이벤트 뽑기" id="event-btn">
+                    </div>
+
+
+
+                </c:if>
+            </div>
         <%--${dto.coupon}--%>
         <%--${udto.id}--%>
 
@@ -50,3 +52,35 @@
     </div>
 
 </section>
+
+<script>
+
+
+
+
+    $('#event-btn').click(function() {
+         $.ajax({
+
+             type: 'GET',
+             url: "/sikdorock/event/eventcheck",
+             dataType: 'json',
+             data: 'id=${udto.id}' + '&cseq=${dto.cseq}',
+             success: function (result) {
+
+                 if (result.result == 1) {
+                     alert('이벤트 당첨을 축하합니다! \n 당첨된 쿠폰은 마이페이지 > 쿠폰함에서 확인할 수 있습니다.');
+                 } else {
+                     alert('아쉽게도 당첨되지 않았습니다. \n 다음 기회를 노려보세요!')
+                 }
+             },
+             error: function (a, b, c) {
+                 console.log(a, b, c)
+             }
+         });
+     });
+
+
+
+
+
+</script>

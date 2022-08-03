@@ -97,7 +97,7 @@
 
     <div id="menubox">
         <div id="menus">
-            <c:forEach items="${list}" var="dto">
+            <c:forEach items="${list}" var="dto">              
                 <div class="menu" onClick="location.href='/sikdorock/menu/view?seq=${dto.seq}'">
                     <div class="menu-img" style="background-image: url('/sikdorock/resources/files/${dto.image}');"></div>
                     <div class="menu-name">${dto.menuname}</div>

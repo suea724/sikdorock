@@ -90,6 +90,8 @@ public class AdminController {
 
         List<FoodDTO> list = service.getMenuList(paging);
         PriceDTO pdto = service.getPrice();
+        pdto.setSubprice(String.format("%,d", Integer.parseInt(pdto.getSubprice())));
+        pdto.setIndprice(String.format("%,d", Integer.parseInt(pdto.getIndprice())));
 
         for (FoodDTO fdto : list) {
             fdto.setOutdate(fdto.getOutdate().substring(0, 10));

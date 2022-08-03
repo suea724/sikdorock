@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,10 +48,44 @@ public class EventController {
         model.addAttribute("dto", dto);
         model.addAttribute("udto", udto);
 
-        System.out.println(dto);
+        //System.out.println(dto);
         return "event.eventview";
 
     }
+
+///event/eventcheck?id=vy_wns7899@naver.com&cseq=27
+
+    @GetMapping (value="/event/eventcheck")
+    public void eventcheck(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        request.setCharacterEncoding("UTF-8");
+        String id = request.getParameter("id");
+        String cseq = request.getParameter("cseq");
+
+        System.out.println("id: " + id);
+        System.out.println("cseq: " + cseq);
+        int result = service.eventcheck();
+
+        // 쿠폰이 당첨되면 insert
+//        if (result == 1) {
+//            service.getcoupon(id, cseq);
+//        }
+
+        System.out.println(result);
+
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+
+        PrintWriter writer = response.getWriter();
+
+        writer.printf("{\"result\" : \"%d\"}", result);
+        writer.close();
+
+
+        //return "event.eventcheck";
+
+    }
+
 
 
 
