@@ -1,8 +1,6 @@
 package com.project.sikdorock.service;
 
-import com.project.sikdorock.dto.FoodDTO;
-import com.project.sikdorock.dto.FoodListDTO;
-import com.project.sikdorock.dto.Paging;
+import com.project.sikdorock.dto.*;
 import com.project.sikdorock.repository.MenuDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,5 +35,27 @@ public class MenuService {
     public FoodListDTO menuView(String seq) {
 
         return dao.menuView(seq);
+    }
+
+    public List<String> image(String seq) {
+
+        return dao.image(seq);
+    }
+
+    public List<ReviewDTO> review(String seq) {
+        return dao.review(seq);
+    }
+
+    public int rCnt(String seq) {
+        return dao.rCnt(seq);
+    }
+
+
+    public String idLike(Map<String, String> map) {
+        return dao.idLike(map);
+    }
+
+    public String idCart(Map<String, String> map) {
+        return dao.idCart(map);
     }
 }
