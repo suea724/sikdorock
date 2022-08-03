@@ -42,7 +42,7 @@
                     title: '${dto.menuname}',
                     start: '${dto.outdate}',
                     end: '${dto.outdate}',
-                    url: '/sickdorock/index?seq=${dto.seq}'
+                    url: '/sikdorock/menu/view?seq=${dto.seq}'
                 },
                 </c:forEach>
 
@@ -97,8 +97,8 @@
 
     <div id="menubox">
         <div id="menus">
-            <c:forEach items="${list}" var="dto">
-                <div class="menu" onClick="location.href='/sickdorock/index?seq=${dto.seq}'">
+            <c:forEach items="${list}" var="dto">              
+                <div class="menu" onClick="location.href='/sikdorock/menu/view?seq=${dto.seq}'">
                     <div class="menu-img" style="background-image: url('/sikdorock/resources/files/${dto.image}');"></div>
                     <div class="menu-name">${dto.menuname}</div>
                     <div class="menu-price">${price}</div>

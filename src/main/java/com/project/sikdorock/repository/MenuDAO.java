@@ -1,7 +1,9 @@
 package com.project.sikdorock.repository;
 
 import com.project.sikdorock.dto.FoodDTO;
+import com.project.sikdorock.dto.FoodImageDTO;
 import com.project.sikdorock.dto.FoodListDTO;
+import com.project.sikdorock.dto.ReviewDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,4 +18,15 @@ public interface MenuDAO {
     String price();
 
     FoodListDTO menuView(String seq);
+
+    List<String> image(String seq);
+
+    List<ReviewDTO> review(String seq);
+
+    int rCnt(String seq);
+
+
+    String idLike(Map<String, String> map);
+
+    String idCart(Map<String, String> map);
 }
