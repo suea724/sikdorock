@@ -50,6 +50,7 @@
                  inner join tblUser u
                             on r.id = u.id
         where fseq = #{seq}
+            order by r.seq desc
     </select>
 
     <select id="rCnt" resultType="Integer" parameterType="String">
@@ -63,5 +64,13 @@
     <select id="idCart" resultType="String" parameterType="HashMap">
         select count(*) as cnt from tblCart where id = #{id} and fseq = #{seq}
     </select>
+
+    <insert id="reviewAdd" parameterType="reviewdto">
+        insert into tblReview values (seqReview.nextVal, #{fseq}, #{star}, #{content}, sysdate, #{id})
+    </insert>
+
+    <delete id="reviewDel" parameterType="String">
+        delete from tblReview where seq = #{rseq}
+    </delete>
 
 </mapper>

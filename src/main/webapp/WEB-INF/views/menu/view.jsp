@@ -53,9 +53,27 @@
         width: 150px;
     }
 
+    #reTbl > tbody > tr:nth-child(2) > td:nth-child(4) {
+        width: 110px;
+    }
+
     #review {
         width: 880px;
         height: 38px;
+    }
+
+    #reTbl  tr:nth-child(2) > td:nth-child(5) {
+        width: 91.89px;
+    }
+
+    #reTbl  tr:nth-child(2) > td:nth-child(5) > span:nth-child(1):hover {
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    #reTbl  tr:nth-child(2) > td:nth-child(5) > span:nth-child(2):hover {
+        cursor: pointer;
+        font-weight: bold;
     }
 
 </style>
@@ -132,7 +150,7 @@
 
 
   <table id="reTbl">
-    <form method="post" ></form>
+    <form method="post" action="/sikdorock/menu/reviewadd" id="reform">
     <tr>
       <td>
         <div class="myform">
@@ -148,12 +166,16 @@
                 for="cleanRate5">★</label>
         </div>
       </td>
-      <td colspan="2"><input type="text" name="review" id="review" class=""></td>
+      <td colspan="3">
+          <input type="text" name="review" id="review" class="form-control" maxlength="40">
+          <input type="hidden" name="fseq" value="${fdto.seq}">
+      </td>
       <td><input type="submit" id="reAdd" class="btn btn-primary" value="작성하기"></td>
     </tr>
+    </form>
     <c:if test="${not empty reviewList}">
     <c:forEach items="${reviewList}" var="rdto">
-    <tr>
+    <tr data-rseq="${rdto.seq}" data-fseq="${fdto.seq}">
       <td>${rdto.name}</td>
       <td>${rdto.content}</td>
       <td>
@@ -194,13 +216,91 @@
           </c:if>
       </td>
       <td>${rdto.regdate}</td>
-        <%--rdto.id도 있음--%>
+      <td>
+          <c:if test="${rdto.id == id}">
+          <span onclick="editReview(${rdto.seq}, ${fdto.seq});">수정</span> |
+          <span onclick="delReview(${rdto.seq});">삭제</span>
+          </c:if>
+      </td>
     </tr>
+
     </c:forEach>
     </c:if>
   </table>
 
 
+    <script>
+        let flag = false;
+
+        function editReview() {
+
+            const temp = `
+                              <td>
+                                <div class="myform">
+                                  <input type="radio" name="cleanStar" value="5" id="cleanRate1"><label
+                                        for="cleanRate1">★</label>
+                                  <input type="radio" name="cleanStar" value="4" id="cleanRate2"><label
+                                        for="cleanRate2">★</label>
+                                  <input type="radio" name="cleanStar" value="3" id="cleanRate3"><label
+                                        for="cleanRate3">★</label>
+                                  <input type="radio" name="cleanStar" value="2" id="cleanRate4"><label
+                                        for="cleanRate4">★</label>
+                                  <input type="radio" name="cleanStar" value="1" id="cleanRate5"><label
+                                        for="cleanRate5">★</label>
+                                </div>
+                              </td>
+                              <td colspan="3">
+                                  <input type="text" name="review" id="review" class="form-control" maxlength="40">
+                                  <input type="hidden" name="fseq" value="${fdto.seq}">
+                              </td>
+                              <td><input type="submit" id="reAdd" class="btn btn-primary" value="수정하기"></td>
+                            `;
+
+                if (flag == false) {
+                    $(event.target).parent().parent().append(temp);
+                    flag = true;
+                } else {
+                    $(event.target).parent().parent().parent().next().remove();
+                    flag = false;
+                }
+
+
+
+        }
+
+
+
+
+
+        function delReview(rseq) {
+
+            const tr = $(event.target);
+
+            /*let anoHrseq = $('.hospitalview-review table tr').last().data('hrseq');*/
+
+            $.ajax({
+                type: 'GET',
+                url: '/sikdorock/menu/reviewdel',
+                data: 'rseq=' + rseq,
+                dataType: 'json',
+                success: function(result) {
+
+
+                    if (result.result == 1) {
+                        if (confirm("삭제하시겠습니까?")) {
+                            tr.parent().parent().remove();
+                        }
+                    }
+
+                },
+                error: function(a, b, c){
+                    console.log(a, b, c);
+                }
+            });
+
+        }
+
+    </script>
 
 
 </section>

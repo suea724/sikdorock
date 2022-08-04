@@ -6,11 +6,17 @@ import com.project.sikdorock.dto.ReviewDTO;
 import com.project.sikdorock.dto.UserDTO;
 import com.project.sikdorock.service.MenuService;
 import lombok.RequiredArgsConstructor;
+import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -139,6 +145,7 @@ public class MenuController {
         System.out.println("like" + like);
         System.out.println("cart" + cart);
 
+        model.addAttribute("id", id);
         model.addAttribute("like", like);
         model.addAttribute("cart", cart);
         model.addAttribute("price", price);
@@ -147,5 +154,60 @@ public class MenuController {
         model.addAttribute("imgList", imgList); //메뉴 이미지 이름
         return "menu.view";
     }
+
+
+    @PostMapping(value = "/menu/reviewadd")
+    public String reviewAdd(Model model, String seq, HttpSession session, HttpServletRequest req) {
+
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
+        String star = req.getParameter("cleanStar");
+        String review = req.getParameter("review");
+        String fseq = req.getParameter("fseq");
+
+        ReviewDTO rdto = new ReviewDTO();
+
+        rdto.setFseq(fseq);
+        rdto.setStar(star);
+        rdto.setContent(review);
+        rdto.setId(id);
+
+        int result = 0;
+
+        result = service.reviewAdd(rdto);
+
+
+        if (result == 0) {
+            return "redirect:/menu/menuli";
+        } else {
+            return String.format("redirect:/menu/view?seq=%s", fseq);
+        }
+    }
+
+    @GetMapping(value = "/menu/reviewdel")
+    public void reviewDel(String rseq, HttpSession session, HttpServletResponse resp) throws IOException {
+
+        //id 가져오고
+        //rdto 가져와야함
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
+
+
+        int result = 0;
+
+        result = service.reviewDel(rseq); //리뷰 삭제
+
+
+
+
+        PrintWriter writer = resp.getWriter();
+
+        writer.printf("{\"result\" : %d}", result);
+
+        writer.close();
+    }
+
 
 }
