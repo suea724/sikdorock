@@ -66,4 +66,8 @@ public class MenuService {
     public int reviewDel(String rseq) {
         return dao.reviewDel(rseq);
     }
+
+    public int editReAdd(ReviewDTO rdto) {
+        return dao.editReAdd(rdto);
+    }
 }

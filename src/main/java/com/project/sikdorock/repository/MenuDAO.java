@@ -33,4 +33,6 @@ public interface MenuDAO {
     int reviewAdd(ReviewDTO rdto);
 
     int reviewDel(String rseq);
+
+    int editReAdd(ReviewDTO rdto);
 }

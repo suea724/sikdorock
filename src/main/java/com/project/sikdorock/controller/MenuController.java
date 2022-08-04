@@ -162,7 +162,7 @@ public class MenuController {
         UserDTO userdto = (UserDTO) session.getAttribute("auth");
         String id = userdto.getId();
 
-        String star = req.getParameter("cleanStar");
+        String star = req.getParameter("star");
         String review = req.getParameter("review");
         String fseq = req.getParameter("fseq");
 
@@ -207,6 +207,22 @@ public class MenuController {
         writer.printf("{\"result\" : %d}", result);
 
         writer.close();
+    }
+
+
+    @PostMapping(value="/menu/editreadd")
+    public String editReAdd(ReviewDTO rdto) {
+
+        int result = 0;
+
+        result = service.editReAdd(rdto);
+
+        if (result == 0) {
+            return "redirect:/menu/menuli";
+        } else {
+            return String.format("redirect:/menu/view?seq=%s", rdto.getFseq());
+        }
+
     }
 
 
