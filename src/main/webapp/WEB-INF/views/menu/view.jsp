@@ -76,6 +76,7 @@
         font-weight: bold;
     }
 
+
 </style>
 
 <section>
@@ -154,15 +155,15 @@
     <tr>
       <td>
         <div class="myform">
-          <input type="radio" name="cleanStar" value="5" id="cleanRate1"><label
+          <input type="radio" name="star" value="5" id="cleanRate1"><label
                 for="cleanRate1">★</label>
-          <input type="radio" name="cleanStar" value="4" id="cleanRate2"><label
+          <input type="radio" name="star" value="4" id="cleanRate2"><label
                 for="cleanRate2">★</label>
-          <input type="radio" name="cleanStar" value="3" id="cleanRate3"><label
+          <input type="radio" name="star" value="3" id="cleanRate3"><label
                 for="cleanRate3">★</label>
-          <input type="radio" name="cleanStar" value="2" id="cleanRate4"><label
+          <input type="radio" name="star" value="2" id="cleanRate4"><label
                 for="cleanRate4">★</label>
-          <input type="radio" name="cleanStar" value="1" id="cleanRate5"><label
+          <input type="radio" name="star" value="1" id="cleanRate5"><label
                 for="cleanRate5">★</label>
         </div>
       </td>
@@ -218,7 +219,7 @@
       <td>${rdto.regdate}</td>
       <td>
           <c:if test="${rdto.id == id}">
-          <span onclick="editReview(${rdto.seq}, ${fdto.seq});">수정</span> |
+          <span onclick="editReview('${rdto.seq}','${rdto.star}','${rdto.content}','${fdto.seq}');">수정</span> |
           <span onclick="delReview(${rdto.seq});">삭제</span>
           </c:if>
       </td>
@@ -228,43 +229,47 @@
     </c:if>
   </table>
 
-
     <script>
         let flag = false;
 
-        function editReview() {
+        function editReview(seq, star, content, fseq) {
 
             const temp = `
+                            <tr id="reedit" style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black">
+                            <form method="post" action="/sikdorock/menu/editreadd" id="editreadd">
                               <td>
                                 <div class="myform">
-                                  <input type="radio" name="cleanStar" value="5" id="cleanRate1"><label
-                                        for="cleanRate1">★</label>
-                                  <input type="radio" name="cleanStar" value="4" id="cleanRate2"><label
-                                        for="cleanRate2">★</label>
-                                  <input type="radio" name="cleanStar" value="3" id="cleanRate3"><label
-                                        for="cleanRate3">★</label>
-                                  <input type="radio" name="cleanStar" value="2" id="cleanRate4"><label
-                                        for="cleanRate4">★</label>
-                                  <input type="radio" name="cleanStar" value="1" id="cleanRate5"><label
-                                        for="cleanRate5">★</label>
+                                  <input type="radio" name="star" value="5" id="Rate1" checked><label
+                                        for="Rate1">★</label>
+                                  <input type="radio" name="star" value="4" id="Rate2"><label
+                                        for="Rate2">★</label>
+                                  <input type="radio" name="star" value="3" id="Rate3"><label
+                                        for="Rate3">★</label>
+                                  <input type="radio" name="star" value="2" id="Rate4"><label
+                                        for="Rate4">★</label>
+                                  <input type="radio" name="star" value="1" id="Rate5"><label
+                                        for="Rate5">★</label>
                                 </div>
                               </td>
                               <td colspan="3">
-                                  <input type="text" name="review" id="review" class="form-control" maxlength="40">
-                                  <input type="hidden" name="fseq" value="${fdto.seq}">
+                                  <input type="text" name="review" id="review" class="form-control" maxlength="40" value="${content}">
+                                  <input type="hidden" name="fseq" value="${fseq}">
+                                  <input type="hidden" name="seq" value="${seq}">
                               </td>
-                              <td><input type="submit" id="reAdd" class="btn btn-primary" value="수정하기"></td>
+                              <td><input type="submit" id="reEdit" class="btn btn-Light" value="수정하기"></td>
+                              </form>
+                            </tr>
+
                             `;
 
                 if (flag == false) {
-                    $(event.target).parent().parent().append(temp);
+                    $(event.target).parent().parent().after(temp);
                     flag = true;
                 } else {
-                    $(event.target).parent().parent().parent().next().remove();
+                    //$(event.target).parent().parent().next().remove();
+                    $('#reedit').remove();
                     flag = false;
                 }
-
-
 
         }
 

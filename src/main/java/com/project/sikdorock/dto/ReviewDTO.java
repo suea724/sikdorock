@@ -11,4 +11,5 @@ public class ReviewDTO {
     private String regdate;
     private String id;
     private String name;
+    private String cleanStar;
 }

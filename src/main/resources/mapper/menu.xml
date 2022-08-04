@@ -73,4 +73,8 @@
         delete from tblReview where seq = #{rseq}
     </delete>
 
+    <update id="editReAdd" parameterType="reviewdto">
+        update tblReview set  star = #{star}, content = #{content} where seq = #{seq}
+    </update>
+
 </mapper>
