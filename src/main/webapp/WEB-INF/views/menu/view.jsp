@@ -76,6 +76,23 @@
         font-weight: bold;
     }
 
+    #like > td:nth-child(1):hover {
+        cursor: pointer;
+    }
+
+    #addCart:hover {
+        cursor: pointer;
+    }
+
+    #cartli {
+        cursor: pointer;
+        text-decoration: none;
+        color: black;
+    }
+
+    #cartli {
+        cursor: pointer;
+    }
 
 </style>
 
@@ -117,18 +134,18 @@
 
       </tr>
 
-      <tr>
+      <tr id="like">
         <c:if test="${like == 0}">
-        <td><i class="fa-regular fa-heart"></i> 찜</td>
+        <td><i class="fa-regular fa-heart" onclick="like(${fdto.seq})"></i> 찜</td>
         </c:if>
         <c:if test="${like != 0}">
-          <td><i class="fa-solid fa-heart"></i> 찜</td>
+          <td><i class="fa-solid fa-heart" onclick="delLike(${fdto.seq})" style="color: tomato"></i> 찜</td>
         </c:if>
         <c:if test="${cart == 0}">
-        <td><i class="fa-solid fa-cart-plus"></i> 장바구니</td>
+        <td><i class="fa-solid fa-cart-plus" onclick="addCart(${fdto.seq})" id="addCart"></i> 장바구니</td>
         </c:if>
         <c:if test="${cart != 0}">
-        <td><i class="fa-solid fa-cart-shopping"></i> 장바구니</td>
+        <td><a href="/" id="cartli"><i class="fa-solid fa-cart-shopping"></i> 장바구니</a></td>
         </c:if>
       </tr>
       <tr>
@@ -230,6 +247,7 @@
   </table>
 
     <script>
+
         let flag = false;
 
         function editReview(seq, star, content, fseq) {
@@ -302,8 +320,116 @@
                     console.log(a, b, c);
                 }
             });
+        }
+
+
+        function like(fseq) {
+
+            const tr = $(event.target);
+
+            /*let anoHrseq = $('.hospitalview-review table tr').last().data('hrseq');*/
+
+            $.ajax({
+                type: 'GET',
+                url: '/sikdorock/menu/addlike',
+                data: 'fseq=' + fseq,
+                dataType: 'json',
+                success: function(result) {
+
+                    if (result.result == 1) {
+
+                        tr.parent().remove();
+
+                        const temp = `<td><i class="fa-solid fa-heart" onclick="delLike(${fdto.seq})" style="color: tomato"></i> 찜</td>`
+
+                        $('#like').prepend(temp);
+
+
+                    }
+
+                },
+                error: function(a, b, c){
+                    console.log(a, b, c);
+                }
+            });
+        }
+
+
+        function delLike(fseq) {
+
+            const tr = $(event.target);
+
+            /*let anoHrseq = $('.hospitalview-review table tr').last().data('hrseq');*/
+
+            $.ajax({
+                type: 'GET',
+                url: '/sikdorock/menu/dellike',
+                data: 'fseq=' + fseq,
+                dataType: 'json',
+                success: function(result) {
+
+
+                    if (result.result == 1) {
+
+                        tr.parent().remove();
+
+                        const temp = `<td><i class="fa-regular fa-heart" onclick="like(${fdto.seq})"></i> 찜</td>`
+
+                        $('#like').prepend(temp);
+
+
+                    }
+
+                },
+                error: function(a, b, c){
+                    console.log(a, b, c);
+                }
+            });
 
         }
+
+
+
+        function addCart(fseq) {
+
+            const count = $('#count').val();
+
+            const tr = $(event.target);
+
+            /*let anoHrseq = $('.hospitalview-review table tr').last().data('hrseq');*/
+
+            $.ajax({
+                type: 'GET',
+                url: '/sikdorock/menu/addcart',
+                data: 'fseq=' + fseq + "&count=" + count,
+                dataType: 'json',
+                success: function(result) {
+
+
+
+                    if (result.result == 1) {
+
+                        tr.parent().remove();
+
+                        const temp = `<td><a href="/" id="cartli"><i class="fa-solid fa-cart-shopping"></i> 장바구니</a></td>`
+
+                        alert('장바구니에 추가되었습니다!')
+
+                        $('#like').append(temp);
+
+                        $('#count').val('1');
+
+                    }
+
+                },
+                error: function(a, b, c){
+                    console.log(a, b, c);
+                }
+            });
+
+        }
+
+
 
     </script>
 

@@ -77,4 +77,16 @@
         update tblReview set  star = #{star}, content = #{content} where seq = #{seq}
     </update>
 
+    <insert id="addlike" parameterType="HashMap">
+        insert into tblLikeFood values (#{id}, #{fseq})
+    </insert>
+
+    <delete id="dellike" parameterType="HashMap">
+        delete from tblLikeFood where fseq = #{fseq} and id = #{id}
+    </delete>
+
+    <insert id="addcart" parameterType="cartdto">
+        insert into tblCart values (seqCart.nextVal, #{count}, #{id}, #{fseq})
+    </insert>
+
 </mapper>
