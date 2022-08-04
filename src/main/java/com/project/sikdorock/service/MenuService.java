@@ -58,4 +58,12 @@ public class MenuService {
     public String idCart(Map<String, String> map) {
         return dao.idCart(map);
     }
+
+    public int reviewAdd(ReviewDTO rdto) {
+        return dao.reviewAdd(rdto);
+    }
+
+    public int reviewDel(String rseq) {
+        return dao.reviewDel(rseq);
+    }
 }

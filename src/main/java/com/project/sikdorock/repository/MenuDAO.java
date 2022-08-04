@@ -29,4 +29,8 @@ public interface MenuDAO {
     String idLike(Map<String, String> map);
 
     String idCart(Map<String, String> map);
+
+    int reviewAdd(ReviewDTO rdto);
+
+    int reviewDel(String rseq);
 }
