@@ -70,4 +70,16 @@ public class MenuService {
     public int editReAdd(ReviewDTO rdto) {
         return dao.editReAdd(rdto);
     }
+
+    public int addlike(Map<String, String> map) {
+        return dao.addlike(map);
+    }
+
+    public int dellike(Map<String, String> map) {
+        return dao.dellike(map);
+    }
+
+    public int addcart(CartDTO cdto) {
+        return dao.addcart(cdto);
+    }
 }

@@ -1,9 +1,6 @@
 package com.project.sikdorock.controller;
 
-import com.project.sikdorock.dto.FoodImageDTO;
-import com.project.sikdorock.dto.FoodListDTO;
-import com.project.sikdorock.dto.ReviewDTO;
-import com.project.sikdorock.dto.UserDTO;
+import com.project.sikdorock.dto.*;
 import com.project.sikdorock.service.MenuService;
 import lombok.RequiredArgsConstructor;
 import oracle.jdbc.proxy.annotation.Post;
@@ -224,6 +221,90 @@ public class MenuController {
         }
 
     }
+
+
+
+    @GetMapping(value = "/menu/addlike")
+    public void addLike(String fseq, HttpSession session, HttpServletResponse resp) throws IOException {
+
+        //id 가져오고
+        //fseq 가져와야함
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("id", id);
+        map.put("fseq", fseq);
+
+        int result = 0;
+
+        result = service.addlike(map); //찜 추가
+
+
+
+
+        PrintWriter writer = resp.getWriter();
+
+        writer.printf("{\"result\" : %d}", result);
+
+        writer.close();
+    }
+
+
+    @GetMapping(value = "/menu/dellike")
+    public void delLike(String fseq, HttpSession session, HttpServletResponse resp) throws IOException {
+
+        //id 가져오고
+        //fseq 가져와야함
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("id", id);
+        map.put("fseq", fseq);
+
+        int result = 0;
+
+        result = service.dellike(map); //찜 추가
+
+
+
+
+        PrintWriter writer = resp.getWriter();
+
+        writer.printf("{\"result\" : %d}", result);
+
+        writer.close();
+    }
+
+
+
+    @GetMapping(value = "/menu/addcart")
+    public void addCart(CartDTO cdto, HttpSession session, HttpServletResponse resp) throws IOException {
+
+        //id 가져오고
+        //fseq 가져와야함
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
+        cdto.setId(id);
+
+        int result = 0;
+
+        result = service.addcart(cdto); //카트 추가
+
+
+
+
+        PrintWriter writer = resp.getWriter();
+
+        writer.printf("{\"result\" : %d}", result);
+
+        writer.close();
+    }
+
 
 
 }
