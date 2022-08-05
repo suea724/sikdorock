@@ -428,7 +428,7 @@
 
                         tr.parent().remove();
 
-                        const temp = `<td class="btnBold"><a href="/" id="cartli"><i class="fa-solid fa-cart-shopping"></i> 장바구니</a></td>`
+                        const temp = `<td class="btnBold"><a href="/sikdorock/menu/cartlist" id="cartli"><i class="fa-solid fa-cart-shopping"></i> 장바구니</a></td>`
 
                         alert('장바구니에 추가되었습니다!')
 

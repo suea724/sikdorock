@@ -93,14 +93,16 @@
 
   function editcart(seq) {
 
-    const count = $('#count').val();
-    alert(count);
+    const count = $(event.target).parent().prev().children().first().val();
+    
 
     location.href="/sikdorock/menu/editcart?seq=" + seq + "&count=" + count;
   }
 
 
   function delcart(seq) {
+
+    const target = $(event.target);
 
     $.ajax({
       type: 'GET',
@@ -112,7 +114,7 @@
 
         if (result.result == 1) {
           if (confirm("삭제하시겠습니까?")) {
-            $('#CartBox').remove();
+            target.parent().parent().parent().parent().parent().remove();
           }
         }
 
