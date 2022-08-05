@@ -307,4 +307,134 @@ public class MenuController {
 
 
 
+    @GetMapping(value = "/menu/editreview")
+    public String editReview(ReviewDTO rdto, HttpSession session) throws IOException {
+
+        //id 가져오고
+        //fseq 가져와야함
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
+        rdto.setId(id);
+
+        int result = 0;
+
+        result = service.editReview(rdto); //카트 추가
+
+
+        if (result == 0) {
+            return "redirect:/menu/menuli";
+        } else {
+            return String.format("redirect:/menu/view?seq=%s", rdto.getFseq());
+        }
+    }
+
+
+
+    @GetMapping(value = "/menu/cartlist")
+    public String cartList(Model model, HttpSession session) throws IOException {
+
+        //id 가져오고
+        //fseq 가져와야함
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
+        List<CartDTO> clist = service.cartList(id);
+
+//        for (int i=0; i<clist.size(); i++) {
+//            String name = clist.get(i).getMenuname();
+//            int index = name.indexOf("/");
+//            name = name.substring(0,index);
+//
+//            clist.get(i).setMenuname(name);
+//        }
+
+        System.out.println(clist.toString());
+
+        String price = service.price();
+
+
+        model.addAttribute("clist", clist);
+        model.addAttribute("price", price);
+        return "menu.cartlist";
+    }
+
+
+
+    @GetMapping(value = "/menu/editcart")
+    public void editCart(String seq, String count, HttpSession session, HttpServletResponse resp) throws IOException {
+
+        //id 가져오고
+        //fseq 가져와야함
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("id", id);
+        map.put("seq", seq);
+        map.put("count", count);
+
+        int result = 0;
+
+        result = service.editCart(map); //카트 수정
+
+
+        if (result == 0) {
+
+            PrintWriter writer = resp.getWriter();
+            writer.println("<html>");
+            writer.println("<body>");
+            writer.println("<script>");
+            writer.println("alert('실패');");
+            writer.println("location.href = '/sikdorock/menu/menuli';");
+            writer.println("</script>");
+            writer.println("</body>");
+            writer.println("</html>");
+
+            writer.close();
+            return;
+
+            //return "redirect:/menu/menuli";
+        } else {
+
+            PrintWriter writer = resp.getWriter();
+            writer.println("<html>");
+            writer.println("<body>");
+            writer.println("<script>");
+            writer.println("alert('수량이 변경되었습니다.');");
+            writer.println("location.href = '/sikdorock/menu/cartlist';");
+            writer.println("</script>");
+            writer.println("</body>");
+            writer.println("</html>");
+
+            writer.close();
+            return;
+            //return String.format("redirect:/menu/cartlist");
+        }
+    }
+
+
+
+    @GetMapping(value = "/menu/delcart")
+    public void delCart(String seq, HttpSession session, HttpServletResponse resp) throws IOException {
+
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id= userdto.getId();
+
+        int result = 0;
+
+        result = service.delCart(seq);
+
+
+        PrintWriter writer = resp.getWriter();
+
+        writer.printf("{\"result\" : %d}", result);
+
+        writer.close();
+
+
+    }
+
 }

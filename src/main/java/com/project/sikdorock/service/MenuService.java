@@ -82,4 +82,20 @@ public class MenuService {
     public int addcart(CartDTO cdto) {
         return dao.addcart(cdto);
     }
+
+    public int editReview(ReviewDTO rdto) {
+        return dao.editReview(rdto);
+    }
+
+    public List<CartDTO> cartList(String id) {
+        return dao.cartList(id);
+    }
+
+    public int editCart(Map<String, String> map) {
+        return dao.editCart(map);
+    }
+
+    public int delCart(String seq) {
+        return dao.delCart(seq);
+    }
 }

@@ -89,4 +89,32 @@
         insert into tblCart values (seqCart.nextVal, #{count}, #{id}, #{fseq})
     </insert>
 
+    <update id="editReview" parameterType="reviewdto">
+        update tblReview set  star = #{star}, content = #{content} where seq = #{seq}
+    </update>
+
+    <select id="cartList" resultType="cartdto" parameterType="String">
+        select
+            c.seq,
+            f.menuname,
+            f.seq as fseq,
+            c.count,
+            concat(img.seq, img.ext) as image
+        from tblCart c
+                 inner join tblfood f
+                            on c.fseq = f.seq
+                 inner join (select * from (select fi.*, ROWNUM rnum from TBLFOODIMAGE fi) where Mod(rnum, 2) = 1) img
+                            on f.seq = img.fseq
+        where c.id = #{id}
+    </select>
+
+
+    <update id="editCart" parameterType="HashMap">
+        update tblCart set count = #{count} where seq = #{seq} and id = #{id}
+    </update>
+
+    <delete id="delCart" parameterType="String">
+        delete from tblCart where seq = #{seq}
+    </delete>
+
 </mapper>
