@@ -38,4 +38,12 @@ public interface MenuDAO {
     int dellike(Map<String, String> map);
 
     int addcart(CartDTO cdto);
+
+    int editReview(ReviewDTO rdto);
+
+    List<CartDTO> cartList(String id);
+
+    int editCart(Map<String, String> map);
+
+    int delCart(String seq);
 }

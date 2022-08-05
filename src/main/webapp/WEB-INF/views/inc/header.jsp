@@ -23,7 +23,7 @@
                 <a href="/sikdorock/mypage/myinfo">마이페이지</a> <a href="/sikdorock/logout">로그아웃</a>
             </div>
         </div>
-        <i class="fa-solid fa-cart-shopping" id="cart"></i>
+            <a href="/sikdorock/menu/cartlist"><i class="fa-solid fa-cart-shopping" id="cart"></i></a>
         </c:if>
         <c:if test="${empty auth}">
             <div id="login-menu">

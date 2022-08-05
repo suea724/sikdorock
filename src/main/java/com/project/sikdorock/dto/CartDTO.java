@@ -8,4 +8,6 @@ public class CartDTO {
     private String count;
     private String id;
     private String fseq;
+    private String menuname;
+    private String image;
 }

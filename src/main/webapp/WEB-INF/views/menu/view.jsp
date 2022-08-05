@@ -94,6 +94,10 @@
         cursor: pointer;
     }
 
+    .btnBold:hover {
+        font-weight: bold;
+    }
+
 </style>
 
 <section>
@@ -136,16 +140,16 @@
 
       <tr id="like">
         <c:if test="${like == 0}">
-        <td><i class="fa-regular fa-heart" onclick="like(${fdto.seq})"></i> 찜</td>
+        <td class="btnBold"><i class="fa-regular fa-heart" onclick="like(${fdto.seq})"></i> 찜</td>
         </c:if>
         <c:if test="${like != 0}">
-          <td><i class="fa-solid fa-heart" onclick="delLike(${fdto.seq})" style="color: tomato"></i> 찜</td>
+          <td class="btnBold"><i class="fa-solid fa-heart" onclick="delLike(${fdto.seq})" style="color: tomato"></i> 찜</td>
         </c:if>
         <c:if test="${cart == 0}">
-        <td><i class="fa-solid fa-cart-plus" onclick="addCart(${fdto.seq})" id="addCart"></i> 장바구니</td>
+        <td class="btnBold"><i class="fa-solid fa-cart-plus" onclick="addCart(${fdto.seq})" id="addCart"></i> 장바구니</td>
         </c:if>
         <c:if test="${cart != 0}">
-        <td><a href="/" id="cartli"><i class="fa-solid fa-cart-shopping"></i> 장바구니</a></td>
+        <td class="btnBold"><a href="/sikdorock/menu/cartlist" id="cartli"><i class="fa-solid fa-cart-shopping"></i> 장바구니</a></td>
         </c:if>
       </tr>
       <tr>
@@ -195,7 +199,10 @@
     <c:forEach items="${reviewList}" var="rdto">
     <tr data-rseq="${rdto.seq}" data-fseq="${fdto.seq}">
       <td>${rdto.name}</td>
-      <td>${rdto.content}</td>
+      <td>
+              ${rdto.content}
+          <input type="hidden" id="hideContent" value="${rdto.content}">
+      </td>
       <td>
           <c:if test="${rdto.star == 5}">
           <i class="fa-solid fa-star" style="color: rgba(250, 208, 0, 0.99)" />
@@ -254,7 +261,6 @@
 
             const temp = `
                             <tr id="reedit" style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black">
-                            <form method="post" action="/sikdorock/menu/editreadd" id="editreadd">
                               <td>
                                 <div class="myform">
                                   <input type="radio" name="star" value="5" id="Rate1" checked><label
@@ -267,17 +273,15 @@
                                         for="Rate4">★</label>
                                   <input type="radio" name="star" value="1" id="Rate5"><label
                                         for="Rate5">★</label>
-                                </div>
+                              </div>
                               </td>
                               <td colspan="3">
-                                  <input type="text" name="review" id="review" class="form-control" maxlength="40" value="${content}">
-                                  <input type="hidden" name="fseq" value="${fseq}">
-                                  <input type="hidden" name="seq" value="${seq}">
+                                  <input type="text" value="\${content}" name="review2" id="review2" class="form-control" maxlength="40" >
+                                  <input type="hidden" name="fseq" value="\${fseq}">
+                                  <input type="hidden" name="rseq" value="\${seq}">
                               </td>
-                              <td><input type="submit" id="reEdit" class="btn btn-Light" value="수정하기"></td>
-                              </form>
+                              <td><input type="button" id="reEdit" class="btn btn-Light" value="수정하기" onclick="reedit()"></td>
                             </tr>
-
                             `;
 
                 if (flag == false) {
@@ -292,6 +296,19 @@
         }
 
 
+
+        function reedit() {
+
+            const star = $('input[name=star]:checked').val();
+            const fseq = $('input[name=fseq]').val();
+            const content = $('#review2').val();
+            const seq = $('input[name=rseq]').val();
+
+            alert('수정이 완료되었습니다!');
+
+            location.href="/sikdorock/menu/editreview?seq=" + seq + "&fseq=" + fseq + "&content=" + content + "&star=" + star;
+
+        }
 
 
 
@@ -340,7 +357,7 @@
 
                         tr.parent().remove();
 
-                        const temp = `<td><i class="fa-solid fa-heart" onclick="delLike(${fdto.seq})" style="color: tomato"></i> 찜</td>`
+                        const temp = `<td class="btnBold"><i class="fa-solid fa-heart" onclick="delLike(${fdto.seq})" style="color: tomato"></i> 찜</td>`
 
                         $('#like').prepend(temp);
 
@@ -373,7 +390,7 @@
 
                         tr.parent().remove();
 
-                        const temp = `<td><i class="fa-regular fa-heart" onclick="like(${fdto.seq})"></i> 찜</td>`
+                        const temp = `<td class="btnBold"><i class="fa-regular fa-heart" onclick="like(${fdto.seq})"></i> 찜</td>`
 
                         $('#like').prepend(temp);
 
@@ -411,7 +428,7 @@
 
                         tr.parent().remove();
 
-                        const temp = `<td><a href="/" id="cartli"><i class="fa-solid fa-cart-shopping"></i> 장바구니</a></td>`
+                        const temp = `<td class="btnBold"><a href="/" id="cartli"><i class="fa-solid fa-cart-shopping"></i> 장바구니</a></td>`
 
                         alert('장바구니에 추가되었습니다!')
 
