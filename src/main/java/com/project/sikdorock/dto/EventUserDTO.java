@@ -8,6 +8,7 @@ public class EventUserDTO {
     private String id;
     private String eventseq;
 
-    private String attend;
+    private int attend;
+    private String cseq;
 
 }

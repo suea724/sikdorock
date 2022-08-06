@@ -6,11 +6,23 @@
 
 
     <select id="eventlist" resultType="eventdto">
-        select * from (select e.*, rownum as rnum from tblEvent e)
+        select * from (select e.*, rownum as rnum from tblEvent e order by enddate desc)
     </select>
 
     <select id="get" resultType="eventdto" parameterType="String">
         select * from (select e.*, c.name as coupon from tblCoupon c inner join tblEvent e on e.cseq = c.seq) where seq = #{seq}
     </select>
+
+    <insert id="eventattend" parameterType="eventuserdto">
+        insert into tblEventUser(id, eventseq) values (#{id}, #{eventseq})
+    </insert>
+
+    <select id="checkattend" parameterType="eventuserdto" resultType="int">
+        select count(*) as attend from tblEventUser where id = #{id} and eventseq = #{eventseq}
+    </select>
+
+    <insert id="getcoupon" parameterType="eventuserdto">
+        insert into tblUserCoupon(id, cseq) values (#{id}, #{cseq})
+    </insert>
 
 </mapper>
