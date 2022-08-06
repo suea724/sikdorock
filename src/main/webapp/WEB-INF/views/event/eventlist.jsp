@@ -18,10 +18,8 @@
         <div id="eventlistbox">
             <c:forEach items="${list}" var="dto" varStatus="status">
                 <div id="banner${status.index}" class="banner" onclick="location.href='/sikdorock/event/eventview?seq=${dto.seq}'" style="cursor: pointer;">
-
                     <img src="/sikdorock/resources/images/${dto.name}.png" class="img">
                     <img src="/sikdorock/resources/images/${dto.name}2.png" class="img">
-
                 </div>
             </c:forEach>
         </div>
