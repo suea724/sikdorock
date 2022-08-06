@@ -477,6 +477,7 @@ public class MenuController {
 
         //가격
         String price = service.price();
+        String pprice = price;
         int sump = 0;
         sump = sumMenu * Integer.parseInt(price);
 
@@ -484,9 +485,9 @@ public class MenuController {
 
 
 
+        System.out.println("@@@pprice: " + pprice);
 
-
-
+        model.addAttribute("pprice", pprice);
         model.addAttribute("sump", sump);
         model.addAttribute("summenu", sumMenu);
         model.addAttribute("price", price);
