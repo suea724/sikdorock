@@ -110,4 +110,41 @@ public class MenuService {
     public List<CouponDTO> coupon(String id) {
         return dao.coupon(id);
     }
+
+    public int getOlderSeq() {
+
+        return dao.getOlderSeq();
+    }
+
+    public void addOrder(String id, String price) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        params.put("price", price);
+
+
+        dao.addOrder(params);
+    }
+
+    public String getOrderSeq() {
+
+        return dao.getOrderSeq();
+    }
+
+    public void addBuyList(String orderSeq, String fseq, String count) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("oseq", orderSeq);
+        params.put("fseq", fseq);
+        params.put("count", count);
+
+        dao.addBuyList(params);
+
+    }
+
+    public void okCart(String fseq, String id) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        params.put("fseq", fseq);
+
+        dao.okCart(params);
+    }
 }
