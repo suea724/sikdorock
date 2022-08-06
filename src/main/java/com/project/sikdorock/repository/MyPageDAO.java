@@ -1,9 +1,6 @@
 package com.project.sikdorock.repository;
 
-import com.project.sikdorock.dto.CouponDTO;
-import com.project.sikdorock.dto.FoodDTO;
-import com.project.sikdorock.dto.UserDTO;
-import com.project.sikdorock.dto.UserLikeFoodDTO;
+import com.project.sikdorock.dto.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -28,4 +25,12 @@ public interface MyPageDAO {
     UserDTO myInfo(String id);
 
     int editmyinfo(Map<String, String> map);
+
+    List<UserOrderDTO> orderList(String id);
+
+    List<UserOrderDTO> orderview(Map<String, String> map);
+
+    int cancelorder(Map<String, String> map);
+
+    int cancelbuylist(Map<String, String> map);
 }

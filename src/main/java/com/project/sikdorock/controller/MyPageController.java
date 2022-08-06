@@ -69,8 +69,39 @@ public class MyPageController {
         UserDTO userdto = (UserDTO) session.getAttribute("auth");
         String id = userdto.getId();
 
+        List<UserOrderDTO> list = service.orderList(id);
+        model.addAttribute("list", list);
+
         return "mypage.order";
     }
+
+    @GetMapping(value="/mypage/orderview")
+    public String orderview(String oseq, HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
+
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
+        List<UserOrderDTO> list = service.orderview(id, oseq);
+        model.addAttribute("list", list);
+        //System.out.println(list);
+
+        return "mypage.orderview";
+    }
+
+    @PostMapping(value="/mypage/cancelorder")
+    public void cancelorder(String oseq, HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) throws IOException {
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id = userdto.getId();
+
+        service.cancelbuylist(id, oseq);
+        int result = service.cancelorder(id, oseq);
+
+        PrintWriter writer = resp.getWriter();
+
+        writer.printf("{\"result\" : %d}", result);
+        writer.close();
+    }
+
     //마이페이지 > 찜 목록
     @GetMapping(value="/mypage/likefood")
     public String likeFood(@RequestParam(defaultValue = "1") int page, HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
