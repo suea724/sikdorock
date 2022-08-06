@@ -28,7 +28,7 @@
                             <%--<button class="button beige" onclick="eventcheck();">이벤트 뽑기</button>--%>
                             <%--<input type="button" class="button beige" value="이벤트 뽑기" id="event-btn">--%>
                             <%--<input type="button" value="이벤트 뽑기" id="event-btn">--%>
-                            <button class="event-btn" id="event-btn" type="submit"><img src="/sikdorock/resources/images/선물.png" class="event-btn"></button>
+                            <button class="event-btn" id="event-btn" type="submit"><img id="box" src="/sikdorock/resources/images/선물.png" class="event-btn"></button>
                         </div>
                     </c:if>
                 </c:if>
@@ -74,10 +74,16 @@
 
                  if (result.result == 1) {
                      alert('이벤트 당첨을 축하합니다! \n 당첨된 쿠폰은 마이페이지 > 쿠폰함에서 확인할 수 있습니다.');
+                     $('#box').attr('src', '/sikdorock/resources/images/상자열림.png');
+                     $('#box').attr('id', '');
                  } else if (result.result == 0) {
                      alert('아쉽게도 당첨되지 않았습니다. \n 다음 기회를 노려보세요!')
+                     $('#box').attr('src', '/sikdorock/resources/images/상자열림.png');
+                     $('#box').attr('id', '');
                  } else {
                      alert('이미 참여하셨습니다. \n 다음 이벤트를 기대해주세요!')
+                     $('#box').attr('src', '/sikdorock/resources/images/상자열림.png');
+                     $('#box').attr('id', '');
                  }
              },
              error: function (a, b, c) {
