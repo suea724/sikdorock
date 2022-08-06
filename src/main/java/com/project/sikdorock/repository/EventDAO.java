@@ -1,6 +1,7 @@
 package com.project.sikdorock.repository;
 
 import com.project.sikdorock.dto.EventDTO;
+import com.project.sikdorock.dto.EventUserDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,5 +16,10 @@ public interface EventDAO {
 
     EventDTO get(String seq);
 
-    void getcoupon(String id, String cseq);
+    void getcoupon(EventUserDTO dto);
+
+    int eventattend(EventUserDTO dto);
+
+    int checkattend(EventUserDTO dto);
+
 }

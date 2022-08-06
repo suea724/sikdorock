@@ -13,4 +13,6 @@ public class EventDTO {
     private String state;
 
     private String coupon;
+    private String nowdate;
+    private int checkdate;
 }
