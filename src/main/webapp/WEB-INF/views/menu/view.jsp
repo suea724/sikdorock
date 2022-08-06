@@ -153,10 +153,10 @@
         </c:if>
       </tr>
       <tr>
-        <td colspan="2">
-          <input type="number" name="count" id="count" placeholder="수량" min="1" value="1">
+        <td colspan="2" style="text-align: right;">
+          <span style="font-weight: bold">수량: </span>
+          <input type="number" name="count" id="count" placeholder="수량" min="1" value="1" style="margin-left: 10px; margin-right: 100px;">
           <input type="hidden" name="seq" id="viewSeq" value="${fdto.seq}">
-          <input type="button" id="purchase" class="btn btn-success form-contril" onclick="purchase()" value="구매하기">
         </td>
 
       </tr>

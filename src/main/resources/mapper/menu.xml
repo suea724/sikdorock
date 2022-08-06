@@ -167,5 +167,9 @@
         delete from tblcart where id = #{id} and fseq = #{fseq}
     </delete>
 
+    <delete id="delCoupon" parameterType="HashMap">
+        delete from tblUserCoupon where id = #{id} and cseq = #{cseq}
+    </delete>
+
 
 </mapper>

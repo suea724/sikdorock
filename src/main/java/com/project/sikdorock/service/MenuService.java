@@ -147,4 +147,13 @@ public class MenuService {
 
         dao.okCart(params);
     }
+
+    public void delCoupon(String id, String coupon) {
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        params.put("cseq", coupon);
+
+        dao.delCoupon(params);
+    }
 }
