@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -351,7 +352,7 @@ public class MenuController {
 
         System.out.println(clist.toString());
 
-        String price = service.price();
+        String price = String.format("%,d" ,Integer.parseInt(service.price()));
 
 
         model.addAttribute("clist", clist);
@@ -435,6 +436,65 @@ public class MenuController {
         writer.close();
 
 
+    }
+
+
+    ///sikdorock/menu/payment
+
+    @GetMapping(value = "/menu/payment")
+    public String payMent(@RequestParam List<String> checkcart, Model model, HttpSession session, HttpServletResponse resp) throws IOException {
+
+        UserDTO userdto = (UserDTO) session.getAttribute("auth");
+        String id= userdto.getId();
+
+        //이름 번호 주소
+        UserDTO udto = service.userInfo(id);
+
+
+        //메뉴 사진 이름 수량
+        String where = "(";
+        for(int i=0; i<checkcart.size(); i++) {
+            if (i == (checkcart.size()-1)) {
+                where += checkcart.get(i);
+            } else {
+                where += checkcart.get(i) + ",";
+            }
+        }
+        where += ")";
+
+        System.out.println("@@@@조건값: " + where);
+
+        List<CartDTO> cartli = service.payment(where);
+
+        int sumMenu = 0;
+
+        for (int i=0; i<cartli.size(); i++) {
+            sumMenu += Integer.parseInt(cartli.get(i).getCount());
+        }
+
+        //쿠폰
+        List<CouponDTO> couponli = service.coupon(id);
+
+        //가격
+        String price = service.price();
+        int sump = 0;
+        sump = sumMenu * Integer.parseInt(price);
+
+        price = String.format("%,d" ,Integer.parseInt(price));
+
+
+
+
+
+
+        model.addAttribute("sump", sump);
+        model.addAttribute("summenu", sumMenu);
+        model.addAttribute("price", price);
+        model.addAttribute("cartli", cartli);
+        model.addAttribute("udto", udto);
+        model.addAttribute("couponli", couponli);
+
+        return "menu.payment";
     }
 
 }

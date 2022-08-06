@@ -98,4 +98,16 @@ public class MenuService {
     public int delCart(String seq) {
         return dao.delCart(seq);
     }
+
+    public UserDTO userInfo(String id) {
+        return dao.userInfo(id);
+    }
+
+    public List<CartDTO> payment(String where) {
+        return dao.payment(where);
+    }
+
+    public List<CouponDTO> coupon(String id) {
+        return dao.coupon(id);
+    }
 }

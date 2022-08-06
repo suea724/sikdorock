@@ -117,4 +117,34 @@
         delete from tblCart where seq = #{seq}
     </delete>
 
+    <select id="userInfo" resultType="userdto" parameterType="String">
+        select * from tblUser where id = #{id}
+    </select>
+
+    <select id="payment" resultType="cartdto" parameterType="String">
+        select
+            c.seq,
+            c.fseq,
+            f.menuname,
+            concat(img.seq, img.ext) as image,
+            c.count
+        from tblCart c
+                 inner join tblFood f
+                            on c.fseq = f.seq
+                 inner join (select * from (select fi.*, ROWNUM rnum from TBLFOODIMAGE fi) where Mod(rnum, 2) = 1) img
+                            on f.seq = img.fseq
+        where c.seq in ${where}
+    </select>
+
+    <select id="coupon" resultType="coupondto" parameterType="String">
+        select
+            c.seq,
+            c.name,
+            c.discount
+        from tblUserCoupon uc
+                 inner join tblCoupon c
+                            on uc.cseq = c.seq
+        where  id = #{id}
+    </select>
+
 </mapper>
