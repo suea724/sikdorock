@@ -16,8 +16,8 @@
         <div id="likefoods">
             <c:if test="${not empty list}">
                 <c:forEach items="${list}" var="dto">
-                <div class="likefood">
-                    <div class="likefood-img" style="background-image: url('/sikdorock/resources/files/${dto.filename}');"></div>
+                <div class="likefood" >
+                    <div class="likefood-img" style="background-image: url('/sikdorock/resources/files/${dto.filename}');" onclick="location.href='/sikdorock/menu/view?seq=${dto.fseq}';"></div>
                     <div class="likefood-btn" onclick="delLikeFood(${dto.fseq})"><i class="fa-solid fa-heart"></i></div>
                     <div class="likefood-name">${dto.menuname}</div>
                     <div class="likefood-price">7,500</div>

@@ -147,4 +147,29 @@
         where  id = #{id}
     </select>
 
+    <select id="getOlderSeq" resultType="int">
+        select max(seq) from tblOrderNum
+    </select>
+
+    <insert id="addOrder" parameterType="HashMap">
+        insert into tblOrderNum values (seqOrderNum.nextVal, #{id}, #{price})
+    </insert>
+
+    <select id="getOrderSeq" resultType="String">
+        select max(seq) from tblOrderNum
+    </select>
+
+    <insert id="addBuyList" parameterType="HashMap">
+        insert into tblBuyList values(seqBuyList.nextVal, #{count}, default, #{oseq}, #{fseq})
+    </insert>
+
+    <delete id="okCart" parameterType="HashMap">
+        delete from tblcart where id = #{id} and fseq = #{fseq}
+    </delete>
+
+    <delete id="delCoupon" parameterType="HashMap">
+        delete from tblUserCoupon where id = #{id} and cseq = #{cseq}
+    </delete>
+
+
 </mapper>

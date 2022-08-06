@@ -15,10 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -483,10 +480,12 @@ public class MenuController {
 
         price = String.format("%,d" ,Integer.parseInt(price));
 
+        int seq = service.getOlderSeq() + 1;
 
 
         System.out.println("@@@pprice: " + pprice);
 
+        model.addAttribute("seq", seq);
         model.addAttribute("pprice", pprice);
         model.addAttribute("sump", sump);
         model.addAttribute("summenu", sumMenu);
@@ -496,6 +495,39 @@ public class MenuController {
         model.addAttribute("couponli", couponli);
 
         return "menu.payment";
+    }
+
+    @GetMapping(value="/menu/payok")
+    public void payOk(String seq, String count, HttpServletRequest request, HttpServletResponse response, String price, String coupon) throws IOException {
+        HttpSession session = request.getSession();
+        UserDTO udto = (UserDTO)session.getAttribute("auth");
+        String id = udto.getId();
+
+        service.addOrder(id, price);
+        String orderSeq = service.getOrderSeq();
+
+        String[] seqList = seq.split(",");
+        String[] countList = count.split(",");
+
+        for (int i=0; i<seqList.length; i++) {
+            service.addBuyList(orderSeq, seqList[i], countList[i]);
+            service.okCart(seqList[i], id);
+        }
+
+        if (coupon != null) {
+            service.delCoupon(id, coupon);
+        }
+
+
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+        out.println("<script>alert('결제 완료'); location.href='/sikdorock/index'</script>");
+        out.flush();
+        return;
+
+
+
     }
 
 }

@@ -59,12 +59,19 @@
 </style>
 <section>
 
+  <div style="width: 800px; margin: 0 auto; padding-left: 10px; font-weight: bold; margin-top: 40px;"><input type="checkbox" class="selAll" name="checkcart" value="" /> 전체선택</div>
+
   <form method="get" action="/sikdorock/menu/payment">
+    <c:if test="${empty clist}">
+      <h1 style="text-align: center; font-weight: bold; margin-top: 60px;">장바구니가 비어있습니다.</h1>
+    </c:if>
+
+  <c:if test="${not empty clist}">
   <c:forEach items="${clist}" var="cdto">
   <div id='CartBox'>
       <table>
         <tr>
-          <td><input type="checkbox" name="checkcart" value="${cdto.seq}"></td>
+          <td><input type="checkbox" class="selChk" name="checkcart" value="${cdto.seq}"></td>
           <td><img src="/sikdorock/resources/files/${cdto.image}"></td>
           <td style="width: 250px;">
             <div>${cdto.menuname}</div>
@@ -81,18 +88,30 @@
   </c:forEach>
 
 
+
   <div id="paybox">
-    <input type="submit" id="selcart" name="selcart" class="btn btn-secondary" value="선택 구매">
-    <input type="button" onclick="allpay()" id="allcart" name="allcart" class="btn btn-secondary" value="전체 구매">
+    <input type="submit" id="selcart" name="selcart" class="btn btn-secondary" value="구매하기" style="width: 800px; margin-left: 18px;">
+    <%--<input type="button" onclick="allpay(this)" id="allcart" name="allcart" class="btn btn-secondary" value="전체 구매">--%>
   </div>
   </form>
-
+  </c:if>
 
 
 
 </section>
 
 <script>
+
+  $(".selAll").click( function(){
+    $(".selChk").prop('checked', this.checked);
+  });
+
+  // 전체선택 후 선택 리스트 하나라도 누르게 되면 전체선택 체크 해제
+  function clkSelChk(){
+    $(".selAll").prop("checked", false);
+  }
+
+
 
   function editcart(seq) {
 
@@ -126,6 +145,18 @@
         console.log(a, b, c);
       }
     });
+
+  }
+
+
+  function allpay(selectAll) {
+    //checkcart
+    const checkboxes
+            = document.getElementsByName('checkcart');
+
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = selectAll.checked;
+    })
 
   }
 

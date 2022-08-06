@@ -54,4 +54,41 @@
         update tblUser set tel = #{tel}, address = #{address}, addressdetail = #{detail} where id = #{id}
     </update>
 
+    <select id="orderList" parameterType="String" resultType="userorderdto">
+        select
+            b.seq,
+            b.count,
+            b.regdate,
+            b.oseq,
+            o.id,
+            f.menuname
+        from vworder o
+                 inner join tblbuylist b on o.oseq = b.seq
+                 inner join tblFood f on b.fseq = f.seq
+        where id = #{id}
+    </select>
+
+    <select id="orderview" parameterType="HashMap" resultType="userorderdto">
+        select
+            bl.seq as seq,
+            o.seq as oseq,
+            o.id as id,
+            bl.regdate as regdate,
+            bl.count as count,
+    f.menuname as menuname
+        from tblOrderNum o
+            inner join tblBuyList bl
+        on bl.oseq = o.seq
+            inner join tblFood f
+            on f.seq = bl.fseq where oseq = #{oseq} and id = #{id}
+    </select>
+
+    <delete id="cancelorder" parameterType="HashMap">
+        delete from tblOrderNum where seq = #{oseq} and id = #{id}
+    </delete>
+
+    <delete id="cancelbuylist" parameterType="HashMap">
+        delete from tblBuyList where oseq = #{oseq}
+    </delete>
+
 </mapper>
