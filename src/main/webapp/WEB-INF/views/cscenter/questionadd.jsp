@@ -40,4 +40,8 @@
         "font-weight": "bold"
     });
 
+    $('#main-menu ul li:nth-child(4) a').css({
+        "color": "#C69760",
+    });
+
 </script>

@@ -70,4 +70,7 @@
 
 <script>
     AOS.init(); // 자바스크립트로 init()을 해야 동작한다.
+    $('#main-menu ul li:nth-child(1) a').css({
+        "color": "#C69760",
+    });
 </script>

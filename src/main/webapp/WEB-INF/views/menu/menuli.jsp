@@ -64,6 +64,14 @@
 
             location.href='/sikdorock/menu/menuli?month=' + $('input[name=month]').val()
         });
+
+        $('.fc-today-button').on('click', function () {
+
+            location.href='/sikdorock/menu/menuli';
+        });
+
+
+
     });
 </script>
 <style>
@@ -110,3 +118,9 @@
 
 
 </section>
+
+<script>
+    $('#main-menu ul li:nth-child(2) a').css({
+        "color": "#C69760",
+    });
+</script>

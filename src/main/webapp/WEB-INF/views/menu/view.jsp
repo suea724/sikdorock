@@ -446,6 +446,10 @@
 
         }
 
+        $('#main-menu ul li:nth-child(2) a').css({
+            "color": "#C69760",
+        });
+
 
 
     </script>

@@ -73,9 +73,13 @@
         window.open('/sikdorock/cscenter/showanswer?seq=' + seq, 'pop01' ,'width=700,height=700')
     }
 
-$('#cssubmenu div a:nth-child(2)').css({
+    $('#cssubmenu div a:nth-child(2)').css({
         "color": "black",
         "font-weight": "bold"
+    });
+
+    $('#main-menu ul li:nth-child(4) a').css({
+        "color": "#C69760",
     });
 
 </script>
