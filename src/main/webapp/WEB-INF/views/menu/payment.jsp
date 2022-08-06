@@ -42,7 +42,7 @@
 </style>
 
 <section>
-    <form method="get" action="/">
+
         <div id="payBox">
             <h2>배송지</h2>
             <br>
@@ -63,8 +63,8 @@
                             </td>
                             <td>
                                 수량 ${cdto.count}개
-                                <input type="hidden" name="menucount" value="${cdto.count}">
-                                <input type="hidden" name="menuseq" value="${cdto.seq}">
+                                <input type="hidden" class="menucount" value="${cdto.count}">
+                                <input type="hidden" class="menuseq" value="${cdto.fseq}">
                             </td>
                     </table>
                 </div>
@@ -94,14 +94,28 @@
             <div><span>할인 금액: </span><span id="dp">원</span></div>
             <div><span>최종 금액: </span><span id="lastp">원</span></div>
 
-            <div style="text-align: right"><input type="submit" value="결제하기" class="btn btn-success"></div>
 
+            <div style="text-align: right"><button onclick="requestPay()">결제하기</button></div>
         </div>
-    </form>
+
 
 
 </section>
 <script>
+
+    let seqList = document.getElementsByClassName('menuseq');
+    let seqArr = [];
+    for (let i=0; i<seqList.length; i++) {
+        seqArr.push(seqList[i].value);
+    }
+
+    let countList = document.getElementsByClassName('menucount');
+    let countArr = [];
+    for (let i=0; i<countList.length; i++) {
+        countArr.push(countList[i].value);
+    }
+
+
     function disprice(e) {
         let value = document.getElementById('selcoupon').options[document.getElementById('selcoupon').selectedIndex].dataset.discount;
 
@@ -117,5 +131,29 @@
     document.getElementById('sump').innerText = sump.toLocaleString() + "원";
 
     document.getElementById('lastp').innerText = sump.toLocaleString() + "원";
+
+    IMP.init("imp58287643"); // 예: imp00000000
+
+    function requestPay() {
+        // IMP.request_pay(param, callback) 결제창 호출
+        IMP.request_pay({ // param
+            pg: "kakaopay",
+            pay_method: "card",
+            merchant_uid: "${seq}",
+            name: "식도락 메뉴 결제",
+            amount: document.getElementById('lastp').innerText,
+            buyer_email: "${udto.id}",
+            buyer_name: "${udto.name}",
+            buyer_tel: "${udto.tel}",
+            buyer_addr: "${udto.address}",
+            buyer_postcode: "01181"
+        }, function (rsp) { // callback
+            if (rsp.success) {
+                location.href='/sikdorock/menu/payok?seq=' + seqArr + '&count=' + countArr + '&price=' + document.getElementById('lastp').innerText;
+            } else {
+
+            }
+        });
+    }
 
 </script>
