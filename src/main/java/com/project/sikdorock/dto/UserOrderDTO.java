@@ -9,4 +9,5 @@ public class UserOrderDTO {
     private String regdate;
     private String count;
     private String menuname;
+    private String seq;
 }

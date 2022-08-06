@@ -88,6 +88,10 @@
     margin: 5px;
 }
 
+.likefood > .likefood-img:hover {
+    cursor: pointer;
+}
+
 #likefood-sub {
     display: flex;
     justify-content: space-between;
@@ -135,7 +139,7 @@
 /*내 정보 관리하기*/
 #myinfo {
     margin: 5px;
-    margin-top: 20px;
+    margin-top: 50px;
     font-size: 1.2rem;
 }
 
@@ -160,6 +164,17 @@
     opacity: 1;
 }
 
+input#address {
+    background-color: #C69760;
+    border: 0px;
+    border-radius: 5px;
+    opacity: .8;
+}
+
+input#address:hover {
+    opacity: 1;
+}
+
 /*결제/구독내역*/
 #subscribe-content {
     height: 100px;
@@ -178,6 +193,10 @@
     margin: 5px;
 }
 
+.order:hover {
+    cursor: pointer;
+}
+
 .order > .order-food {
     font-size: 1.3rem;
     padding: 10px;
@@ -186,4 +205,70 @@
 
 .order > .order-date {
     margin: 10px;
+}
+
+.subscribe-btns {
+    display: flex;
+    justify-content: right;
+    margin-right: 35px;
+    margin-top: 10px;
+}
+
+.subscribe-btns > div {
+    margin-left: 5px;
+}
+
+.subscribe-btns > div#subscribe-cancel > input, .subscribe-btns > div#subscribe-change > input {
+    background-color: #C69760;
+    border: 0px;
+    border-radius: 5px;
+    opacity: .8;
+}
+
+.subscribe-btns > div#subscribe-cancel > input:hover{
+    opacity: 1;
+}
+.subscribe-btns > div#subscribe-change > input:hover {
+    opacity: 1;
+}
+
+/*주문 상세보기*/
+.buy-food > table {
+    width: 850px;
+}
+
+.buy-food > table tr > th, .buy-food > table tr > td{
+    text-align: center;
+    padding: 5px;
+}
+
+.buy-food > table tr > th:nth-child(1) {
+    width: 750px;
+}
+
+.buy-food > table tr > th:nth-child(2) {
+    width: auto;
+}
+
+#order-btn {
+    display: flex;
+    justify-content: right;
+}
+
+#order-btn > input {
+
+    background-color: #C69760;
+    border: 0px;
+    border-radius: 5px;
+    opacity: .8;
+}
+
+#order-btn > input:hover {
+    opacity: 1;
+}
+
+#order-date {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 10px;
 }
