@@ -30,7 +30,7 @@ public class EventController {
 
         List<EventDTO> eventlist = service.eventlist();
 
-        System.out.println(eventlist);
+       // System.out.println(eventlist);
 
         model.addAttribute("list", eventlist);
 
