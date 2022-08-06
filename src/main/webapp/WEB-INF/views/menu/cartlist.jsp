@@ -90,7 +90,7 @@
 
 
   <div id="paybox">
-    <input type="submit" id="selcart" name="selcart" class="btn btn-secondary" value="선택 구매" style="width: 800px; margin-left: 18px;">
+    <input type="submit" id="selcart" name="selcart" class="btn btn-secondary" value="구매하기" style="width: 800px; margin-left: 18px;">
     <%--<input type="button" onclick="allpay(this)" id="allcart" name="allcart" class="btn btn-secondary" value="전체 구매">--%>
   </div>
   </form>
