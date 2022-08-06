@@ -23,15 +23,17 @@
                     </c:if>
                     <c:if test="${not empty auth}">
                         <div class="eventinfo">${dto.eventinfo}<br>당첨된 쿠폰은 마이페이지 > 쿠폰함에서 확인할 수 있습니다.</div>
-                        <div id="ment"><h4>과연 행운의 주인공은 누구일까요?</h4></div>
+                        <div id="ment"><h4>과연 행운의 <span id="host">주인공</span>은 누구일까요? 😋</h4><h6>🔽 선물 클릭 🔽</h6></div>
                         <div id="btn-box">
                             <%--<button class="button beige" onclick="eventcheck();">이벤트 뽑기</button>--%>
-                            <input type="button" class="button beige" value="이벤트 뽑기" id="event-btn">
+                            <%--<input type="button" class="button beige" value="이벤트 뽑기" id="event-btn">--%>
+                            <%--<input type="button" value="이벤트 뽑기" id="event-btn">--%>
+                            <button class="event-btn" id="event-btn" type="submit"><img src="/sikdorock/resources/images/선물.png" class="event-btn"></button>
                         </div>
                     </c:if>
                 </c:if>
                 <c:if test="${dto.checkdate > 0}">
-                    <h4 class="notevent">이벤트가 종료되었습니다. 다음 이벤트를 기대해주세요!</h4>
+                    <h4 class="notevent">이벤트가 종료되었습니다.😅 다음 이벤트를 기대해주세요! ✨</h4>
                 </c:if>
             </div>
         <%--${dto.coupon}--%>

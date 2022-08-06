@@ -1,13 +1,15 @@
 
 
-.eventlist > h3 {
+.events > h3 {
 
     margin-bottom: 20px;
+    font-weight: bold;
+
 }
 .eventlist {
 
     width: 900px;
-    margin-top: 30px;
+    margin-top: 60px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -31,6 +33,7 @@
     display: inline-block;
     height: auto;
     margin-bottom: 80px;
+
 }
 
 #eventbox {
@@ -93,7 +96,11 @@
 #ment {
     text-align: center;
     margin-top: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+}
+
+#ment > h6 {
+    font-weight: bold;
 }
 
 #btn-box {
@@ -120,4 +127,17 @@
     margin: 120px auto 70px auto;
     text-align: center;
     /*color: #C69760;*/
+}
+
+#host {
+
+    color: #C69760;
+}
+
+
+.event-btn {
+    border: none;
+    background-color: white;
+    width: 130px;
+    height: auto;
 }

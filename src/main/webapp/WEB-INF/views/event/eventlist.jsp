@@ -13,7 +13,7 @@
 
 
     <div class="events">
-        <h3>이벤트</h3>
+        <h3>이벤트 🎈</h3>
         <br>
         <div id="eventlistbox">
             <c:forEach items="${list}" var="dto" varStatus="status">
