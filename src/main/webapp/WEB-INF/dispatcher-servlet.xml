@@ -60,7 +60,6 @@
             <mvc:exclude-mapping path="/logout"/>
             <mvc:exclude-mapping path="/event/**"/>
             <mvc:exclude-mapping path="/menu/menuli"/>
-            <mvc:exclude-mapping path="/menu/view"/>
             <mvc:exclude-mapping path="/register"/>
             <bean id="loginInterceptor" class="com.project.sikdorock.interceptor.LoginInterceptor"/>
         </mvc:interceptor>

@@ -62,4 +62,6 @@ public interface MenuDAO {
     void addBuyList(Map<String, Object> params);
 
     void okCart(Map<String, Object> params);
+
+    void delCoupon(Map<String, Object> params);
 }
