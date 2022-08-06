@@ -48,60 +48,60 @@
 
 <section>
 
-        <div id="payBox">
-            <h2 style="font-weight: 600">배송지</h2>
-            <br>
-            <h4>${udto.name}</h4>
-            <div>${udto.tel}</div>
-            <div id="address"><div>${udto.address}</div><a href="/sikdorock/mypage/myinfo"><div>배송지 변경</div></a></div>
+    <div id="payBox">
+        <h2 style="font-weight: 600">배송지</h2>
+        <br>
+        <h4>${udto.name}</h4>
+        <div>${udto.tel}</div>
+        <div id="address"><div>${udto.address}</div><a href="/sikdorock/mypage/myinfo"><div>배송지 변경</div></a></div>
 
-            <hr class="hrmargin">
+        <hr class="hrmargin">
 
-            <c:forEach items="${cartli}" var="cdto">
-                <div id='CartBox'>
-                    <table>
-                        <tr>
-                            <td><img src="/sikdorock/resources/files/${cdto.image}"></td>
-                            <td>
-                                <div>${cdto.menuname}</div>
-                                <div>${price}</div>
-                            </td>
-                            <td>
-                                수량 ${cdto.count}개
-                                <input type="hidden" class="menucount" value="${cdto.count}">
-                                <input type="hidden" class="menuseq" value="${cdto.fseq}">
-                            </td>
-                    </table>
-                </div>
-            </c:forEach>
+        <c:forEach items="${cartli}" var="cdto">
+            <div id='CartBox'>
+                <table>
+                    <tr>
+                        <td><img src="/sikdorock/resources/files/${cdto.image}"></td>
+                        <td>
+                            <div>${cdto.menuname}</div>
+                            <div>${price}</div>
+                        </td>
+                        <td>
+                            수량 ${cdto.count}개
+                            <input type="hidden" class="menucount" value="${cdto.count}">
+                            <input type="hidden" class="menuseq" value="${cdto.fseq}">
+                        </td>
+                </table>
+            </div>
+        </c:forEach>
 
-            <hr class="hrmargin">
+        <hr class="hrmargin">
 
-            <h4 style="font-weight: 600">쿠폰 할인</h4>
-            <c:if test="${empty couponli}">
-                <select class="form-control" disabled>
-                    <option disabled selected>=========빈 쿠폰함=========</option>
-                </select>
-            </c:if>
-            <c:if test="${not empty couponli}">
-                <select name="selcoupon" class="form-control" id="selcoupon" onchange="disprice(this)">
-                    <option value="" disabled selected>============선택============</option>
-                    <c:forEach items="${couponli}" var="coudto">
-                        <option value="${coudto.seq}" data-discount="${coudto.discount}">${coudto.name}</option>
-                    </c:forEach>
-                </select>
-            </c:if>
+        <h4 style="font-weight: 600">쿠폰 할인</h4>
+        <c:if test="${empty couponli}">
+            <select class="form-control" disabled>
+                <option disabled selected>=========빈 쿠폰함=========</option>
+            </select>
+        </c:if>
+        <c:if test="${not empty couponli}">
+            <select name="selcoupon" class="form-control" id="selcoupon" onchange="disprice(this)">
+                <option value="" disabled selected>============선택============</option>
+                <c:forEach items="${couponli}" var="coudto">
+                    <option value="${coudto.seq}" data-discount="${coudto.discount}">${coudto.name}</option>
+                </c:forEach>
+            </select>
+        </c:if>
 
-            <hr class="hrmargin">
+        <hr class="hrmargin">
 
-            <h4 style="font-weight: 600">최종 결제 금액</h4>
-            <div style="font-weight: 600"><span>상품 금액: </span><span id="sump">원</span></div>
-            <div style="font-weight: 600"><span>할인 금액: </span><span id="dp">원</span></div>
-            <div style="font-weight: 600"><span>최종 금액: </span><span id="lastp">원</span></div>
+        <h4 style="font-weight: 600">최종 결제 금액</h4>
+        <div style="font-weight: 600"><span>상품 금액: </span><span id="sump">원</span></div>
+        <div style="font-weight: 600"><span>할인 금액: </span><span id="dp">원</span></div>
+        <div style="font-weight: 600"><span>최종 금액: </span><span id="lastp">원</span></div>
 
 
-            <div style="text-align: right; margin-bottom: 30px;"><button onclick="requestPay()" class="btn btn-success">결제하기</button></div>
-        </div>
+        <div style="text-align: right; margin-bottom: 30px;"><button onclick="requestPay()" class="btn btn-success">결제하기</button></div>
+    </div>
 
 
 
