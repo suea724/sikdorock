@@ -52,4 +52,14 @@ public interface MenuDAO {
     List<CartDTO> payment(String where);
 
     List<CouponDTO> coupon(String id);
+
+    int getOlderSeq();
+
+    void addOrder(Map<String, Object> params);
+
+    String getOrderSeq();
+
+    void addBuyList(Map<String, Object> params);
+
+    void okCart(Map<String, Object> params);
 }

@@ -42,66 +42,80 @@
 </style>
 
 <section>
-    <form method="get" action="/">
-    <div id="payBox">
-        <h2>배송지</h2>
-        <br>
-        <h4>${udto.name}</h4>
-        <div>${udto.tel}</div>
-        <div id="address"><div>${udto.address}</div><a href="/"><div>배송지 변경</div></a></div>
 
-        <hr>
+        <div id="payBox">
+            <h2>배송지</h2>
+            <br>
+            <h4>${udto.name}</h4>
+            <div>${udto.tel}</div>
+            <div id="address"><div>${udto.address}</div><a href="/"><div>배송지 변경</div></a></div>
 
-        <c:forEach items="${cartli}" var="cdto">
-            <div id='CartBox'>
-                <table>
-                    <tr>
-                        <td><img src="/sikdorock/resources/files/${cdto.image}"></td>
-                        <td>
-                            <div>${cdto.menuname}</div>
-                            <div>${price}</div>
-                        </td>
-                        <td>
-                            수량 ${cdto.count}개
-                            <input type="hidden" name="menucount" value="${cdto.count}">
-                            <input type="hidden" name="menuseq" value="${cdto.seq}">
-                        </td>
-                </table>
-            </div>
-        </c:forEach>
+            <hr>
 
-        <hr>
-
-        <h4>쿠폰 할인</h4>
-        <c:if test="${empty couponli}">
-            <select class="form-control" disabled>
-                <option disabled selected>=========빈 쿠폰함=========</option>
-            </select>
-        </c:if>
-        <c:if test="${not empty couponli}">
-        <select name="selcoupon" class="form-control" id="selcoupon" onchange="disprice(this)">
-            <option value="" disabled selected>============선택============</option>
-            <c:forEach items="${couponli}" var="coudto">
-                <option value="${coudto.seq}" data-discount="${coudto.discount}">${coudto.name}</option>
+            <c:forEach items="${cartli}" var="cdto">
+                <div id='CartBox'>
+                    <table>
+                        <tr>
+                            <td><img src="/sikdorock/resources/files/${cdto.image}"></td>
+                            <td>
+                                <div>${cdto.menuname}</div>
+                                <div>${price}</div>
+                            </td>
+                            <td>
+                                수량 ${cdto.count}개
+                                <input type="hidden" class="menucount" value="${cdto.count}">
+                                <input type="hidden" class="menuseq" value="${cdto.fseq}">
+                            </td>
+                    </table>
+                </div>
             </c:forEach>
-        </select>
-        </c:if>
 
-        <hr>
+            <hr>
 
-        <h4>최종 결제 금액</h4>
-        <div><span>상품 금액: </span><span id="sump">원</span></div>
-        <div><span>할인 금액: </span><span id="dp">원</span></div>
-        <div><span>최종 금액: </span><span id="lastp">원</span></div>
+            <h4>쿠폰 할인</h4>
+            <c:if test="${empty couponli}">
+                <select class="form-control" disabled>
+                    <option disabled selected>=========빈 쿠폰함=========</option>
+                </select>
+            </c:if>
+            <c:if test="${not empty couponli}">
+                <select name="selcoupon" class="form-control" id="selcoupon" onchange="disprice(this)">
+                    <option value="" disabled selected>============선택============</option>
+                    <c:forEach items="${couponli}" var="coudto">
+                        <option value="${coudto.seq}" data-discount="${coudto.discount}">${coudto.name}</option>
+                    </c:forEach>
+                </select>
+            </c:if>
 
-        <div style="text-align: right"><input type="submit" value="결제하기" class="btn btn-success"></div>
+            <hr>
 
-    </div>
-    </form>
+            <h4>최종 결제 금액</h4>
+            <div><span>상품 금액: </span><span id="sump">원</span></div>
+            <div><span>할인 금액: </span><span id="dp">원</span></div>
+            <div><span>최종 금액: </span><span id="lastp">원</span></div>
+
+
+            <div style="text-align: right"><button onclick="requestPay()">결제하기</button></div>
+        </div>
+
 
 
 </section>
 <script>
+
+    let seqList = document.getElementsByClassName('menuseq');
+    let seqArr = [];
+    for (let i=0; i<seqList.length; i++) {
+        seqArr.push(seqList[i].value);
+    }
+
+    let countList = document.getElementsByClassName('menucount');
+    let countArr = [];
+    for (let i=0; i<countList.length; i++) {
+        countArr.push(countList[i].value);
+    }
+
+
     function disprice(e) {
         let value = document.getElementById('selcoupon').options[document.getElementById('selcoupon').selectedIndex].dataset.discount;
 
@@ -117,5 +131,29 @@
     document.getElementById('sump').innerText = sump.toLocaleString() + "원";
 
     document.getElementById('lastp').innerText = sump.toLocaleString() + "원";
+
+    IMP.init("imp58287643"); // 예: imp00000000
+
+    function requestPay() {
+        // IMP.request_pay(param, callback) 결제창 호출
+        IMP.request_pay({ // param
+            pg: "kakaopay",
+            pay_method: "card",
+            merchant_uid: "${seq}",
+            name: "식도락 메뉴 결제",
+            amount: document.getElementById('lastp').innerText,
+            buyer_email: "${udto.id}",
+            buyer_name: "${udto.name}",
+            buyer_tel: "${udto.tel}",
+            buyer_addr: "${udto.address}",
+            buyer_postcode: "01181"
+        }, function (rsp) { // callback
+            if (rsp.success) {
+                location.href='/sikdorock/menu/payok?seq=' + seqArr + '&count=' + countArr + '&price=' + document.getElementById('lastp').innerText;
+            } else {
+
+            }
+        });
+    }
 
 </script>
