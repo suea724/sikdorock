@@ -46,4 +46,10 @@ public interface MenuDAO {
     int editCart(Map<String, String> map);
 
     int delCart(String seq);
+
+    UserDTO userInfo(String id);
+
+    List<CartDTO> payment(String where);
+
+    List<CouponDTO> coupon(String id);
 }

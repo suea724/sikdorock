@@ -59,11 +59,12 @@
 </style>
 <section>
 
+  <form method="get" action="/sikdorock/menu/payment">
   <c:forEach items="${clist}" var="cdto">
   <div id='CartBox'>
       <table>
         <tr>
-          <td><input type="checkbox" name="gulDel[]" value="${cdto.seq}}"></td>
+          <td><input type="checkbox" name="checkcart" value="${cdto.seq}"></td>
           <td><img src="/sikdorock/resources/files/${cdto.image}"></td>
           <td style="width: 250px;">
             <div>${cdto.menuname}</div>
@@ -79,10 +80,12 @@
   </div>
   </c:forEach>
 
+
   <div id="paybox">
-    <input type="button" onclick="selpay()" id="selcart" name="selcart" class="btn btn-secondary" value="선택 구매">
+    <input type="submit" id="selcart" name="selcart" class="btn btn-secondary" value="선택 구매">
     <input type="button" onclick="allpay()" id="allcart" name="allcart" class="btn btn-secondary" value="전체 구매">
   </div>
+  </form>
 
 
 
@@ -94,7 +97,7 @@
   function editcart(seq) {
 
     const count = $(event.target).parent().prev().children().first().val();
-    
+
 
     location.href="/sikdorock/menu/editcart?seq=" + seq + "&count=" + count;
   }
