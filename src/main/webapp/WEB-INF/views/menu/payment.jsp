@@ -39,18 +39,23 @@
         width: 300px;
     }
 
+    .hrmargin {
+        margin-top: 21px;
+        margin-bottom: 21px;
+    }
+
 </style>
 
 <section>
 
         <div id="payBox">
-            <h2>배송지</h2>
+            <h2 style="font-weight: 600">배송지</h2>
             <br>
             <h4>${udto.name}</h4>
             <div>${udto.tel}</div>
             <div id="address"><div>${udto.address}</div><a href="/"><div>배송지 변경</div></a></div>
 
-            <hr>
+            <hr class="hrmargin">
 
             <c:forEach items="${cartli}" var="cdto">
                 <div id='CartBox'>
@@ -70,9 +75,9 @@
                 </div>
             </c:forEach>
 
-            <hr>
+            <hr class="hrmargin">
 
-            <h4>쿠폰 할인</h4>
+            <h4 style="font-weight: 600">쿠폰 할인</h4>
             <c:if test="${empty couponli}">
                 <select class="form-control" disabled>
                     <option disabled selected>=========빈 쿠폰함=========</option>
@@ -87,12 +92,12 @@
                 </select>
             </c:if>
 
-            <hr>
+            <hr class="hrmargin">
 
-            <h4>최종 결제 금액</h4>
-            <div><span>상품 금액: </span><span id="sump">원</span></div>
-            <div><span>할인 금액: </span><span id="dp">원</span></div>
-            <div><span>최종 금액: </span><span id="lastp">원</span></div>
+            <h4 style="font-weight: 600">최종 결제 금액</h4>
+            <div style="font-weight: 600"><span>상품 금액: </span><span id="sump">원</span></div>
+            <div style="font-weight: 600"><span>할인 금액: </span><span id="dp">원</span></div>
+            <div style="font-weight: 600"><span>최종 금액: </span><span id="lastp">원</span></div>
 
 
             <div style="text-align: right"><button onclick="requestPay()">결제하기</button></div>
@@ -102,7 +107,7 @@
 
 </section>
 <script>
-
+    let coupon = 0;
     let seqList = document.getElementsByClassName('menuseq');
     let seqArr = [];
     for (let i=0; i<seqList.length; i++) {
@@ -118,6 +123,7 @@
 
     function disprice(e) {
         let value = document.getElementById('selcoupon').options[document.getElementById('selcoupon').selectedIndex].dataset.discount;
+        coupon = document.getElementById('selcoupon').options[document.getElementById('selcoupon').selectedIndex].value;
 
         let dp = Math.floor(${sump} / value);
         let lastp = ${sump} - dp;
@@ -149,7 +155,7 @@
             buyer_postcode: "01181"
         }, function (rsp) { // callback
             if (rsp.success) {
-                location.href='/sikdorock/menu/payok?seq=' + seqArr + '&count=' + countArr + '&price=' + document.getElementById('lastp').innerText;
+                location.href='/sikdorock/menu/payok?seq=' + seqArr + '&count=' + countArr + '&price=' + document.getElementById('lastp').innerText + '&coupon=' + coupon;
             } else {
 
             }

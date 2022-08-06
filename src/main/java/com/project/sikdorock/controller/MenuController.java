@@ -498,7 +498,7 @@ public class MenuController {
     }
 
     @GetMapping(value="/menu/payok")
-    public void payOk(String seq, String count, HttpServletRequest request, HttpServletResponse response, String price) throws IOException {
+    public void payOk(String seq, String count, HttpServletRequest request, HttpServletResponse response, String price, String coupon) throws IOException {
         HttpSession session = request.getSession();
         UserDTO udto = (UserDTO)session.getAttribute("auth");
         String id = udto.getId();
@@ -513,6 +513,11 @@ public class MenuController {
             service.addBuyList(orderSeq, seqList[i], countList[i]);
             service.okCart(seqList[i], id);
         }
+
+        if (coupon != null) {
+            service.delCoupon(id, coupon);
+        }
+
 
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
