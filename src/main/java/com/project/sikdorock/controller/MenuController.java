@@ -522,7 +522,7 @@ public class MenuController {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        out.println("<script>alert('결제 완료'); location.href='/sikdorock/index'</script>");
+        out.println("<script>alert('결제 완료'); location.href='/sikdorock/mypage/orderview?oseq=" + orderSeq + "'</script>");
         out.flush();
         return;
 
