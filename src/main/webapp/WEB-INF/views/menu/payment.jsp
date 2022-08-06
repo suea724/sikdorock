@@ -79,7 +79,7 @@
             </select>
         </c:if>
         <c:if test="${not empty couponli}">
-        <select name="selcoupon" class="form-control" onchange="disprice(this)">
+        <select name="selcoupon" class="form-control" id="selcoupon" onchange="disprice(this)">
             <option value="" disabled selected>============선택============</option>
             <c:forEach items="${couponli}" var="coudto">
                 <option value="${coudto.seq}" data-discount="${coudto.discount}">${coudto.name}</option>
@@ -90,11 +90,11 @@
         <hr>
 
         <h4>최종 결제 금액</h4>
-        <div><span>상품 금액: </span><span>${sump}원</span></div>
+        <div><span>상품 금액: </span><span id="sump">원</span></div>
         <div><span>할인 금액: </span><span id="dp">원</span></div>
         <div><span>최종 금액: </span><span id="lastp">원</span></div>
 
-        <div><input type="submit" value="결제하기" class="btn btn-success"></div>
+        <div style="text-align: right"><input type="submit" value="결제하기" class="btn btn-success"></div>
 
     </div>
     </form>
@@ -103,11 +103,19 @@
 </section>
 <script>
     function disprice(e) {
-        // 선택된 데이터 가져오기
-        let value = ${price} / Number(e.datasets['discount']);
+        let value = document.getElementById('selcoupon').options[document.getElementById('selcoupon').selectedIndex].dataset.discount;
 
-        // 데이터 출력
-        document.getElementById('dp').innerHTML = value;
+        let dp = Math.floor(${sump} / value);
+        let lastp = ${sump} - dp;
+
+        document.getElementById('dp').innerText = dp.toLocaleString() + "원";
+        document.getElementById('lastp').innerText = lastp.toLocaleString() + "원";
     }
+
+
+    let sump = ${sump};
+    document.getElementById('sump').innerText = sump.toLocaleString() + "원";
+
+    document.getElementById('lastp').innerText = sump.toLocaleString() + "원";
 
 </script>
