@@ -4,19 +4,51 @@
 <style>
     #payBox {
         width: 1000px;
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+
+    #CartBox {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 800px;
+        margin: 15px auto;
+        background-color: #F2F2F2;
+        border-radius: 15px;
+        box-shadow: 5px 5px #E4E4E5;
+        padding-left: 10px;
+    }
+
+    #CartBox > table > tbody > tr > td:nth-child(1) > img {
+        width: 200px;
+        height: 150px;
+        border-radius: 15px;
+        margin-right: 10px;
+    }
+
+    #CartBox > table > tbody > tr > td:nth-child(2) {
+        width: 450px;
+    }
+
+    #address {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #payBox > select {
+        width: 300px;
     }
 
 </style>
-<%--model.addAttribute("cartli", cartli);--%>
-<%--model.addAttribute("udto", udto);--%>
-<%--model.addAttribute("couponli", couponli);--%>
+
 <section>
     <form method="get" action="/">
     <div id="payBox">
         <h2>배송지</h2>
+        <br>
         <h4>${udto.name}</h4>
         <div>${udto.tel}</div>
-        <div><span>${udto.address}<span><a>배송지 변경</a></span></div>
+        <div id="address"><div>${udto.address}</div><a href="/"><div>배송지 변경</div></a></div>
 
         <hr>
 
@@ -25,7 +57,7 @@
                 <table>
                     <tr>
                         <td><img src="/sikdorock/resources/files/${cdto.image}"></td>
-                        <td style="width: 250px;">
+                        <td>
                             <div>${cdto.menuname}</div>
                             <div>${price}</div>
                         </td>
@@ -43,12 +75,12 @@
         <h4>쿠폰 할인</h4>
         <c:if test="${empty couponli}">
             <select class="form-control" disabled>
-                <option disabled selected>======선택 불가======</option>
+                <option disabled selected>=========빈 쿠폰함=========</option>
             </select>
         </c:if>
         <c:if test="${not empty couponli}">
         <select name="selcoupon" class="form-control" onchange="disprice(this)">
-            <option value="" disabled selected>=======선택=======</option>
+            <option value="" disabled selected>============선택============</option>
             <c:forEach items="${couponli}" var="coudto">
                 <option value="${coudto.seq}" data-discount="${coudto.discount}">${coudto.name}</option>
             </c:forEach>
