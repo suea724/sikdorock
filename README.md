@@ -89,7 +89,7 @@ github-181717.svg?&style=flat&logo=GitHub&logoColor=white"/>
 
 ### 🚨프로젝트 피드백
 
-- 저번 프로젝트에서는 JSP/Servlet을 사용했지만 이번 프로젝트는 Spring Framework를 사용하며 데이터베이스 같은 경우 Spring ORM 중 myBatis 기술을 활용하여 sql 관리를 좀더 효울적으로 할수 있었고, Interceptor를 사용하여 매번 로그인 확인을 하던걸 Controller를 실행시키기 전에 preHandle 메소드를 실행시켜 좀 더 깔끔한 코드가 완성되었다.
+- 저번 프로젝트에서는 JSP/Servlet을 사용했지만 이번 프로젝트는 Spring Framework를 사용하며 데이터베이스 같은 경우 MyBatis 기술을 활용하여 복잡한 JDBC 코드를 걷어내며 깔끔한 소스코드를 유지할 수 있었고., Interceptor를 사용하여 매번 로그인 확인을 하던걸 Controller를 실행시키기 전에 preHandle 메소드를 실행시켜 좀 더 깔끔한 코드가 완성되었다.
 
 - 페이징, 파일업로드 같은 공통적으로 사용하는 코드를 따로 관리할 수 있게 클래스를 만들어서 코드의 중복성을 줄이고, 재사용성을 증가시켰다.
 
